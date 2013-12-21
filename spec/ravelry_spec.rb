@@ -1,7 +1,3 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-
-describe "Ravelry" do
-  it "fails" do
-    fail "hey buddy, you should probably rename this file and start specing for real"
-  end
-end
+# This file is intentionally left empty
+# You know, like those pieces of paper in important documents
+# This doesn't mean this is an important document, though
