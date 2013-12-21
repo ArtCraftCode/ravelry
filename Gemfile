@@ -7,4 +7,4 @@ group :development do
 end
 
 # for unauthenticated api calls
-gem 'curb'
+gem "curb"
