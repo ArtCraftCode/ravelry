@@ -158,14 +158,9 @@ module Ravelry
       data[:comments_count]
     end
 
-    # Gets craft_name from existing `data`.
-    def craft_name
-      data[:craft][:name]
-    end
-
-    # Gets craft_permalink from existing `data`.
-    def craft_permalink
-      data[:craft][:permalink]
+    def craft
+      data[:craft]
+      # TODO: Create class
     end
 
     # Gets currency from existing `data`.

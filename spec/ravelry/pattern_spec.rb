@@ -40,14 +40,6 @@ describe Ravelry::Pattern do
         expect(@api.comments_count).to be_kind_of(Integer)
       end
 
-      it 'craft_name' do
-        expect(@api.craft_name).to eq(@data[:craft][:name])
-      end 
-
-      it 'craft_permalink' do
-        expect(@api.craft_permalink).to eq(@data[:craft][:permalink])
-      end
-
       it 'currency' do
         expect(@api.currency).to eq(@data[:currency])
       end
