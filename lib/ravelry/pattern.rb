@@ -118,7 +118,7 @@ module Ravelry
     def build_packs
       @packs = []
       packs_raw.each do |pack|
-        @packs << Pack.new(pack)
+        @packs << Pack.new(nil, pack)
       end
       @packs
     end

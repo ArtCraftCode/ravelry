@@ -10,34 +10,102 @@ module Ravelry
   # 
   class Pack < Data
 
-    attr_reader :quantity_description, :yarn_id, :total_grams, :project_id, :shop_id, :prefer_metric_weight, :prefer_metric_length, :ounces_per_skein, :dye_lot, :skeins, :id, :grams_per_skein, :color_family_id, :shop_name, :total_meters, :stash_id, :total_ounces, :primary_pack_id, :personal_name, :colorway, :meters_per_skein, :yarn_name, :yards_per_skein, :total_yards  
-    
-    def initialize(pack)
-      @quantity_description = pack[:quantity_description]
-      @yarn_id = pack[:yarn_id]
-      @total_grams = pack[:total_grams]
-      @project_id = pack[:project_id]
-      @shop_id = pack[:shop_id]
-      @prefer_metric_weight = pack[:prefer_metric_weight]
-      @prefer_metric_length = pack[:prefer_metric_length]
-      @ounces_per_skein = pack[:ounces_per_skein]
-      @dye_lot = pack[:dye_lot]
-      @skeins = pack[:skeins]
-      @id = pack[:id]
-      @grams_per_skein = pack[:grams_per_skein]
-      @color_family_id = pack[:color_family_id]
-      @shop_name = pack[:shop_name]
-      @total_meters = pack[:total_meters]
-      @stash_id = pack[:stash_id]
-      @total_ounces = pack[:total_ounces]
-      @primary_pack_id = pack[:primary_pack_id]
-      @personal_name = pack[:personal_name]
-      @colorway = pack[:colorway]
-      @meters_per_skein = pack[:meters_per_skein]
-      @yarn_name = pack[:yarn_name]
-      @yards_per_skein = pack[:yards_per_skein]
-      @total_yards = pack[:total_yards]
+    def quantity_description
+      data[:quantity_description]
     end
+
+    def yarn_id
+      data[:yarn_id]
+    end
+
+    def total_grams
+      data[:total_grams]
+    end
+
+    def project_id
+      data[:project_id]
+    end
+
+    def shop_id
+      data[:shop_id]
+    end
+
+    def prefer_metric_weight
+      data[:prefer_metric_weight]
+    end
+
+    def prefer_metric_length
+      data[:prefer_metric_length]
+    end
+
+    def ounces_per_skein
+      data[:ounces_per_skein]
+    end
+
+    def dye_lot
+      data[:dye_lot]
+    end
+
+    def skeins
+      data[:skeins]
+    end
+
+    def id
+      data[:id]
+    end
+
+    def grams_per_skein
+      data[:grams_per_skein]
+    end
+
+    def color_family_id
+      data[:color_family_id]
+    end
+
+    def shop_name
+      data[:shop_name]
+    end
+
+    def total_meters
+      data[:total_meters]
+    end
+
+    def stash_id
+      data[:stash_id]
+    end
+
+    def total_ounces
+      data[:total_ounces]
+    end
+
+    def primary_pack_id
+      data[:primary_pack_id]
+    end
+
+    def personal_name
+      data[:personal_name]
+    end
+
+    def colorway
+      data[:colorway]
+    end
+
+    def meters_per_skein
+      data[:meters_per_skein]
+    end
+
+    def yarn_name
+      data[:yarn_name]
+    end
+
+    def yards_per_skein
+      data[:yards_per_skein]
+    end
+
+    def total_yards
+      data[:total_yards]
+    end
+
   end
 
 end
