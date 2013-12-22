@@ -1,11 +1,3 @@
-require 'curb'
-
-require_relative 'author'
-require_relative 'pack'
-require_relative 'yarn_weight'
-require_relative 'yarn'
-require_relative 'data'
-
 module Ravelry
 
   # `Ravelry::Pattern` corresponds to Pattern objects in Ravelry.
@@ -80,9 +72,9 @@ module Ravelry
   # See the documentation for each object's available methods.
   # 
   class Pattern < Data
-    attr_reader :author, :yarns, :yarn_weights, :packs
+    attr_reader :author, :yarns, :yarn_weights, :packs, :categories, :craft, :needles, :photos, :printings, :type
 
-    # Handles API call and parses JSON response. 
+    # Handles GET API call and parses JSON response. 
     def fetch_and_parse
       c = Curl::Easy.new("https://api.ravelry.com/patterns/#{@id}.json")
       c.http_auth_types = :basic
@@ -104,7 +96,13 @@ module Ravelry
     # 
     def build_all_objects
       build_authors
+      build_categories #TODO
+      build_craft #TODO
+      build_needles #TODO
       build_packs
+      build_photos #TODO
+      build_printings #TODO
+      build_type #TODO
       build_yarns
       build_yarn_weights
     end
@@ -117,6 +115,18 @@ module Ravelry
       @author = Author.new(data[:pattern_author])
     end
 
+    def build_categories
+      @categories = []
+    end
+
+    def build_craft
+      @craft = nil
+    end
+
+    def build_needles
+      @needles = []
+    end
+
     # Creates and returns an array of {Ravelry::Pack} objects.
     # 
     # See {Ravelry::Pack} for more information.
@@ -127,6 +137,18 @@ module Ravelry
         @packs << Pack.new(nil, pack)
       end
       @packs
+    end
+
+    def build_photos
+      @photos = []
+    end
+
+    def build_printings
+      @printings = []
+    end
+
+    def build_type
+      @type = nil
     end
 
     # Creates and returns an array of {Ravelry::Yarn} objects.
