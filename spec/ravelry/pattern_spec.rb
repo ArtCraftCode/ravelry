@@ -1,16 +1,15 @@
 require_relative '../spec_helper'
-require_relative '../../lib/ravelry/patterns'
+require_relative '../../lib/ravelry/pattern'
+require_relative '../../lib/ravelry/author'
 
-describe Ravelry::Patterns do
+describe Ravelry::Pattern do
 
   context '#initialize' do
     it 'should not fetch pattern if given no @id' do
       pattern = initialize_empty
       expect(pattern.pattern).to be_nil
     end
-  end
 
-  context '#setup' do
     it 'should fetch @pattern if initialized with id' do
       pattern = initialize_paid
       expect(pattern.pattern).to be
@@ -19,13 +18,14 @@ describe Ravelry::Patterns do
     it 'should fetch @pattern if initialized empty and id is set' do
       pattern = initialize_empty
       pattern.id = "379890"
-      pattern.setup
+      pattern.fetch_and_parse
       expect(pattern.pattern).to be
     end
 
-    it 'should call #build_packs'
-    # no idea how to do test this, which might mean it's bad code
-    # but it also makes it a ton easier to use the gem!
+    it 'should be an instance of Patterns' do
+      pattern = initialize_paid
+      expect(pattern).to be_instance_of(Ravelry::Pattern)
+    end
   end
 
   context '#fetch_and_parse' do
@@ -171,6 +171,20 @@ describe Ravelry::Patterns do
       expect(@api.pack_count).to be_kind_of(Integer)
     end
 
+    describe 'author' do
+      before do
+        @api.build_authors
+      end
+
+      it 'should exist' do
+        expect(@api.author).to be
+      end
+
+      it 'should be an instance of Author' do
+        expect(@api.author).to be_instance_of(Ravelry::Author)
+      end
+    end
+
     describe 'pack helpers are created' do
       before do
         @api.build_packs
@@ -205,9 +219,5 @@ describe Ravelry::Patterns do
         expect { @api.pack_100_yarn }.to raise_error(NoMethodError)
       end
     end
-
-    # it 'method' do
-    #   expect(@api.method).to eq(@data[:method])
-    # end
   end
 end
