@@ -276,6 +276,122 @@ module Ravelry
       data[:pattern_author]
     end
 
+    def pattern_categories_raw
+      data[:pattern_categories]
+      # TODO: Create class
+    end
+
+    def pattern_needle_sizes_raw
+      data[:pattern_needle_sizes]
+      # TODO: Create class
+    end
+
+    def pattern_type_raw
+      data[:pattern_type]
+      # TODO: Create class
+    end
+
+    # Gets pdf_url from existing `data`.
+    def pdf_url
+      data[:pdf_url]
+    end
+
+    # Gets Ravelry permalink from existing `data`.
+    def permalink
+      data[:permalink]
+    end
+
+    def photos_raw
+      data[:photos]
+      # TODO: Create class
+    end
+
+    # Gets price from existing `data` (Float).
+    def price
+      data[:price]
+    end
+
+    def printings
+      data[:printings]
+      # TODO: Create class
+    end
+
+    # Gets product_id from existing `data`.
+    def product_id
+      data[:product_id]
+    end
+
+    # Gets projects_count from existing `data` (Integer).
+    def projects_count
+      data[:projects_count]
+    end
+
+    def published
+      data[:published]
+      # TODO: Create formatted date method
+      # Gets publication date from existing `data` (Date).
+    end
+
+    # Gets number of queued projects from existing `data` (Integer).
+    def queued_projects_count
+      data[:queued_projects_count]
+    end
+
+    # Gets rating_average from existing `data` (Float).
+    def rating_average 
+      data[:rating_average]
+    end
+
+    # Gets number of ratings from existing `data` (Integer).
+    def rating_count 
+      data[:rating_count]
+    end
+
+    # Returns true if pattern is a Ravelry download (Boolean).
+    def ravelry_download?
+      data[:ravelry_download]
+    end
+
+    # Gets row gauge from existing `data` (Float).
+    def row_gauge
+      data[:row_gauge]
+    end
+
+    # Gets sizes available from existing `data`.
+    def sizes_available
+      data[:sizes_available]
+    end
+
+    # Gets url from existing `data`.
+    def url
+      data[:url]
+    end
+
+    # Gets yardage required from existing `data` (Integer).
+    def yardage
+      data[:yardage]
+    end
+
+    # Gets nice sentence yardage description with range  from existing `data`.
+    def yardage_description
+      data[:yardage_description]
+    end
+
+    # Gets max yards required from existing `data` (Integer).
+    def yardage_max
+      data[:yardage_max]
+    end
+
+    # Gets primary yarn weight required from existing `data`.
+    def yarn_weight
+      data[:yarn_weight]
+    end
+
+    # Gets primary yarn weight description from existing `data`.
+    def yarn_weight_description
+      data[:yarn_weight_description]
+    end
+
   end
 
 end

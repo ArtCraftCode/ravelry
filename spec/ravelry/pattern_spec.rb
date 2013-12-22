@@ -149,6 +149,109 @@ describe Ravelry::Pattern do
       it 'pack_count (Integer)' do
         expect(@api.pack_count).to be_kind_of(Integer)
       end
+
+      it 'pattern_author' do
+        expect(@api.pattern_author).to eq(@data[:pattern_author])
+      end
+
+      it 'pattern_categories_raw' do
+        expect(@api.pattern_categories_raw).to eq(@data[:pattern_categories])
+      end
+
+      it 'pattern_needle_sizes_raw' do
+        expect(@api.pattern_needle_sizes_raw).to eq(@data[:pattern_needle_sizes])
+      end
+
+      it 'pattern_type_raw' do
+        expect(@api.pattern_type_raw).to eq(@data[:pattern_type])
+      end
+
+      it 'pdf_url' do
+        expect(@api.pdf_url).to eq(@data[:pdf_url])
+      end
+
+      it 'permalink' do
+        expect(@api.permalink).to eq(@data[:permalink])
+      end
+
+      it 'photos_raw' do
+        expect(@api.photos_raw).to eq(@data[:photos])
+      end
+
+      it 'price' do
+        expect(@api.price).to eq(@data[:price])
+      end
+
+      it 'printings' do
+        expect(@api.printings).to eq(@data[:printings])
+      end
+
+      it 'product_id' do
+        expect(@api.product_id).to eq(@data[:product_id])
+      end
+
+      it 'projects_count' do
+        expect(@api.projects_count).to eq(@data[:projects_count])
+      end
+
+      it 'projects_count (Integer)' do
+        expect(@api.projects_count).to be_kind_of(Integer)
+      end
+
+      it 'published' do
+        expect(@api.published).to eq(@data[:published])
+      end
+
+      it 'queued_projects_count' do
+        expect(@api.queued_projects_count).to eq(@data[:queued_projects_count])
+      end
+
+      it 'rating_average' do
+        expect(@api.rating_average).to eq(@data[:rating_average])
+      end
+
+      it 'rating_count' do
+        expect(@api.rating_count).to eq(@data[:rating_count])
+      end
+
+      it 'ravelry_download?' do
+        expect(@api.ravelry_download?).to eq(@data[:ravelry_download])
+      end
+
+      it 'row_gauge' do
+        expect(@api.row_gauge).to eq(@data[:row_gauge])
+      end
+
+      it 'sizes_available' do
+        expect(@api.sizes_available).to eq(@data[:sizes_available])
+      end
+
+      it 'url' do
+        expect(@api.url).to eq(@data[:url])
+      end
+
+      it 'yardage' do
+        expect(@api.yardage).to eq(@data[:yardage])
+      end
+
+      it 'yardage_description' do
+        expect(@api.yardage_description).to eq(@data[:yardage_description])
+      end
+
+      it 'yardage_max' do
+        expect(@api.yardage_max).to eq(@data[:yardage_max])
+      end
+
+      it 'yarn_weight' do
+        expect(@api.yarn_weight).to eq(@data[:yarn_weight])
+      end
+
+      it 'yarn_weight_description' do
+        expect(@api.yarn_weight_description).to eq(@data[:yarn_weight_description])
+      end
+
+
+
     end
 
     # Associated objects
