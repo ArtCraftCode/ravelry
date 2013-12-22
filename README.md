@@ -34,7 +34,7 @@ Getting these keys requires a (free) Ravelry account and that you agree to the t
 
 # Usage
 
-Documentation here.
+Documentation is currently located in the [Github wiki](https://github.com/feministy/ravelry/wiki).
 
 #### A note on Ruby versions
 
