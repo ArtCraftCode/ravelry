@@ -69,13 +69,12 @@ module Ravelry
   # If your `pattern` is missing one of these attributes, it will return `nil`.
   # 
   class Pattern < Data
-    attr_reader :pattern, :author, :yarns, :yarn_weights, :packs
-    attr_accessor :id
+    attr_reader :author, :yarns, :yarn_weights, :packs
 
-    def initialize(id=nil)
-      @id = id
-      @pattern = fetch_and_parse if @id
-    end
+    # def initialize(id=nil)
+    #   @id = id
+    #   @pattern = fetch_and_parse if @id
+    # end
 
     # Handles API call and parses JSON response. 
     def fetch_and_parse
@@ -85,7 +84,7 @@ module Ravelry
       c.password = ENV['RAV_PERSONAL']
       c.perform
       result = JSON.parse(c.body_str, {symbolize_names: true})
-      @pattern = result[:pattern]
+      result[:pattern]
     end
 
     # Creates all objects associated with your pattern; returns nothing; sets `attr_readers`.
@@ -108,7 +107,7 @@ module Ravelry
     # Sets `attr_reader` for `author`.
     # 
     def build_authors
-      @author = Author.new(pattern[:pattern_author])
+      @author = Author.new(data[:pattern_author])
     end
 
     # Creates {Ravelry::Pack} object for each yarn in your pack.
@@ -140,28 +139,28 @@ module Ravelry
     end
 
     def comments_count
-      pattern[:comments_count]
+      data[:comments_count]
     end
 
     def craft_name
-      pattern[:craft][:name]
+      data[:craft][:name]
     end
 
     def craft_permalink
-      pattern[:craft][:permalink]
+      data[:craft][:permalink]
     end
 
     def currency
-      pattern[:currency]
+      data[:currency]
     end
 
     def currency_symbol
-      pattern[:currency_symbol]
+      data[:currency_symbol]
     end
 
     # Returns the difficult average as a Float (this is how it is stored by Ravelry).
     def difficulty_average_float
-      pattern[:difficulty_average]
+      data[:difficulty_average]
     end
 
     # Returns the difficulty average rounded up or down to an Integer.
@@ -170,53 +169,53 @@ module Ravelry
     end
 
     def difficulty_count
-      pattern[:difficulty_count]
+      data[:difficulty_count]
     end
 
     def downloadable?
-      pattern[:downloadable]
+      data[:downloadable]
     end
 
     def favorites_count
-      pattern[:favorites_count]
+      data[:favorites_count]
     end
 
     def free?
-      pattern[:free]
+      data[:free]
     end
 
     # Number of stitches per inch (or 4 inches). `Float`.
     def gauge
-      pattern[:gauge]
+      data[:gauge]
     end
 
     # Sentence description of sts and row gauge with stitch.
     def gauge_description
-      pattern[:gauge_description]
+      data[:gauge_description]
     end
 
     # Either 1 or 4 (inches). `Integer`.
     def gauge_divisor
-      pattern[:gauge_divisor]
+      data[:gauge_divisor]
     end
 
     # Pattern for gauge listed.
     def gauge_pattern
-      pattern[:gauge_pattern]
+      data[:gauge_pattern]
     end
 
     def name
-      pattern[:name]
+      data[:name]
     end
 
     # Raw pattern notes. May be mixed Markdown and HTML. Generally only useful when presenting a pattern notes editor.
     def notes_raw
-      pattern[:notes]
+      data[:notes]
     end
 
     # Pattern notes rendered as HTML.
     def notes_html
-      pattern[:notes_html]
+      data[:notes_html]
     end
 
     # Returns an array of hashes with tons of information about each yarn listed in the pattern. See {#build_packs} for a complete list of helper methods.
@@ -234,12 +233,12 @@ module Ravelry
     # *Example: "Wooly Wonka Fibers Artio Sock"*
     # 
     def packs_raw
-      pattern[:packs]
+      data[:packs]
     end
 
     # Helper that will tell you how many yarns you have in your pack.
     def pack_count
-      pattern[:packs].length
+      data[:packs].length
     end
 
     # Returns a hash with information about the pattern authors.
@@ -249,7 +248,7 @@ module Ravelry
     # See {#build_authors} for more information about directly accessing author information.
     # 
     def pattern_author
-      pattern[:pattern_author]
+      data[:pattern_author]
     end
 
   end

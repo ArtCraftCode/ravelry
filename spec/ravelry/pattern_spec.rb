@@ -2,33 +2,14 @@ require_relative '../spec_helper'
 
 describe Ravelry::Pattern do
 
-  context '#initialize' do
-    it 'should not fetch pattern if given no @id' do
-      pattern = p_initialize_empty_pattern
-      expect(pattern.pattern).to be_nil
-    end
-
-    it 'should fetch @pattern if initialized with id' do
-      pattern = p_initialize_paid
-      expect(pattern.pattern).to be
-    end
-
-    it 'should fetch @pattern if initialized empty and id is set' do
-      pattern = p_initialize_empty_pattern
-      pattern.id = "379890"
-      pattern.fetch_and_parse
-      expect(pattern.pattern).to be
-    end
-
-    it 'should be an instance of Patterns' do
-      pattern = p_initialize_paid
+  it 'should be an instance of Patterns' do
+      pattern = p_initialize_paid_with_fetch
       expect(pattern).to be_instance_of(Ravelry::Pattern)
-    end
   end
 
   context '#fetch_and_parse' do
     before do
-      @api = p_initialize_paid
+      @api = p_initialize_paid_with_fetch
     end
 
     it 'should succeed' do
@@ -36,18 +17,18 @@ describe Ravelry::Pattern do
     end
 
     it 'should return a pattern' do
-      expect(@api.pattern).to be
+      expect(@api.data).to be
     end
 
     it 'should return a hash' do
-      expect(@api.pattern).to be_kind_of(Hash)
+      expect(@api.data).to be_kind_of(Hash)
     end
   end
 
   context 'pattern attributes' do
     before do
       @api = p_initialize_empty_pattern
-      @api.stub(:pattern).and_return(paid_pattern_stub)
+      @api.stub(:data).and_return(paid_pattern_stub)
       @data = paid_pattern_stub
     end
 
@@ -169,6 +150,7 @@ describe Ravelry::Pattern do
       expect(@api.pack_count).to be_kind_of(Integer)
     end
 
+    # Associated objects
     describe 'author' do
       before do
         @api.build_authors
