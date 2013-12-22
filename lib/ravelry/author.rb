@@ -4,6 +4,8 @@ module Ravelry
   # 
   # See {Ravelry::Pattern} for more information about `Pattern` objects.
   # 
+  # This does not inherit from {Ravelry::Data} because it doesn't have a corresponding API endpoint.
+  # 
   class Author
     attr_reader :id, :name, :permalink, :patterns_count, :favorites_count
 
