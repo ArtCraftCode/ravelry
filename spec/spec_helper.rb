@@ -6,6 +6,7 @@ require 'helpers'
 require 'pattern_helpers'
 require 'pack_helpers'
 require 'yarn_helpers'
+require 'yarn_weight_helpers'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
@@ -16,5 +17,6 @@ RSpec.configure do |config|
   config.include PatternHelpers
   config.include PackHelpers
   config.include YarnHelpers
+  config.include YarnWeightHelpers
   config.order = "random"
 end

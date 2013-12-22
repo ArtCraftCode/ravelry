@@ -18,6 +18,19 @@ module Helpers
     }
   end
 
+  def yarn_weight_hash
+    {
+      :name=>"Sport",
+      :min_gauge=>nil,
+      :wpi=>"12",
+      :id=>10,
+      :crochet_gauge=>nil,
+      :ply=>"5",
+      :knit_gauge=>"24-26",
+      :max_gauge=>nil
+    }
+  end
+
   def paid_pattern_stub
     # Volatile Magic Shawl, updated 2013-12-21
     {:pattern_categories=>
