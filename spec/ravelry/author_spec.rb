@@ -1,5 +1,4 @@
 require_relative '../spec_helper'
-require_relative '../../lib/ravelry/author'
 
 describe Ravelry::Author do
   before do

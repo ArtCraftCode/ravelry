@@ -1,6 +1,4 @@
 require_relative '../spec_helper'
-require_relative '../../lib/ravelry/pattern'
-require_relative '../../lib/ravelry/author'
 
 describe Ravelry::Pattern do
 
