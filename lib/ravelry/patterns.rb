@@ -46,7 +46,7 @@ module Ravelry
     end
 
     def difficulty_average_integer
-      difficulty_average_float.to_i
+      difficulty_average_float.round(0)
     end
 
     def difficulty_count

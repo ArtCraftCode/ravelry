@@ -77,7 +77,7 @@ describe Ravelry::Patterns do
     end
 
     it 'difficulty_average_integer' do
-      expect(@api.difficulty_average_integer).to eq(@data[:difficulty_average].to_i)
+      expect(@api.difficulty_average_integer).to eq(@data[:difficulty_average].round(0))
     end
 
     it 'difficulty_count (Integer)' do
