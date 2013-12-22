@@ -1,5 +1,3 @@
-require_relative 'data'
-
 module Ravelry
 
   # The information used to create `Ravelry::Craft` currently comes from {Ravelry::Pattern} objects.
