@@ -7,4 +7,6 @@ group :development do
   gem "rspec", "~> 2.14.1"
   gem "bundler"
   gem "jeweler", "~> 1.8.7"
+  gem "yard"
+  gem "redcarpet"
 end

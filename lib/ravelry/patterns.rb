@@ -2,6 +2,47 @@ require 'curb'
 
 module Ravelry
 
+# `Ravelry::Patterns` corresponds to the `patterns#show` Ravelry API route.
+# 
+# To use this, you must first initialize a Pattern object with the id. After initialization, you can access all of the class methods for your Pattern object.
+# 
+# The Pattern object can be passed an id as an integer or a string. See {file:README.md README} for information on accessing pattern IDs.
+# 
+# This class requires your environment variables be set (see README). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
+# 
+# #Initialization with pattern id
+# 
+# Initializing the class with an id will automatically trigger an API call using your access key and personal key.
+# 
+# ```ruby
+# pattern = Ravelry::Patterns.new("000000")
+# ```
+# 
+# After the call is complete, you have access to all of the pattern attributes through the class methods (see documentation). Example:
+# 
+# ```ruby
+# pattern.free?
+# # => true
+# ```
+# 
+# #Initialization without a pattern id 
+# 
+# I built this option with the knowledge that this class may have some future functionality not currently available. With this option, the API call doesn't happen until you call `fetch_and_parse`.
+# 
+# ```ruby
+# pattern = Ravelry::Patterns.new
+# pattern.id = "000000"
+# pattern.fetch_and_parse
+# ```
+# 
+# After calling `fetch_and_parse`, you have access to all of the class methods below.
+# 
+# # Methods
+# 
+# No explanation is given if the method name describes the result clearly.
+# 
+# If your `pattern` is missing one of these attributes, it will return `nil`.
+# 
   class Patterns
     attr_reader :pattern
     attr_accessor :id
@@ -41,10 +82,12 @@ module Ravelry
       pattern[:currency_symbol]
     end
 
+    # Returns the difficult average as a Float (this is how it is stored by Ravelry).
     def difficulty_average_float
       pattern[:difficulty_average]
     end
 
+    # Returns the difficulty average rounded up or down to an Integer.
     def difficulty_average_integer
       difficulty_average_float.round(0)
     end
@@ -68,16 +111,6 @@ module Ravelry
     def gauge
       pattern[:gauge]
     end
-
-    # Could be super fancy and dynamtically create methods
-    # but then I wouldn't have much control over things, and the only way
-    # to really be sure about the results would be to test it.
-    # def set_attrs
-    #   pattern.each do |key, value|
-    #     self.class.send(:define_method, key) { value }
-    #   end
-    # end
-
   end
 
 end
