@@ -1,9 +1,16 @@
 require 'json'
+require 'curb'
 
 require_relative 'ravelry/author'
+require_relative 'ravelry/category'
+require_relative 'ravelry/craft'
 require_relative 'ravelry/data'
+require_relative 'ravelry/needle'
 require_relative 'ravelry/pack'
 require_relative 'ravelry/pattern'
+require_relative 'ravelry/photo'
+require_relative 'ravelry/printing'
+require_relative 'ravelry/type'
 require_relative 'ravelry/yarn'
 require_relative 'ravelry/yarn_weight'
 
