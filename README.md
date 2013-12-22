@@ -6,6 +6,10 @@ Ravelry API documentation is currently available [here](http://www.ravelry.com/a
 
 The goal of this gem is to provide 100% API coverage. It doesn't just yet, but it will. Eventually. 
 
+Current API routes covered include:
+
+* `Patterns#show` (`GET`)
+
 # Installation
 
 Welcome to a magical land where gems rule the world. To install, type:
