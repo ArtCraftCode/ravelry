@@ -8,9 +8,7 @@ describe Ravelry::Patterns do
       pattern = initialize_empty
       expect(pattern.pattern).to be_nil
     end
-  end
 
-  context '#setup' do
     it 'should fetch @pattern if initialized with id' do
       pattern = initialize_paid
       expect(pattern.pattern).to be
@@ -19,13 +17,9 @@ describe Ravelry::Patterns do
     it 'should fetch @pattern if initialized empty and id is set' do
       pattern = initialize_empty
       pattern.id = "379890"
-      pattern.setup
+      pattern.fetch_and_parse
       expect(pattern.pattern).to be
     end
-
-    it 'should call #build_packs'
-    # no idea how to do test this, which might mean it's bad code
-    # but it also makes it a ton easier to use the gem!
   end
 
   context '#fetch_and_parse' do
@@ -171,6 +165,10 @@ describe Ravelry::Patterns do
       expect(@api.pack_count).to be_kind_of(Integer)
     end
 
+    # it 'method' do
+    #   expect(@api.method).to eq(@data[:method])
+    # end
+
     describe 'pack helpers are created' do
       before do
         @api.build_packs
@@ -205,9 +203,5 @@ describe Ravelry::Patterns do
         expect { @api.pack_100_yarn }.to raise_error(NoMethodError)
       end
     end
-
-    # it 'method' do
-    #   expect(@api.method).to eq(@data[:method])
-    # end
   end
 end

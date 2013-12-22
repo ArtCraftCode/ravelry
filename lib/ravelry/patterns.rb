@@ -27,17 +27,52 @@ module Ravelry
 # 
 # #Initialization without a pattern id 
 # 
-# I built this option with the knowledge that this class may have some future functionality not currently available. With this option, the API call doesn't happen until you call `setup`.
+# I built this option with the knowledge that this class may have some future functionality not currently available. With this option, the API call doesn't happen until you call `fetch_and_parse`.
 # 
 # ```ruby
 # pattern = Ravelry::Patterns.new
 # pattern.id = "000000"
-# pattern.setup
+# pattern.fetch_and_parse
 # ```
 # 
-# After calling `setup`, you have access to all of the class methods below.
+# After calling `fetch_and_parse`, you have access to all of the class methods below.
 # 
-# #Methods
+# # Building associated objects
+# 
+# You will need to call special methods to create the associated objects with your pattern.
+# 
+# ## Creating all objects: {#build_all_objects}
+# 
+# To create all associated objects at once, call the following method after initialization:
+# 
+# ```ruby
+# pattern.build_all_objects
+# ```
+# 
+# ### To create yarn packs only: {#build_packs}
+# 
+# *Note: this method currently does not create objects, just a bunch of helper methods.*
+# 
+# ```ruby
+# pattern.build_packs
+# ```
+# 
+# ### To create author objects only: {#build_authors}
+# 
+# ```ruby
+# pattern.build_authors
+# ```
+# 
+# ## Accessing objects
+# 
+# To access the array of `Ravelry::Author` objects associated with your pattern:
+# 
+# ```ruby
+# pattern.authors
+# # => [#<Ravelry::Author:0x007fe38317dc48>]
+# ```
+# 
+# #Method definitions
 # 
 # No explanation is given if the method name describes the result clearly.
 # 
@@ -52,26 +87,69 @@ module Ravelry
 # **See {#build_packs} for a complete list of `pack` attributes and how to access them**.
 # 
   class Patterns
-    attr_reader :pattern
+    attr_reader :pattern, :authors
     attr_accessor :id
 
     def initialize(id=nil)
       @id = id
-      setup if @id
+      @pattern = fetch_and_parse if @id
     end
 
-    # Creates `@pattern` and triggers helper methods to build more complex objects.
+    # Handles API call and parses JSON response. 
+    def fetch_and_parse
+      c = Curl::Easy.new("https://api.ravelry.com/patterns/#{@id}.json")
+      c.http_auth_types = :basic
+      c.username = ENV['RAV_ACCESS']
+      c.password = ENV['RAV_PERSONAL']
+      c.perform
+      result = JSON.parse(c.body_str, {symbolize_names: true})
+      @pattern = result[:pattern]
+    end
+
+    # Creates all objects associated with your pattern; returns nothing.
     # 
-    # Calls:
+    # Inside of the `associated` hash, you have the following keys:
     # 
-    # * {#build_packs} to create yarn packs
-    # * `fetch_and_parse` - private method that handles API call and parsing JSON to an array
+    # * `:authors` - Array of `Author` objects
     # 
-    def setup
-      if @id
-        @pattern = fetch_and_parse
-        build_packs
+    # Also generates helper methods for `packs`.
+    def build_all_objects
+      build_packs
+      build_authors
+    end
+
+    # **Very important magic here:** dynamitcally creates methods for each yarn in `pack`.
+    # 
+    # Generates the following methods for each yarn in pack:
+    # 
+    # *Note that "n" is the index of the item in the `pack` array (starts at `0`). Use {#pack_count} helper to see the number of items in your `pack`.*
+    # 
+    # * `pack_n_yarn` - brand and name of yarn as one string (ex: "Lorna's Laces Shepherd Sock").
+    # * `pack_n_permalink` - Ravelry permalink for yarn
+    # * `pack_n_company` - brand/company name
+    # * `pack_n_name` - yarn name
+    # * `pack_n_yardage_description` - range of yardage required for project
+    # * `pack_n_weight` - yarn weight
+    # 
+    # Eventually this will be replaced with a `Ravelry::Packs` object.
+    # 
+    def build_packs
+      packs.each_with_index do |pack, index|
+        p = {
+              "pack_#{index}_yarn" => pack[:yarn_name],
+              "pack_#{index}_permalink" => pack[:yarn][:permalink],
+              "pack_#{index}_company" => pack[:yarn][:yarn_company_name],
+              "pack_#{index}_name" => pack[:yarn][:name],
+              "pack_#{index}_yardage_description" => pack[:_yardage_description],
+              "pack_#{index}_weight" => pack[:yarn_weight][:name]
+            }
+        set_attrs(p)
       end
+    end
+
+    # Creates `Ravelry::Author` object for each author; returns an Array of `Author` objects.
+    def build_authors
+      @authors = []
     end
 
     def comments_count
@@ -177,46 +255,17 @@ module Ravelry
       pattern[:packs].length
     end
 
-    # **Very important magic here:** dynamitcally creates methods for each yarn in `pack`.
+    # Returns a hash with information about the pattern authors.
     # 
-    # Generates the following methods for each yarn in pack:
+    # I've included this method in case you want to have more control over how your author information is displayed.
     # 
-    # *Note that "n" is the index of the item in the `pack` array (starts at `0`). Use {#pack_count} helper to see the number of items in your `pack`.*
+    # See {#build_authors} for more information about directly accessing author information.
     # 
-    # * `pack_n_yarn` - brand and name of yarn as one string (ex: "Lorna's Laces Shepherd Sock").
-    # * `pack_n_permalink` - Ravelry permalink for yarn
-    # * `pack_n_company` - brand/company name
-    # * `pack_n_name` - yarn name
-    # * `pack_n_yardage_description` - range of yardage required for project
-    # * `pack_n_weight` - yarn weight
-    # 
-    # Eventually this will be replaced with a `Ravelry::Packs` object.
-    # 
-    def build_packs
-      packs.each_with_index do |pack, index|
-        p = {
-              "pack_#{index}_yarn" => pack[:yarn_name],
-              "pack_#{index}_permalink" => pack[:yarn][:permalink],
-              "pack_#{index}_company" => pack[:yarn][:yarn_company_name],
-              "pack_#{index}_name" => pack[:yarn][:name],
-              "pack_#{index}_yardage_description" => pack[:_yardage_description],
-              "pack_#{index}_weight" => pack[:yarn_weight][:name]
-            }
-        set_attrs(p)
-      end
+    def pattern_author
+      pattern[:pattern_author]
     end
 
     private
-    def fetch_and_parse
-      c = Curl::Easy.new("https://api.ravelry.com/patterns/#{@id}.json")
-      c.http_auth_types = :basic
-      c.username = ENV['RAV_ACCESS']
-      c.password = ENV['RAV_PERSONAL']
-      c.perform
-      result = JSON.parse(c.body_str, {symbolize_names: true})
-      @pattern = result[:pattern]
-    end
-
     def set_attrs(hash)
       hash.each do |key, value|
         self.class.send(:define_method, key) { value }
