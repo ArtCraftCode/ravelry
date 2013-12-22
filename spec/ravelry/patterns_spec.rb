@@ -4,14 +4,16 @@ require_relative '../../lib/ravelry/patterns'
 describe Ravelry::Patterns do
 
   context '#initialize' do
-    it 'should fetch @pattern if given @id' do
-      pattern = initialize_paid
-      expect(pattern.pattern).to be
-    end
-
     it 'should not fetch pattern if given no @id' do
       pattern = initialize_empty
       expect(pattern.pattern).to be_nil
+    end
+  end
+
+  context '#setup' do
+    it 'should fetch @pattern if initializes with id' do
+      pattern = initialize_paid
+      expect(pattern.pattern).to be
     end
   end
 
@@ -109,5 +111,57 @@ describe Ravelry::Patterns do
     it 'gauge' do
       expect(@api.gauge).to eq(@data[:gauge])
     end 
+
+    it 'gauge (Float)' do
+      expect(@api.gauge).to be_kind_of(Float)
+    end
+
+    it 'gauge_description' do
+      expect(@api.gauge_description).to eq(@data[:gauge_description])
+    end
+
+    it 'gauge_divisor' do
+      expect(@api.gauge_divisor).to eq(@data[:gauge_divisor])
+    end
+
+    it 'gauge_divisor (Integer)' do
+      expect(@api.gauge_divisor).to be_kind_of(Integer)
+    end
+
+    it 'gauge_pattern' do
+      expect(@api.gauge_pattern).to eq(@data[:gauge_pattern])
+    end
+
+    it 'notes_raw' do
+      expect(@api.notes_raw).to eq(@data[:notes])
+    end
+
+    it 'notes_html' do
+      expect(@api.notes_html).to eq(@data[:notes_html])
+    end
+
+    it 'packs' do
+      expect(@api.packs).to eq(@data[:packs])
+    end
+
+    it 'packs (Array)' do
+      expect(@api.packs).to be_kind_of(Array)
+    end
+
+    it 'packs[0] (Hash)' do
+      expect(@api.packs[0]).to be_kind_of(Hash)
+    end
+
+    it 'pack_count' do
+      expect(@api.pack_count).to eq(@data[:packs].length)
+    end
+
+    it 'pack_count (Integer)' do
+      expect(@api.pack_count).to be_kind_of(Integer)
+    end
+
+    # it 'method' do
+    #   expect(@api.method).to eq(@data[:method])
+    # end
   end
 end

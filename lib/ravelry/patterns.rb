@@ -27,15 +27,15 @@ module Ravelry
 # 
 # #Initialization without a pattern id 
 # 
-# I built this option with the knowledge that this class may have some future functionality not currently available. With this option, the API call doesn't happen until you call `fetch_and_parse`.
+# I built this option with the knowledge that this class may have some future functionality not currently available. With this option, the API call doesn't happen until you call `setup`.
 # 
 # ```ruby
 # pattern = Ravelry::Patterns.new
 # pattern.id = "000000"
-# pattern.fetch_and_parse
+# pattern.setup
 # ```
 # 
-# After calling `fetch_and_parse`, you have access to all of the class methods below.
+# After calling `setup`, you have access to all of the class methods below.
 # 
 # # Methods
 # 
@@ -49,17 +49,12 @@ module Ravelry
 
     def initialize(id=nil)
       @id = id
-      @pattern = fetch_and_parse if @id
+      setup if @id
     end
 
-    def fetch_and_parse
-      c = Curl::Easy.new("https://api.ravelry.com/patterns/#{@id}.json")
-      c.http_auth_types = :basic
-      c.username = ENV['RAV_ACCESS']
-      c.password = ENV['RAV_PERSONAL']
-      c.perform
-      result = JSON.parse(c.body_str, {symbolize_names: true})
-      @pattern = result[:pattern]
+    def setup
+      @pattern = fetch_and_parse
+      build_packs
     end
 
     def comments_count
@@ -108,9 +103,83 @@ module Ravelry
       pattern[:free]
     end
 
+    # Number of stitches per inch (or 4 inches). `Float`.
     def gauge
       pattern[:gauge]
     end
+
+    # Sentence description of sts and row gauge with stitch.
+    def gauge_description
+      pattern[:gauge_description]
+    end
+
+    # Either 1 or 4 (inches). `Integer`.
+    def gauge_divisor
+      pattern[:gauge_divisor]
+    end
+
+    # Pattern for gauge listed.
+    def gauge_pattern
+      pattern[:gauge_pattern]
+    end
+
+    def name
+      pattern[:name]
+    end
+
+    # Raw pattern notes. May be mixed Markdown and HTML. Generally only useful when presenting a pattern notes editor.
+    def notes_raw
+      pattern[:notes]
+    end
+
+    # Pattern notes rendered as HTML.
+    def notes_html
+      pattern[:notes_html]
+    end
+
+    # Returns an array of hashes with tons of information about each yarn listed in the pattern. More detail below.
+    # 
+    # I've included this method in case you want to have more control over how your pack information is displayed. It's likely that you'll want to use the other pack methods. While you sacrifice some fine tuning control, you also don't have to worry about dealing with a messy nested hash.
+    # 
+    # If you're really determined to go through this manually, check out the [Ravelry documentation](http://www.ravelry.com/api#Pack_result).
+    # 
+    # If iterating through the `packs` hash, you'll likely want to do something like this:
+    # 
+    # `packs = pattern.packs`
+    # 
+    # **`packs[0][:yarn_name]`** returns a formatted string with the brand and yarn name.
+    # 
+    # *Example: "Wooly Wonka Fibers Artio Sock"*
+    # 
+    def packs
+      pattern[:packs]
+    end
+
+    # Helper that will tell you how many yarns you have in your pack.
+    def pack_count
+      pattern[:packs].length
+    end
+
+    private
+    def fetch_and_parse
+      c = Curl::Easy.new("https://api.ravelry.com/patterns/#{@id}.json")
+      c.http_auth_types = :basic
+      c.username = ENV['RAV_ACCESS']
+      c.password = ENV['RAV_PERSONAL']
+      c.perform
+      result = JSON.parse(c.body_str, {symbolize_names: true})
+      @pattern = result[:pattern]
+    end
+
+    def build_packs
+    end
+
+    def set_attrs(hash)
+      hash.each do |key, value|
+        self.class.send(:define_method, key) { value }
+      end
+    end
+
   end
 
 end
