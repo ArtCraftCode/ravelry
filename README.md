@@ -8,9 +8,19 @@ The goal of this gem is to provide 100% API coverage. It doesn't just yet, but i
 
 ### Installation
 
-Welcome to a magical land where installation is not the easiest thing about using this gem:
+Welcome to a magical land where gems rule the world. To install, type:
 
-`gem install ravelry`
+```
+gem install ravelry
+```
+
+Hooray! You now have a gem.
+
+Add to your `Gemfile`:
+
+```
+gem "ravelry"
+```
 
 #### Requirements
 
