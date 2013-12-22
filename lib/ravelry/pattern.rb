@@ -16,7 +16,7 @@ module Ravelry
   # 
   # If your `pattern.data` is missing one of the attributes below, that method will return `nil`.
   # 
-  # # Initialization with pattern id + `GET` API call
+  # # `GET` Request
   # 
   # Initializing the class with an id will automatically trigger an API call using your access key and personal key.
   # 
