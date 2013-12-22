@@ -9,29 +9,7 @@ describe Ravelry::Author do
     expect(@author).to be_instance_of(Ravelry::Author)
   end
 
-  context 'has reader attributes for' do
-    it 'id' do
-      expect(@author.id).to be
-    end
-
-    it 'name' do
-      expect(@author.name).to be
-    end
-
-    it 'permalink' do
-      expect(@author.permalink).to be
-    end
-
-    it 'patterns_count' do
-      expect(@author.patterns_count).to be
-    end
-
-    it 'favorites_count' do
-      expect(@author.favorites_count).to be
-    end
-  end
-
-  context 'sets reader attributes for' do
+  context 'has and sets reader attributes for' do
     it 'id' do
       expect(@author.id).to eq(@author.id)
     end
