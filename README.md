@@ -62,15 +62,6 @@ This gem makes use of several conventions that are worth noting on a global scal
 
 Unless specifically noted in the documentation, the data returned from the API call is not manipulated. Data is fetched and parsed, but is only processed in instances where multiple formats would be helpful. Even if the data is manipulated, the original format is always available using some other method.
 
-###Method names appended with `?` return booleans.
-
-Example:
-
-```ruby
-pattern = Ravelry::Patterns.new("000000")
-pattern.free?
-# => true
-```
 
 ###Method names ending with `_count` return integers.
 
@@ -84,6 +75,8 @@ pattern.comments_count
 
 ###Method names ending with `_float`, `_integer`, etc return that object type.
 
+Float to Integer conversions are done using round(0).
+
 Example:
 
 ```ruby
@@ -93,7 +86,6 @@ pattern.difficulty_average_float
 
 pattern.difficulty_average_integer
 # => 5
-# Floating to integer conversions are done using round(0)
 ```
 
 ## A note on Ruby versions
