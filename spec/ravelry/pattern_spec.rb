@@ -4,31 +4,31 @@ describe Ravelry::Pattern do
 
   context '#initialize' do
     it 'should not fetch pattern if given no @id' do
-      pattern = initialize_empty_pattern
+      pattern = p_initialize_empty_pattern
       expect(pattern.pattern).to be_nil
     end
 
     it 'should fetch @pattern if initialized with id' do
-      pattern = initialize_paid
+      pattern = p_initialize_paid
       expect(pattern.pattern).to be
     end
 
     it 'should fetch @pattern if initialized empty and id is set' do
-      pattern = initialize_empty_pattern
+      pattern = p_initialize_empty_pattern
       pattern.id = "379890"
       pattern.fetch_and_parse
       expect(pattern.pattern).to be
     end
 
     it 'should be an instance of Patterns' do
-      pattern = initialize_paid
+      pattern = p_initialize_paid
       expect(pattern).to be_instance_of(Ravelry::Pattern)
     end
   end
 
   context '#fetch_and_parse' do
     before do
-      @api = initialize_paid
+      @api = p_initialize_paid
     end
 
     it 'should succeed' do
@@ -46,7 +46,7 @@ describe Ravelry::Pattern do
 
   context 'pattern attributes' do
     before do
-      @api = initialize_empty_pattern
+      @api = p_initialize_empty_pattern
       @api.stub(:pattern).and_return(paid_pattern_stub)
       @data = paid_pattern_stub
     end
@@ -204,6 +204,18 @@ describe Ravelry::Pattern do
     describe 'yarn_weights' do
       before do
         @api.build_yarn_weights
+      end
+
+      it 'should exist' do
+        expect(@api.yarn_weights).to be
+      end
+
+      it 'should contain at least one' do
+        expect(@api.yarn_weights.length).to be > 0
+      end
+
+      it 'should be an instance of YarnWeight' do
+        expect(@api.yarn_weights[0]).to be_instance_of(Ravelry::YarnWeight)
       end
     end
 
