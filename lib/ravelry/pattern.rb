@@ -96,7 +96,7 @@ module Ravelry
     # 
     def build_all_objects
       build_authors
-      build_categories #TODO
+      build_categories
       build_craft #TODO
       build_needles #TODO
       build_packs
@@ -115,8 +115,16 @@ module Ravelry
       @author = Author.new(data[:pattern_author])
     end
 
+    # Creates and returns an array of {Ravelry::Category} objects.
+    # 
+    # See {Ravelry::Category} for more information.
+    # 
     def build_categories
       @categories = []
+      pattern_categories_raw.each do |cat|
+        @categories << Category.new(cat)
+      end
+      @categories
     end
 
     def build_craft
@@ -293,9 +301,14 @@ module Ravelry
       data[:pattern_author]
     end
 
+    # Returns an array of hashes with information about the categories.
+    # 
+    # This method is included so you can access the information directly.
+    # 
+    # See {#build_categories} for more information about directly accessing category information.
+    # 
     def pattern_categories_raw
       data[:pattern_categories]
-      # TODO: Create class
     end
 
     def pattern_needle_sizes_raw

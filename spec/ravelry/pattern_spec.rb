@@ -242,8 +242,6 @@ describe Ravelry::Pattern do
         expect(@api.yarn_weight_description).to eq(@data[:yarn_weight_description])
       end
 
-
-
     end
 
     # Associated objects
@@ -254,6 +252,10 @@ describe Ravelry::Pattern do
 
       it 'should build author' do
         expect(@api.author).to be
+      end
+
+      it 'should build categories' do
+        expect(@api.categories.length).to be > 0
       end
 
       it 'should build packs' do
@@ -337,26 +339,26 @@ describe Ravelry::Pattern do
       end
     end
 
+    describe 'associated objects #build_categories' do
+      before do
+        @api.build_categories
+      end
+
+      it 'should exist' do
+        expect(@api.categories).to be
+      end
+
+      it 'should contain at least one' do
+        expect(@api.categories.length).to be > 0
+      end
+
+      it 'should be an instance of Category' do
+        expect(@api.categories[0]).to be_instance_of(Ravelry::Category)
+      end
+    end
+
     # TODO
     # Currently failing
-    
-    # describe 'associated objects #build_categories' do
-    #   before do
-    #     @api.build_categories
-    #   end
-
-    #   it 'should exist' do
-    #     expect(@api.categories).to be
-    #   end
-
-    #   it 'should contain at least one' do
-    #     expect(@api.categories.length).to be > 0
-    #   end
-
-    #   it 'should be an instance of Craft' do
-    #     expect(@api.categories[0]).to be_instance_of(Ravelry::Category)
-    #   end
-    # end
 
     # describe 'associated objects #build_craft' do
     #   before do
