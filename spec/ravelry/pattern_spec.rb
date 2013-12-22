@@ -27,8 +27,7 @@ describe Ravelry::Pattern do
 
   context 'pattern attributes' do
     before do
-      @api = p_initialize_empty_pattern
-      @api.stub(:data).and_return(paid_pattern_stub)
+      @api = p_initialize_with_data
       @data = paid_pattern_stub
     end
 
