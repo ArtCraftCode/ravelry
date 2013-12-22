@@ -88,7 +88,7 @@ module Ravelry
 # **See {#build_packs} for a complete list of `pack` attributes and how to access them**.
 # 
   class Pattern
-    attr_reader :pattern, :authors
+    attr_reader :pattern, :author
     attr_accessor :id
 
     def initialize(id=nil)
@@ -107,13 +107,12 @@ module Ravelry
       @pattern = result[:pattern]
     end
 
-    # Creates all objects associated with your pattern; returns nothing.
+    # Creates all objects associated with your pattern; returns nothing; sets `attr_readers`.
     # 
-    # Inside of the `associated` hash, you have the following keys:
+    # Sets `attr_reader` for:
     # 
-    # * `:authors` - Array of {Ravelry::Author} objects
+    # * `author` - has all {Ravelry::Author} methods
     # 
-    # Also generates helper methods for `packs`.
     def build_all_objects
       build_packs
       build_authors
@@ -152,12 +151,10 @@ module Ravelry
     # 
     # See {Ravelry::Author} for more information about `Author` objects.
     # 
+    # Sets `attr_reader` for `author`.
+    # 
     def build_authors
-      @authors = []
-      pattern[:pattern_author].each do |author|
-        @authors << Author.new(author)
-      end
-      @authors
+      @author = Author.new(pattern[:pattern_author])
     end
 
     def comments_count

@@ -1,6 +1,6 @@
 module Ravelry
 
-  # There is no API access point for PatternAuthors. The information used to create Ravelry::Author comes from Ravelry::Pattern objects.
+  # There is no API access point for PatternAuthors. The information used to create `Ravelry::Author` comes from {Ravelry::Pattern} objects.
   # 
   # See {Ravelry::Pattern} for more information about `Pattern` objects.
   # 
@@ -8,6 +8,9 @@ module Ravelry
     attr_reader :id, :name, :permalink, :patterns_count, :favorites_count
 
     # Creates new `Author` from Ravelry API PatternAuthor attributes.
+    # 
+    # All class variables are readonly.
+    # 
     def initialize(pattern_author)
       @id = pattern_author[:id]
       @name = pattern_author[:name]

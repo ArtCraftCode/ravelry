@@ -1,5 +1,6 @@
 require_relative '../spec_helper'
 require_relative '../../lib/ravelry/pattern'
+require_relative '../../lib/ravelry/author'
 
 describe Ravelry::Pattern do
 
@@ -168,6 +169,20 @@ describe Ravelry::Pattern do
 
     it 'pack_count (Integer)' do
       expect(@api.pack_count).to be_kind_of(Integer)
+    end
+
+    describe 'author' do
+      before do
+        @api.build_authors
+      end
+
+      it 'should exist' do
+        expect(@api.author).to be
+      end
+
+      it 'should be an instance of Author' do
+        expect(@api.author).to be_instance_of(Ravelry::Author)
+      end
     end
 
     describe 'pack helpers are created' do
