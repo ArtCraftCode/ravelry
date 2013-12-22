@@ -8,15 +8,15 @@ require_relative 'data'
 
 module Ravelry
 
-  # `Ravelry::Pattern` corresponds to the `patterns#show` Ravelry API route.
-  # 
-  # To use this, you must first initialize a `Pattern` object with the id. After initialization, you can access all of the class methods for your `Pattern` object.
-  # 
+  # `Ravelry::Pattern` corresponds to Pattern objects in Ravelry.
+  #  
   # The `Pattern` object can be passed an id as an integer or a string. See {file:README.md README} for information on accessing pattern IDs.
   # 
   # This class requires your environment variables be set (see {file:README.md README}). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
   # 
-  # #Initialization with pattern id
+  # If your `pattern.data` is missing one of the attributes below, that method will return `nil`.
+  # 
+  # # Initialization with pattern id + `GET` API call
   # 
   # Initializing the class with an id will automatically trigger an API call using your access key and personal key.
   # 
@@ -33,21 +33,34 @@ module Ravelry
   # 
   # #Initialization without a pattern id 
   # 
-  # I built this option with the knowledge that this class may have some future functionality not currently available. With this option, the API call doesn't happen until you call `fetch_and_parse`.
+  # If you don't want to perform a `GET` request right out of the gate, simply initialize with no arguments.
   # 
   # ```ruby
   # pattern = Ravelry::Pattern.new
+  # ```
+  # 
+  # To complete the `GET` request, set the `id` and run:
+  # 
+  # ```ruby
   # pattern.id = "000000"
   # pattern.fetch_and_parse
   # ```
   # 
   # After calling `fetch_and_parse`, you have access to all of the class methods below.
   # 
+  # #Initialization with existing pattern data
+  # 
+  # If you have existing pattern data, you should initialize as follows:
+  # 
+  # ```ruby
+  # pattern = Ravelry::Pattern.new(nil, my_data)
+  # ```
+  # 
+  # You now have access to all class methods for your pattern. Be warned: if you run `fetch_and_parse` again, you will override your data with fresh information from the API call.
+  # 
   # # Building associated objects
   # 
   # You will need to call special methods to create the associated objects with your pattern.
-  # 
-  # ## Creating all objects: {#build_all_objects}
   # 
   # To create all associated objects at once, call the following method after initialization:
   # 
@@ -55,26 +68,19 @@ module Ravelry
   # pattern.build_all_objects
   # ```
   # 
-  # This will create the following objects, which are tied to your `Pattern` and can be accessed directly:
+  # Note that this does not perform an API call: it creates the objects using the data returned from the initial `fetch_and_parse` for your pattern object.
   # 
-  # * `pattern.author`- single {Ravelry::Author} object
+  # This will create the following objects and readers from the existing `data`:
+  # 
+  # * `pattern.author` - an {Ravelry::Author} object
   # * `pattern.packs` - array of {Ravelry::Pack} objects
+  # * `pattern.yarns` - array of {Ravelry::Yarn} objects
+  # * `pattern.yarn_weights` - array of {Ravelry::YarnWeight} objects
   # 
   # See the documentation for each object's available methods.
   # 
-  # #Method definitions
-  # 
-  # No explanation is given if the method name describes the result clearly.
-  # 
-  # If your `pattern` is missing one of these attributes, it will return `nil`.
-  # 
   class Pattern < Data
     attr_reader :author, :yarns, :yarn_weights, :packs
-
-    # def initialize(id=nil)
-    #   @id = id
-    #   @pattern = fetch_and_parse if @id
-    # end
 
     # Handles API call and parses JSON response. 
     def fetch_and_parse
@@ -91,7 +97,10 @@ module Ravelry
     # 
     # Sets `attr_reader` for:
     # 
-    # * `author` - has all {Ravelry::Author} methods
+    # * `author` - a {Ravelry::Author} object
+    # * `packs` - array of {Ravelry::Pack} objects
+    # * `yarns` - array of {Ravelry::Yarn} objects
+    # * `yarn_weights` - array of {Ravelry::YarnWeight} objects
     # 
     def build_all_objects
       build_authors
@@ -100,19 +109,17 @@ module Ravelry
       build_yarn_weights
     end
 
-    # Creates {Ravelry::Author} object for each author; returns an Array of {Ravelry::Author} objects.
+    # Creates and returns a {Ravelry::Author} object.
     # 
-    # See {Ravelry::Author} for more information about `Author` objects.
-    # 
-    # Sets `attr_reader` for `author`.
+    # See {Ravelry::Author} for more information.
     # 
     def build_authors
       @author = Author.new(data[:pattern_author])
     end
 
-    # Creates {Ravelry::Pack} object for each yarn in your pack.
+    # Creates and returns an array of {Ravelry::Pack} objects.
     # 
-    # See {Ravelry::Pack} for more information about available attributes.
+    # See {Ravelry::Pack} for more information.
     # 
     def build_packs
       @packs = []
@@ -122,6 +129,10 @@ module Ravelry
       @packs
     end
 
+    # Creates and returns an array of {Ravelry::Yarn} objects.
+    # 
+    # See {Ravelry::Yarn} for more information.
+    # 
     def build_yarns
       @yarns = []
       packs_raw.each do |pack|
@@ -130,6 +141,10 @@ module Ravelry
       @yarns
     end
 
+    # Creates and returns an array of {Ravelry::YarnWeight} objects.
+    # 
+    # See {Ravelry::YarnWeight} for more information.
+    # 
     def build_yarn_weights
       @yarn_weights = []
       packs_raw.each do |pack|
@@ -138,22 +153,27 @@ module Ravelry
       @yarn_weights
     end
 
+    # Gets comments_count from existing `data`.
     def comments_count
       data[:comments_count]
     end
 
+    # Gets craft_name from existing `data`.
     def craft_name
       data[:craft][:name]
     end
 
+    # Gets craft_permalink from existing `data`.
     def craft_permalink
       data[:craft][:permalink]
     end
 
+    # Gets currency from existing `data`.
     def currency
       data[:currency]
     end
 
+    # Gets currency_symbol from existing `data`.
     def currency_symbol
       data[:currency_symbol]
     end
@@ -168,23 +188,27 @@ module Ravelry
       difficulty_average_float.round(0)
     end
 
+    # Gets difficulty_count (Integer) from existing `data`.
     def difficulty_count
       data[:difficulty_count]
     end
 
+    # Returns true if the pattern can be downloaded.
     def downloadable?
       data[:downloadable]
     end
 
+    # Gets favorites_count (Integer) from existing `data`.
     def favorites_count
       data[:favorites_count]
     end
 
+    # Returns true if pattern is free (Boolean).
     def free?
       data[:free]
     end
 
-    # Number of stitches per inch (or 4 inches). `Float`.
+    # Number of stitches per inch (or 4 inches) (Float).
     def gauge
       data[:gauge]
     end
@@ -194,7 +218,7 @@ module Ravelry
       data[:gauge_description]
     end
 
-    # Either 1 or 4 (inches). `Integer`.
+    # Either 1 or 4 (inches) (Integer).
     def gauge_divisor
       data[:gauge_divisor]
     end
@@ -204,6 +228,7 @@ module Ravelry
       data[:gauge_pattern]
     end
 
+    # Gets patter name from existing `data`.
     def name
       data[:name]
     end
@@ -241,7 +266,7 @@ module Ravelry
       data[:packs].length
     end
 
-    # Returns a hash with information about the pattern authors.
+    # Returns a hash with information about the pattern author.
     # 
     # I've included this method in case you want to have more control over how your author information is displayed.
     # 
