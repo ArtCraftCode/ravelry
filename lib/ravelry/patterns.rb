@@ -8,7 +8,7 @@ module Ravelry
 # 
 # The Pattern object can be passed an id as an integer or a string. See {file:README.md README} for information on accessing pattern IDs.
 # 
-# This class requires your environment variables be set (see README). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
+# This class requires your environment variables be set (see {file:README.md README}). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
 # 
 # #Initialization with pattern id
 # 
@@ -37,11 +37,19 @@ module Ravelry
 # 
 # After calling `setup`, you have access to all of the class methods below.
 # 
-# # Methods
+# #Methods
 # 
 # No explanation is given if the method name describes the result clearly.
 # 
 # If your `pattern` is missing one of these attributes, it will return `nil`.
+# 
+# #Important note: {#packs}
+# 
+# The {#packs} method returns an array of all yarns associated with the pattern. You can access items directly in the array if you choose, or you can use the helper methods.
+# 
+# {#setup} triggers {#build_packs}, which magically creates helper methods that let you access each yarn in your pack. If you're planning on using `pack` data, it is **very important** that you read the documentation for {#build_packs}.
+# 
+# **See {#build_packs} for a complete list of `pack` attributes and how to access them**.
 # 
   class Patterns
     attr_reader :pattern
@@ -52,9 +60,18 @@ module Ravelry
       setup if @id
     end
 
+    # Creates `@pattern` and triggers helper methods to build more complex objects.
+    # 
+    # Calls:
+    # 
+    # * {#build_packs} to create yarn packs
+    # * `fetch_and_parse` - private method that handles API call and parsing JSON to an array
+    # 
     def setup
-      @pattern = fetch_and_parse
-      build_packs
+      if @id
+        @pattern = fetch_and_parse
+        build_packs
+      end
     end
 
     def comments_count
@@ -137,7 +154,7 @@ module Ravelry
       pattern[:notes_html]
     end
 
-    # Returns an array of hashes with tons of information about each yarn listed in the pattern. More detail below.
+    # Returns an array of hashes with tons of information about each yarn listed in the pattern. See {#build_packs} for a complete list of helper methods.
     # 
     # I've included this method in case you want to have more control over how your pack information is displayed. It's likely that you'll want to use the other pack methods. While you sacrifice some fine tuning control, you also don't have to worry about dealing with a messy nested hash.
     # 
@@ -160,6 +177,35 @@ module Ravelry
       pattern[:packs].length
     end
 
+    # **Very important magic here:** dynamitcally creates methods for each yarn in `pack`.
+    # 
+    # Generates the following methods for each yarn in pack:
+    # 
+    # *Note that "n" is the index of the item in the `pack` array (starts at `0`). Use {#pack_count} helper to see the number of items in your `pack`.*
+    # 
+    # * `pack_n_yarn` - brand and name of yarn as one string (ex: "Lorna's Laces Shepherd Sock").
+    # * `pack_n_permalink` - Ravelry permalink for yarn
+    # * `pack_n_company` - brand/company name
+    # * `pack_n_name` - yarn name
+    # * `pack_n_yardage_description` - range of yardage required for project
+    # * `pack_n_weight` - yarn weight
+    # 
+    # Eventually this will be replaced with a `Ravelry::Packs` object.
+    # 
+    def build_packs
+      packs.each_with_index do |pack, index|
+        p = {
+              "pack_#{index}_yarn" => pack[:yarn_name],
+              "pack_#{index}_permalink" => pack[:yarn][:permalink],
+              "pack_#{index}_company" => pack[:yarn][:yarn_company_name],
+              "pack_#{index}_name" => pack[:yarn][:name],
+              "pack_#{index}_yardage_description" => pack[:_yardage_description],
+              "pack_#{index}_weight" => pack[:yarn_weight][:name]
+            }
+        set_attrs(p)
+      end
+    end
+
     private
     def fetch_and_parse
       c = Curl::Easy.new("https://api.ravelry.com/patterns/#{@id}.json")
@@ -169,9 +215,6 @@ module Ravelry
       c.perform
       result = JSON.parse(c.body_str, {symbolize_names: true})
       @pattern = result[:pattern]
-    end
-
-    def build_packs
     end
 
     def set_attrs(hash)

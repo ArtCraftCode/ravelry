@@ -11,10 +11,21 @@ describe Ravelry::Patterns do
   end
 
   context '#setup' do
-    it 'should fetch @pattern if initializes with id' do
+    it 'should fetch @pattern if initialized with id' do
       pattern = initialize_paid
       expect(pattern.pattern).to be
     end
+
+    it 'should fetch @pattern if initialized empty and id is set' do
+      pattern = initialize_empty
+      pattern.id = "379890"
+      pattern.setup
+      expect(pattern.pattern).to be
+    end
+
+    it 'should call #build_packs'
+    # no idea how to do test this, which might mean it's bad code
+    # but it also makes it a ton easier to use the gem!
   end
 
   context '#fetch_and_parse' do
@@ -158,6 +169,41 @@ describe Ravelry::Patterns do
 
     it 'pack_count (Integer)' do
       expect(@api.pack_count).to be_kind_of(Integer)
+    end
+
+    describe 'pack helpers are created' do
+      before do
+        @api.build_packs
+        @pack = @data[:packs][0]
+      end
+
+      it 'pack_0_yarn' do
+        expect(@api.pack_0_yarn).to eq(@pack[:yarn_name])
+      end
+
+      it 'pack_0_permalink' do
+        expect(@api.pack_0_permalink).to eq(@pack[:yarn][:permalink])
+      end
+
+      it 'pack_0_company' do
+        expect(@api.pack_0_company).to eq(@pack[:yarn][:yarn_company_name])
+      end
+
+      it 'pack_0_name' do
+        expect(@api.pack_0_name).to eq(@pack[:yarn][:name])
+      end
+
+      it 'pack_0_yardage_description' do
+        expect(@api.pack_0_yardage_description).to eq(@pack[:yardage_description])
+      end
+
+      it 'pack_0_weight' do
+        expect(@api.pack_0_weight).to eq(@pack[:yarn_weight][:name])
+      end
+
+      it 'for valid packs only' do
+        expect { @api.pack_100_yarn }.to raise_error(NoMethodError)
+      end
     end
 
     # it 'method' do
