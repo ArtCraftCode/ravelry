@@ -124,6 +124,11 @@ module Ravelry
 
     def build_yarns
       @yarns = []
+      packs_raw.each do |pack|
+        yarn = Yarn.new(pack[:yarn][:id], pack[:yarn])
+        yarns << yarn
+      end
+      @yarns
     end
 
     def build_yarn_weights
