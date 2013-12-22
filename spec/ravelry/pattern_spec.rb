@@ -149,16 +149,16 @@ describe Ravelry::Pattern do
       expect(@api.notes_html).to eq(@data[:notes_html])
     end
 
-    it 'packs' do
-      expect(@api.packs).to eq(@data[:packs])
+    it 'packs_raw' do
+      expect(@api.packs_raw).to eq(@data[:packs])
     end
 
-    it 'packs (Array)' do
-      expect(@api.packs).to be_kind_of(Array)
+    it 'packs_raw (Array)' do
+      expect(@api.packs_raw).to be_kind_of(Array)
     end
 
-    it 'packs[0] (Hash)' do
-      expect(@api.packs[0]).to be_kind_of(Hash)
+    it 'packs_raw[0] (Hash)' do
+      expect(@api.packs_raw[0]).to be_kind_of(Hash)
     end
 
     it 'pack_count' do
@@ -183,38 +183,33 @@ describe Ravelry::Pattern do
       end
     end
 
-    describe 'pack helpers are created' do
+    describe 'yarns' do
+      before do
+        @api.build_yarns
+      end
+    end
+
+    describe 'yarn_weights' do
+      before do
+        @api.build_yarn_weights
+      end
+    end
+
+    describe 'packs' do
       before do
         @api.build_packs
-        @pack = @data[:packs][0]
       end
 
-      it 'pack_0_yarn' do
-        expect(@api.pack_0_yarn).to eq(@pack[:yarn_name])
+      it 'should exist' do
+        expect(@api.packs).to be
       end
 
-      it 'pack_0_permalink' do
-        expect(@api.pack_0_permalink).to eq(@pack[:yarn][:permalink])
+      it 'should contain at least done' do
+        expect(@api.packs.length).to be > 0
       end
 
-      it 'pack_0_company' do
-        expect(@api.pack_0_company).to eq(@pack[:yarn][:yarn_company_name])
-      end
-
-      it 'pack_0_name' do
-        expect(@api.pack_0_name).to eq(@pack[:yarn][:name])
-      end
-
-      it 'pack_0_yardage_description' do
-        expect(@api.pack_0_yardage_description).to eq(@pack[:yardage_description])
-      end
-
-      it 'pack_0_weight' do
-        expect(@api.pack_0_weight).to eq(@pack[:yarn_weight][:name])
-      end
-
-      it 'for valid packs only' do
-        expect { @api.pack_100_yarn }.to raise_error(NoMethodError)
+      it 'should be an instance of Pack' do
+        expect(@api.packs[0]).to be_instance_of(Ravelry::Pack)
       end
     end
   end
