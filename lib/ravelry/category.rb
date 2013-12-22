@@ -1,46 +1,57 @@
 module Ravelry
 
-  # The information used to create `Ravelry::Category` currently comes from {Ravelry::Pattern} objects.
+  # There is no API access point for PatternCategories. The information used to create `Ravelry::Category` comes from {Ravelry::Pattern} objects.
+  # 
+  # You should not be creating any `Category` objects manually; they are all created by {Ravelry::Pattern}.
   # 
   # See {Ravelry::Pattern} for more information about `Pattern` objects.
   # 
-  # This class will be updated in future to perform GET, POST, PUT, and DESTROY requests.
+  # This does not inherit from {Ravelry::Data} because it doesn't have a corresponding API endpoint.
   # 
-  class Category < Data
-    attr_reader :parent_name, :parent_permalink, :grandparent_name, :grandparent_permalink, :greatgrandparent_name, :greatgrandparent_permalink
+  class Category
+    attr_reader :name, :permalink, :parent_name, :parent_permalink, :grandparent_name, :grandparent_permalink, :greatgrandparent_name, :greatgrandparent_permalink
 
-    # Gets name from existing `data`.
-    def name
-      data[:name]
+    # Creates new `Category` from Ravelry API PatternCategories attributes up to the great grandparent level
+    # 
+    # All class variables are readonly.
+    # 
+    def initialize(category)
+      @name = category[:name]
+      @permalink = category[:permalink]
+      @category = category
+      set_relatives
     end
 
-    # Gets permalink from existing `data`.
-    def permalink
-      data[:permalink]
-    end
-
+    protected
     # Returns parent name and sets parent attributes from existing `data`.
     def parent
-      if data[:parent]
-        @parent_permalink = data[:parent][:permalink]
-        @parent_name = data[:parent][:name]
+      if @category[:parent]
+        @parent_permalink = @category[:parent][:permalink]
+        @parent_name = @category[:parent][:name]
       end
     end
 
     # Returns parent name and sets grandparent attributes from existing `data`.
     def grandparent
-      if data[:parent][:parent]
-        @grandparent_permalink = data[:parent][:parent][:permalink]
-        @grandparent_name = data[:parent][:parent][:name]
+      if @category[:parent][:parent]
+        @grandparent_permalink = @category[:parent][:parent][:permalink]
+        @grandparent_name = @category[:parent][:parent][:name]
       end
     end
 
     # Returns parent name and sets greatgrandparent attributes from existing `data`.
-    def greatgrantparent
-      if data[:parent][:parent][:parent]
-        @greatgrandparent_permalink = data[:parent][:parent][:parent][:permalink]
-        @greatgrandparent_name = data[:parent][:parent][:parent][:name]
+    def greatgrandparent
+      if @category[:parent][:parent][:parent]
+        @greatgrandparent_permalink = @category[:parent][:parent][:parent][:permalink]
+        @greatgrandparent_name = @category[:parent][:parent][:parent][:name]
       end
+    end
+
+    private
+    def set_relatives
+      parent if @category[:parent]
+      grandparent if @category[:parent][:parent]
+      greatgrandparent if @category[:parent][:parent][:parent]
     end
   end
 end
