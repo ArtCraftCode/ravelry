@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
-require_relative '../../lib/ravelry/patterns'
+require_relative '../../lib/ravelry/pattern'
 
-describe Ravelry::Patterns do
+describe Ravelry::Pattern do
 
   context '#initialize' do
     it 'should not fetch pattern if given no @id' do
@@ -19,6 +19,11 @@ describe Ravelry::Patterns do
       pattern.id = "379890"
       pattern.fetch_and_parse
       expect(pattern.pattern).to be
+    end
+
+    it 'should be an instance of Patterns' do
+      pattern = initialize_paid
+      expect(pattern).to be_instance_of(Ravelry::Pattern)
     end
   end
 
@@ -164,10 +169,6 @@ describe Ravelry::Patterns do
     it 'pack_count (Integer)' do
       expect(@api.pack_count).to be_kind_of(Integer)
     end
-
-    # it 'method' do
-    #   expect(@api.method).to eq(@data[:method])
-    # end
 
     describe 'pack helpers are created' do
       before do

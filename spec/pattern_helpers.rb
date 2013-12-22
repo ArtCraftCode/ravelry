@@ -1,19 +1,19 @@
-module PatternsHelpers
+module PatternHelpers
 
-  # Helpers for Ravelry::Patterns
+  # Helpers for Ravelry::Pattern
 
   def initialize_empty
-    Ravelry::Patterns.new
+    Ravelry::Pattern.new
   end
 
   def initialize_paid
     # Volatile Magic Shawl
-    Ravelry::Patterns.new("379890")
+    Ravelry::Pattern.new("379890")
   end
 
   def initialize_free
     # Wish I Was Weaving This Cowl
-    Ravelry::Patterns.new("379890")
+    Ravelry::Pattern.new("379890")
   end
 
   def paid_pattern_stub
@@ -60,7 +60,7 @@ module PatternsHelpers
               :price=>nil, :permalink=>"liz-abinantes-ravelry-store",
               :out_of_print=>false, :name=>"Liz Abinante's Ravelry Store",
               :author=>nil, :url=>"http://www.ravelry.com/stores/feministy",
-              :amazon_rating=>nil, :patterns_count=>3, :amazon_url=>nil,
+              :amazon_rating=>nil, :pattern_count=>3, :amazon_url=>nil,
               :shelf_image_path=>nil, :list_price=>nil
             },
           :primary_source=>true
@@ -69,7 +69,7 @@ module PatternsHelpers
             {
               :price=>nil, :permalink=>"feministy", :out_of_print=>false,
               :name=>"Feministy.com", :author=>"", :url=>"http://feministy.com/",
-              :amazon_rating=>nil, :patterns_count=>47, :amazon_url=>nil,
+              :amazon_rating=>nil, :pattern_count=>47, :amazon_url=>nil,
               :shelf_image_path=>nil, :list_price=>nil
             }, 
           :primary_source=>false
@@ -113,7 +113,7 @@ module PatternsHelpers
         :pattern_author=>
           {
             :permalink=>"liz-abinante", :name=>"Liz Abinante", :id=>19297,
-            :favorites_count=>1314, :patterns_count=>48
+            :favorites_count=>1314, :pattern_count=>48
           },
         :product_id=>185601,
         :favorites_count=>281,

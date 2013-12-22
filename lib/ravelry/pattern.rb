@@ -1,12 +1,13 @@
 require 'curb'
+require_relative 'author'
 
 module Ravelry
 
-# `Ravelry::Patterns` corresponds to the `patterns#show` Ravelry API route.
+# `Ravelry::Pattern` corresponds to the `patterns#show` Ravelry API route.
 # 
-# To use this, you must first initialize a Pattern object with the id. After initialization, you can access all of the class methods for your Pattern object.
+# To use this, you must first initialize a `Pattern` object with the id. After initialization, you can access all of the class methods for your `Pattern` object.
 # 
-# The Pattern object can be passed an id as an integer or a string. See {file:README.md README} for information on accessing pattern IDs.
+# The `Pattern` object can be passed an id as an integer or a string. See {file:README.md README} for information on accessing pattern IDs.
 # 
 # This class requires your environment variables be set (see {file:README.md README}). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
 # 
@@ -15,7 +16,7 @@ module Ravelry
 # Initializing the class with an id will automatically trigger an API call using your access key and personal key.
 # 
 # ```ruby
-# pattern = Ravelry::Patterns.new("000000")
+# pattern = Ravelry::Pattern.new("000000")
 # ```
 # 
 # After the call is complete, you have access to all of the pattern attributes through the class methods (see documentation). Example:
@@ -30,7 +31,7 @@ module Ravelry
 # I built this option with the knowledge that this class may have some future functionality not currently available. With this option, the API call doesn't happen until you call `fetch_and_parse`.
 # 
 # ```ruby
-# pattern = Ravelry::Patterns.new
+# pattern = Ravelry::Pattern.new
 # pattern.id = "000000"
 # pattern.fetch_and_parse
 # ```
@@ -57,7 +58,7 @@ module Ravelry
 # pattern.build_packs
 # ```
 # 
-# ### To create author objects only: {#build_authors}
+# ### To create {Ravelry::Author} objects only: {#build_authors}
 # 
 # ```ruby
 # pattern.build_authors
@@ -65,7 +66,7 @@ module Ravelry
 # 
 # ## Accessing objects
 # 
-# To access the array of `Ravelry::Author` objects associated with your pattern:
+# To access the array of {Ravelry::Author} objects associated with your pattern:
 # 
 # ```ruby
 # pattern.authors
@@ -86,7 +87,7 @@ module Ravelry
 # 
 # **See {#build_packs} for a complete list of `pack` attributes and how to access them**.
 # 
-  class Patterns
+  class Pattern
     attr_reader :pattern, :authors
     attr_accessor :id
 
@@ -110,7 +111,7 @@ module Ravelry
     # 
     # Inside of the `associated` hash, you have the following keys:
     # 
-    # * `:authors` - Array of `Author` objects
+    # * `:authors` - Array of {Ravelry::Author} objects
     # 
     # Also generates helper methods for `packs`.
     def build_all_objects
@@ -147,9 +148,16 @@ module Ravelry
       end
     end
 
-    # Creates `Ravelry::Author` object for each author; returns an Array of `Author` objects.
+    # Creates {Ravelry::Author} object for each author; returns an Array of {Ravelry::Author] objects.
+    # 
+    # See {Ravelry::Author} for more information about `Author` objects.
+    # 
     def build_authors
       @authors = []
+      pattern[:pattern_author].each do |author|
+        @authors << Author.new(author)
+      end
+      @authors
     end
 
     def comments_count
