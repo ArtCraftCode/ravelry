@@ -110,9 +110,9 @@ module Ravelry
       @author = Author.new(pattern[:pattern_author])
     end
 
-    # Creates {Ravelry:Pack} object for each yarn in your pack.
+    # Creates {Ravelry::Pack} object for each yarn in your pack.
     # 
-    # See {Ravelry:Pack} for more information about available attributes.
+    # See {Ravelry::Pack} for more information about available attributes.
     # 
     def build_packs
       @packs = []
