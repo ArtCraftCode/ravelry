@@ -117,6 +117,10 @@ module Ravelry
 
     def build_categories
       @categories = []
+      pattern_categories_raw.each do |cat|
+        @categories << Category.new(nil, cat)
+      end
+      @categories
     end
 
     def build_craft
