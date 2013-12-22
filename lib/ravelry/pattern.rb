@@ -4,6 +4,7 @@ require_relative 'author'
 require_relative 'pack'
 require_relative 'yarn_weight'
 require_relative 'yarn'
+require_relative 'data'
 
 module Ravelry
 
@@ -67,7 +68,7 @@ module Ravelry
   # 
   # If your `pattern` is missing one of these attributes, it will return `nil`.
   # 
-  class Pattern
+  class Pattern < Data
     attr_reader :pattern, :author, :yarns, :yarn_weights, :packs
     attr_accessor :id
 
@@ -125,14 +126,17 @@ module Ravelry
     def build_yarns
       @yarns = []
       packs_raw.each do |pack|
-        yarn = Yarn.new(pack[:yarn][:id], pack[:yarn])
-        yarns << yarn
+        @yarns << Yarn.new(nil, pack[:yarn])
       end
       @yarns
     end
 
     def build_yarn_weights
       @yarn_weights = []
+      packs_raw.each do |pack|
+        @yarn_weights << YarnWeight.new(nil, pack[:yarn_weight])
+      end
+      @yarn_weights
     end
 
     def comments_count

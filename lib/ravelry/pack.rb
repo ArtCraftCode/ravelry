@@ -1,3 +1,5 @@
+require_relative 'data'
+
 module Ravelry
 
   # The information used to create `Ravelry::Pack` currently comes from {Ravelry::Pattern} objects.
@@ -6,7 +8,7 @@ module Ravelry
   # 
   # This class will be updated in future to perform GET, POST, PUT, and DESTROY requests.
   # 
-  class Pack
+  class Pack < Data
 
     attr_reader :quantity_description, :yarn_id, :total_grams, :project_id, :shop_id, :prefer_metric_weight, :prefer_metric_length, :ounces_per_skein, :dye_lot, :skeins, :id, :grams_per_skein, :color_family_id, :shop_name, :total_meters, :stash_id, :total_ounces, :primary_pack_id, :personal_name, :colorway, :meters_per_skein, :yarn_name, :yards_per_skein, :total_yards  
     

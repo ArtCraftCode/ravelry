@@ -1,3 +1,5 @@
+require_relative 'data'
+
 module Ravelry
 
   #  The information used to create `Ravelry::Yarn` currently comes from {Ravelry::Pattern} objects.
@@ -6,16 +8,7 @@ module Ravelry
   # 
   # This class will be updated in future to perform GET, POST, PUT, and DESTROY requests.
   # 
-  class Yarn
-    attr_accessor :id
-    attr_reader :data
-
-    def initialize(id=nil, data=nil)
-      @id = id
-      @data = data if data
-      @data = fetch_and_parse if fetch_api?
-    end
-
+  class Yarn < Data
     def permalink
       data[:permalink]
     end
@@ -30,12 +23,6 @@ module Ravelry
 
     def company_id
       data[:yarn_company_id]
-    end
-
-    private
-    # Determines if an API fetch needs to be made.
-    def fetch_api?
-      @id && !@data
     end
 
     # Handles API call and parses JSON response. 
