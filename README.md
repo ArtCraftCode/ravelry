@@ -10,6 +10,8 @@ Current API routes covered include:
 
 * `Patterns#show` (`GET`)
 
+Want a route that isn't currently covered? [Request it](https://github.com/feministy/ravelry/issues) by submitting an issue.
+
 # Installation
 
 Welcome to a magical land where gems rule the world. To install, type:
