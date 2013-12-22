@@ -5,6 +5,7 @@ require 'ravelry'
 require 'helpers'
 require 'pattern_helpers'
 require 'pack_helpers'
+require 'yarn_helpers'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
@@ -14,5 +15,6 @@ RSpec.configure do |config|
   config.include Helpers
   config.include PatternHelpers
   config.include PackHelpers
+  config.include YarnHelpers
   config.order = "random"
 end
