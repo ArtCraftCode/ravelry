@@ -3,7 +3,7 @@ module CategoryHelpers
   # Helpers for Ravelry::CategoryHelpers
 
   def categories
-    [{
+    {
       :permalink=>"shawl-wrap", :name=>"Shawl / Wrap", :id=>350,
       :parent=>
         {
@@ -17,7 +17,7 @@ module CategoryHelpers
                 }
             }
         }
-    }]
+    }
   end
 
 end

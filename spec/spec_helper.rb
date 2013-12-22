@@ -3,6 +3,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
 require 'ravelry'
 require 'helpers'
+require 'category_helpers'
 require 'pattern_helpers'
 require 'pack_helpers'
 require 'yarn_helpers'
@@ -14,6 +15,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   config.include Helpers
+  config.include CategoryHelpers
   config.include PatternHelpers
   config.include PackHelpers
   config.include YarnHelpers
