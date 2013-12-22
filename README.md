@@ -12,6 +12,8 @@ Current API routes covered include:
 
 Want a route that isn't currently covered? [Request it](https://github.com/feministy/ravelry/issues) by submitting an issue.
 
+**If a method doesn't have documentation, that means it is not complete.** Run `yard stats --list-undoc` to see a list.
+
 # Installation
 
 Welcome to a magical land where gems rule the world. To install, type:
