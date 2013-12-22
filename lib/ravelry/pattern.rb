@@ -83,8 +83,6 @@ module Ravelry
 # 
 # The {#packs} method returns an array of all yarns associated with the pattern. You can access items directly in the array if you choose, or you can use the helper methods.
 # 
-# {#setup} triggers {#build_packs}, which magically creates helper methods that let you access each yarn in your pack. If you're planning on using `pack` data, it is **very important** that you read the documentation for {#build_packs}.
-# 
 # **See {#build_packs} for a complete list of `pack` attributes and how to access them**.
 # 
   class Pattern
@@ -147,7 +145,7 @@ module Ravelry
       end
     end
 
-    # Creates {Ravelry::Author} object for each author; returns an Array of {Ravelry::Author] objects.
+    # Creates {Ravelry::Author} object for each author; returns an Array of {Ravelry::Author} objects.
     # 
     # See {Ravelry::Author} for more information about `Author` objects.
     # 
