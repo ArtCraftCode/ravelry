@@ -1,3 +1,9 @@
+# This is unreleased and is a WIP.
+
+Nothing below actually works. This is for *the future*.
+
+---
+
 # Ravelry
 
 The Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely. Made by a knitter, knitwear designer, and hacker all rolled into one sassy woman so you know it's good (ish).
