@@ -245,47 +245,35 @@ describe Ravelry::Pattern do
     end
 
     # Associated objects
-    describe 'associated objects #build_all_objects' do
+    # Further testing is done under utils/Build
+    describe '#build associated objects and readers' do
       before do
-        @api.build_all_objects
+        @api.build
       end
 
-      it 'should build author' do
+      it 'author exists' do
         expect(@api.author).to be
       end
 
-      it 'should build categories' do
+      it 'categories exists' do
         expect(@api.categories.length).to be > 0
       end
 
-      it 'should build packs' do
+      it 'packs exists' do
         expect(@api.packs.length).to be > 0
       end
 
-      it 'should build yarns' do
+      it 'yarns exists' do
         expect(@api.yarns.length).to be > 0
       end
 
-      it 'should build yarn weights' do
+      it 'yarn weights exists' do
         expect(@api.yarn_weights.length).to be > 0
       end
     end
 
-    describe 'associated objects #build_author' do
-      before do
-        @api.build_authors
-      end
 
-      it 'should exist' do
-        expect(@api.author).to be
-      end
-
-      it 'should be an instance of Author' do
-        expect(@api.author).to be_instance_of(Ravelry::Author)
-      end
-    end
-
-    describe 'associated objects #build_yarns' do
+    describe 'associated objects #yarns' do
       before do
         @api.build_yarns
       end
@@ -303,7 +291,7 @@ describe Ravelry::Pattern do
       end
     end
 
-    describe 'associated objects #build_yarn_weights' do
+    describe 'associated objects #yarn_weights' do
       before do
         @api.build_yarn_weights
       end
@@ -321,7 +309,7 @@ describe Ravelry::Pattern do
       end
     end
 
-    describe 'associated objects #build_packs' do
+    describe 'associated objects #packs' do
       before do
         @api.build_packs
       end
@@ -339,7 +327,7 @@ describe Ravelry::Pattern do
       end
     end
 
-    describe 'associated objects #build_categories' do
+    describe 'associated objects #categories' do
       before do
         @api.build_categories
       end
@@ -360,7 +348,7 @@ describe Ravelry::Pattern do
     # TODO
     # Currently failing
 
-    # describe 'associated objects #build_craft' do
+    # describe 'associated objects #craft' do
     #   before do
     #     @api.build_craft
     #   end
@@ -374,7 +362,7 @@ describe Ravelry::Pattern do
     #   end
     # end
 
-    # describe 'associated objects #build_needles' do
+    # describe 'associated objects #needles' do
     #   before do
     #     @api.build_needles
     #   end
@@ -392,7 +380,7 @@ describe Ravelry::Pattern do
     #   end
     # end
 
-    # describe 'associated objects #build_photos' do
+    # describe 'associated objects #photos' do
     #   before do
     #     @api.build_photos
     #   end
@@ -410,7 +398,7 @@ describe Ravelry::Pattern do
     #   end
     # end
 
-    # describe 'associated objects #build_printings' do
+    # describe 'associated objects #printings' do
     #   before do
     #     @api.build_printings
     #   end
@@ -428,7 +416,7 @@ describe Ravelry::Pattern do
     #   end
     # end
 
-    # describe 'associated objects #build_type' do
+    # describe 'associated objects #type' do
     #   before do
     #     @api.build_type
     #   end

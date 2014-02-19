@@ -72,6 +72,9 @@ module Ravelry
   # See the documentation for each object's available methods.
   #
   class Pattern < Data
+
+    include Build
+
     attr_reader :author, :yarns, :yarn_weights, :packs, :categories, :craft, :needles, :photos, :printings, :type
 
     # Handles GET API call and parses JSON response.
@@ -94,93 +97,17 @@ module Ravelry
     # * `yarns` - array of {Ravelry::Yarn} objects
     # * `yarn_weights` - array of {Ravelry::YarnWeight} objects
     #
-    def build_all_objects
-      build_authors
-      build_categories
-      build_craft #TODO
-      build_needles #TODO
-      build_packs
-      build_photos #TODO
-      build_printings #TODO
-      build_type #TODO
-      build_yarns
-      build_yarn_weights
-    end
-
-    # Creates and returns a {Ravelry::Author} object.
-    #
-    # See {Ravelry::Author} for more information.
-    #
-    def build_authors
-      @author = Author.new(data[:pattern_author])
-    end
-
-    # Creates and returns an array of {Ravelry::Category} objects.
-    #
-    # See {Ravelry::Category} for more information.
-    #
-    def build_categories
-      @categories = []
-      pattern_categories_raw.each do |cat|
-        @categories << Category.new(cat)
-      end
-      @categories
-    end
-
-    def build_craft
-      @craft = nil
-    end
-
-    def build_needles
-      @needles = []
-    end
-
-    # Creates and returns an array of {Ravelry::Pack} objects.
-    #
-    # See {Ravelry::Pack} for more information.
-    #
-    def build_packs
-      @packs = []
-      packs_raw.each do |pack|
-        @packs << Pack.new(nil, pack)
-      end
-      @packs
-    end
-
-    def build_photos
-      @photos = []
-    end
-
-    def build_printings
-      @printings = []
-    end
-
-    def build_type
-      @type = nil
-    end
-
-    # Creates and returns an array of {Ravelry::Yarn} objects.
-    #
-    # See {Ravelry::Yarn} for more information.
-    #
-    def build_yarns
-      @yarns = []
-      packs_raw.each do |pack|
-        @yarns << Yarn.new(nil, pack[:yarn])
-      end
-      @yarns
-    end
-
-    # Creates and returns an array of {Ravelry::YarnWeight} objects.
-    #
-    # See {Ravelry::YarnWeight} for more information.
-    #
-    def build_yarn_weights
-      @yarn_weights = []
-      packs_raw.each do |pack|
-        @yarn_weights << YarnWeight.new(nil, pack[:yarn_weight])
-      end
-      @yarn_weights
+    def build
+      @author = Build.author(data)
+      @categories = Build.categories(data)
+      @craft = Build.craft(data)
+      @needles = Build.needles(data)
+      @packs = Build.packs(data)
+      @photos = Build.photos(data)
+      @printings = Build.printings(data)
+      @type = Build.type(data)
+      @yarns = Build.yarns(data)
+      @yarn_weights = Build.yarn_weights(data)
     end
 
     # Gets comments_count from existing `data`.
