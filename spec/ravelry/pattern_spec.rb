@@ -259,8 +259,28 @@ describe Ravelry::Pattern do
         expect(@api.categories.length).to be > 0
       end
 
+      it 'craft exists' do
+        expect(@api.craft).to be_true
+      end
+
+      it 'needles exist' do
+        expect(@api.needles.length).to be > 0
+      end
+
       it 'packs exists' do
         expect(@api.packs.length).to be > 0
+      end
+
+      it 'photos exist' do
+        expect(@api.photos.length).to be > 0
+      end
+
+      it 'printings exist' do
+        expect(@api.printings.length).to be > 0
+      end
+
+      it 'type exists' do
+        expect(@api.type).to be_true
       end
 
       it 'yarns exists' do
@@ -271,163 +291,5 @@ describe Ravelry::Pattern do
         expect(@api.yarn_weights.length).to be > 0
       end
     end
-
-
-    describe 'associated objects #yarns' do
-      before do
-        @api.build_yarns
-      end
-
-      it 'should exist' do
-        expect(@api.yarns).to be
-      end
-
-      it 'should contain at least one' do
-        expect(@api.yarns.length).to be > 0
-      end
-
-      it 'should be an instance of Yarn' do
-        expect(@api.yarns[0]).to be_instance_of(Ravelry::Yarn)
-      end
-    end
-
-    describe 'associated objects #yarn_weights' do
-      before do
-        @api.build_yarn_weights
-      end
-
-      it 'should exist' do
-        expect(@api.yarn_weights).to be
-      end
-
-      it 'should contain at least one' do
-        expect(@api.yarn_weights.length).to be > 0
-      end
-
-      it 'should be an instance of YarnWeight' do
-        expect(@api.yarn_weights[0]).to be_instance_of(Ravelry::YarnWeight)
-      end
-    end
-
-    describe 'associated objects #packs' do
-      before do
-        @api.build_packs
-      end
-
-      it 'should exist' do
-        expect(@api.packs).to be
-      end
-
-      it 'should contain at least one' do
-        expect(@api.packs.length).to be > 0
-      end
-
-      it 'should be an instance of Pack' do
-        expect(@api.packs[0]).to be_instance_of(Ravelry::Pack)
-      end
-    end
-
-    describe 'associated objects #categories' do
-      before do
-        @api.build_categories
-      end
-
-      it 'should exist' do
-        expect(@api.categories).to be
-      end
-
-      it 'should contain at least one' do
-        expect(@api.categories.length).to be > 0
-      end
-
-      it 'should be an instance of Category' do
-        expect(@api.categories[0]).to be_instance_of(Ravelry::Category)
-      end
-    end
-
-    # TODO
-    # Currently failing
-
-    # describe 'associated objects #craft' do
-    #   before do
-    #     @api.build_craft
-    #   end
-
-    #   it 'should exist' do
-    #     expect(@api.craft).to be
-    #   end
-
-    #   it 'should be an instance of Craft' do
-    #     expect(@api.craft).to be_instance_of(Ravelry::Craft)
-    #   end
-    # end
-
-    # describe 'associated objects #needles' do
-    #   before do
-    #     @api.build_needles
-    #   end
-
-    #   it 'should exist' do
-    #     expect(@api.needles).to be
-    #   end
-
-    #   it 'should contain at least one' do
-    #     expect(@api.needles.length).to be > 0
-    #   end
-
-    #   it 'should be an instance of Needle' do
-    #     expect(@api.needles[0]).to be_instance_of(Ravelry::Needle)
-    #   end
-    # end
-
-    # describe 'associated objects #photos' do
-    #   before do
-    #     @api.build_photos
-    #   end
-
-    #   it 'should exist' do
-    #     expect(@api.photos).to be
-    #   end
-
-    #   it 'should contain at least one' do
-    #     expect(@api.photos.length).to be > 0
-    #   end
-
-    #   it 'should be an instance of Photo' do
-    #     expect(@api.photos[0]).to be_instance_of(Ravelry::Photo)
-    #   end
-    # end
-
-    # describe 'associated objects #printings' do
-    #   before do
-    #     @api.build_printings
-    #   end
-
-    #   it 'should exist' do
-    #     expect(@api.printings).to be
-    #   end
-
-    #   it 'should contain at least one' do
-    #     expect(@api.printings.length).to be > 0
-    #   end
-
-    #   it 'should be an instance of Pack' do
-    #     expect(@api.printings[0]).to be_instance_of(Ravelry::Printing)
-    #   end
-    # end
-
-    # describe 'associated objects #type' do
-    #   before do
-    #     @api.build_type
-    #   end
-
-    #   it 'should exist' do
-    #     expect(@api.type).to be
-    #   end
-
-    #   it 'should be an instance of Pack' do
-    #     expect(@api.type).to be_instance_of(Ravelry::Type)
-    #   end
-    # end
   end
 end
