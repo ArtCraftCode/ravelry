@@ -92,7 +92,7 @@ describe Ravelry::Pattern do
 
       it 'gauge' do
         expect(@api.gauge).to eq(@data[:gauge])
-      end 
+      end
 
       it 'gauge (Float)' do
         expect(@api.gauge).to be_kind_of(Float)
