@@ -1,80 +1,83 @@
 module Ravelry
 
   # `Ravelry::Pattern` corresponds to Pattern objects in Ravelry.
-  #  
+  #
   # The `Pattern` object can be passed an id as an integer or a string. See {file:README.md README} for information on accessing pattern IDs.
-  # 
+  #
   # This class requires your environment variables be set (see {file:README.md README}). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
-  # 
+  #
   # If your `pattern.data` is missing one of the attributes below, that method will return `nil`.
-  # 
+  #
   # # `GET` Request
-  # 
+  #
   # Initializing the class with an id will automatically trigger an API call using your access key and personal key.
-  # 
+  #
   # ```ruby
   # pattern = Ravelry::Pattern.new("000000")
   # ```
-  # 
+  #
   # After the call is complete, you have access to all of the pattern attributes through the class methods (see documentation). Example:
-  # 
+  #
   # ```ruby
   # pattern.free?
   # # => true
   # ```
-  # 
-  # #Initialization without a pattern id 
-  # 
+  #
+  # #Initialization without a pattern id
+  #
   # If you don't want to perform a `GET` request right out of the gate, simply initialize with no arguments.
-  # 
+  #
   # ```ruby
   # pattern = Ravelry::Pattern.new
   # ```
-  # 
+  #
   # To complete the `GET` request, set the `id` and run:
-  # 
+  #
   # ```ruby
   # pattern.id = "000000"
   # pattern.fetch_and_parse
   # ```
-  # 
+  #
   # After calling `fetch_and_parse`, you have access to all of the class methods below.
-  # 
+  #
   # #Initialization with existing pattern data
-  # 
+  #
   # If you have existing pattern data, you should initialize as follows:
-  # 
+  #
   # ```ruby
   # pattern = Ravelry::Pattern.new(nil, my_data)
   # ```
-  # 
+  #
   # You now have access to all class methods for your pattern. Be warned: if you run `fetch_and_parse` again, you will override your data with fresh information from the API call.
-  # 
+  #
   # # Building associated objects
-  # 
+  #
   # You will need to call special methods to create the associated objects with your pattern.
-  # 
+  #
   # To create all associated objects at once, call the following method after initialization:
-  # 
+  #
   # ```ruby
   # pattern.build_all_objects
   # ```
-  # 
+  #
   # Note that this does not perform an API call: it creates the objects using the data returned from the initial `fetch_and_parse` for your pattern object.
-  # 
+  #
   # This will create the following objects and readers from the existing `data`:
-  # 
+  #
   # * `pattern.author` - an {Ravelry::Author} object
   # * `pattern.packs` - array of {Ravelry::Pack} objects
   # * `pattern.yarns` - array of {Ravelry::Yarn} objects
   # * `pattern.yarn_weights` - array of {Ravelry::YarnWeight} objects
-  # 
+  #
   # See the documentation for each object's available methods.
-  # 
+  #
   class Pattern < Data
+
+    include Build
+
     attr_reader :author, :yarns, :yarn_weights, :packs, :categories, :craft, :needles, :photos, :printings, :type
 
-    # Handles GET API call and parses JSON response. 
+    # Handles GET API call and parses JSON response.
     def fetch_and_parse
       c = Curl::Easy.new("https://api.ravelry.com/patterns/#{@id}.json")
       c.http_auth_types = :basic
@@ -86,101 +89,25 @@ module Ravelry
     end
 
     # Creates all objects associated with your pattern; returns nothing; sets `attr_readers`.
-    # 
+    #
     # Sets `attr_reader` for:
-    # 
+    #
     # * `author` - a {Ravelry::Author} object
     # * `packs` - array of {Ravelry::Pack} objects
     # * `yarns` - array of {Ravelry::Yarn} objects
     # * `yarn_weights` - array of {Ravelry::YarnWeight} objects
-    # 
-    def build_all_objects
-      build_authors
-      build_categories
-      build_craft #TODO
-      build_needles #TODO
-      build_packs
-      build_photos #TODO
-      build_printings #TODO
-      build_type #TODO
-      build_yarns
-      build_yarn_weights
-    end
-
-    # Creates and returns a {Ravelry::Author} object.
-    # 
-    # See {Ravelry::Author} for more information.
-    # 
-    def build_authors
-      @author = Author.new(data[:pattern_author])
-    end
-
-    # Creates and returns an array of {Ravelry::Category} objects.
-    # 
-    # See {Ravelry::Category} for more information.
-    # 
-    def build_categories
-      @categories = []
-      pattern_categories_raw.each do |cat|
-        @categories << Category.new(cat)
-      end
-      @categories
-    end
-
-    def build_craft
-      @craft = nil
-    end
-
-    def build_needles
-      @needles = []
-    end
-
-    # Creates and returns an array of {Ravelry::Pack} objects.
-    # 
-    # See {Ravelry::Pack} for more information.
-    # 
-    def build_packs
-      @packs = []
-      packs_raw.each do |pack|
-        @packs << Pack.new(nil, pack)
-      end
-      @packs
-    end
-
-    def build_photos
-      @photos = []
-    end
-
-    def build_printings
-      @printings = []
-    end
-
-    def build_type
-      @type = nil
-    end
-
-    # Creates and returns an array of {Ravelry::Yarn} objects.
-    # 
-    # See {Ravelry::Yarn} for more information.
-    # 
-    def build_yarns
-      @yarns = []
-      packs_raw.each do |pack|
-        @yarns << Yarn.new(nil, pack[:yarn])
-      end
-      @yarns
-    end
-
-    # Creates and returns an array of {Ravelry::YarnWeight} objects.
-    # 
-    # See {Ravelry::YarnWeight} for more information.
-    # 
-    def build_yarn_weights
-      @yarn_weights = []
-      packs_raw.each do |pack|
-        @yarn_weights << YarnWeight.new(nil, pack[:yarn_weight])
-      end
-      @yarn_weights
+    #
+    def build
+      @author = Build.author(data)
+      @categories = Build.categories(data)
+      @craft = Build.craft(data)
+      @needles = Build.needles(data)
+      @packs = Build.packs(data)
+      @photos = Build.photos(data)
+      @printings = Build.printings(data)
+      @type = Build.type(data)
+      @yarns = Build.yarns(data)
+      @yarn_weights = Build.yarn_weights(data)
     end
 
     # Gets comments_count from existing `data`.
@@ -269,19 +196,19 @@ module Ravelry
     end
 
     # Returns an array of hashes with tons of information about each yarn listed in the pattern. See {#build_packs} for a complete list of helper methods.
-    # 
+    #
     # I've included this method in case you want to have more control over how your pack information is displayed. It's likely that you'll want to use the other pack methods. While you sacrifice some fine tuning control, you also don't have to worry about dealing with a messy nested hash.
-    # 
+    #
     # If you're really determined to go through this manually, check out the [Ravelry documentation](http://www.ravelry.com/api#Pack_result).
-    # 
+    #
     # If iterating through the `packs` hash, you'll likely want to do something like this:
-    # 
+    #
     # `packs = pattern.packs`
-    # 
+    #
     # **`packs[0][:yarn_name]`** returns a formatted string with the brand and yarn name.
-    # 
+    #
     # *Example: "Wooly Wonka Fibers Artio Sock"*
-    # 
+    #
     def packs_raw
       data[:packs]
     end
@@ -292,21 +219,21 @@ module Ravelry
     end
 
     # Returns a hash with information about the pattern author.
-    # 
+    #
     # I've included this method in case you want to have more control over how your author information is displayed.
-    # 
+    #
     # See {#build_authors} for more information about directly accessing author information.
-    # 
+    #
     def pattern_author
       data[:pattern_author]
     end
 
     # Returns an array of hashes with information about the categories.
-    # 
+    #
     # This method is included so you can access the information directly.
-    # 
+    #
     # See {#build_categories} for more information about directly accessing category information.
-    # 
+    #
     def pattern_categories_raw
       data[:pattern_categories]
     end
@@ -368,12 +295,12 @@ module Ravelry
     end
 
     # Gets rating_average from existing `data` (Float).
-    def rating_average 
+    def rating_average
       data[:rating_average]
     end
 
     # Gets number of ratings from existing `data` (Integer).
-    def rating_count 
+    def rating_count
       data[:rating_count]
     end
 
