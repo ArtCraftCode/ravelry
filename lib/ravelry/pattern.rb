@@ -35,10 +35,10 @@ module Ravelry
   #
   # ```ruby
   # pattern.id = "000000"
-  # pattern.fetch_and_parse
+  # pattern.get
   # ```
   #
-  # After calling `fetch_and_parse`, you have access to all of the class methods below.
+  # After calling `get`, you have access to all of the class methods below.
   #
   # #Initialization with existing pattern data
   #
@@ -48,7 +48,7 @@ module Ravelry
   # pattern = Ravelry::Pattern.new(nil, my_data)
   # ```
   #
-  # You now have access to all class methods for your pattern. Be warned: if you run `fetch_and_parse` again, you will override your data with fresh information from the API call.
+  # You now have access to all class methods for your pattern. Be warned: if you run `get` again, you will override your data with fresh information from the API call.
   #
   # # Building associated objects
   #
@@ -60,7 +60,7 @@ module Ravelry
   # pattern.build_all_objects
   # ```
   #
-  # Note that this does not perform an API call: it creates the objects using the data returned from the initial `fetch_and_parse` for your pattern object.
+  # Note that this does not perform an API call: it creates the objects using the data returned from the initial `get` for your pattern object.
   #
   # This will create the following objects and readers from the existing `data`:
   #
@@ -78,14 +78,14 @@ module Ravelry
     attr_reader :author, :yarns, :yarn_weights, :packs, :categories, :craft, :needles, :photos, :printings, :type
 
     # Handles GET API call and parses JSON response.
-    def fetch_and_parse
+    def get
       c = Curl::Easy.new("https://api.ravelry.com/patterns/#{@id}.json")
       c.http_auth_types = :basic
       c.username = ENV['RAV_ACCESS']
       c.password = ENV['RAV_PERSONAL']
       c.perform
       result = JSON.parse(c.body_str, {symbolize_names: true})
-      result[:pattern]
+      @data = result[:pattern]
     end
 
     # Creates all objects associated with your pattern; returns nothing; sets `attr_readers`.
