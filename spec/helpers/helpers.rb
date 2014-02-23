@@ -60,16 +60,7 @@ module Helpers
   end
 
   def photo
-    { :flickr_url=>nil,
-      :small_url=>"http://images4.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_small_best_fit.JPG",
-      :x_offset=>-82,
-      :shelved_url=>"http://images4.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_shelved.JPG",
-      :y_offset=>0,
-      :sort_order=>1,
-      :id=>35912328,
-      :square_url=>"http://images4-b.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_square.JPG",
-      :medium_url=>"http://images4.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_medium.JPG",
-      :thumbnail_url=>"h" }
+    { :flickr_url=>nil,:small_url=>"http://images4.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_small_best_fit.JPG", :x_offset=>-82, :shelved_url=>"http://images4.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_shelved.JPG", :y_offset=>0, :sort_order=>1, :id=>35912328, :square_url=>"http://images4-b.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_square.JPG", :medium_url=>"http://images4.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_medium.JPG", :thumbnail_url=>"h"}
   end
 
 end
