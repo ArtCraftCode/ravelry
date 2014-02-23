@@ -50,6 +50,10 @@ module Ravelry
 
     def self.photos(data)
       @photos = []
+      data[:photos].each do |photo|
+        @photos << Photo.new(photo[:id], photo)
+      end
+      @photos
     end
 
     def self.printings(data)
