@@ -30,6 +30,10 @@ module Ravelry
 
     def self.needles(data)
       @needles = []
+      data[:pattern_needle_sizes].each do |ndl|
+        @needles << PatternNeedle.new(ndl)
+      end
+      @needles
     end
 
     # Creates and returns an array of {Ravelry::Pack} objects.

@@ -53,4 +53,10 @@ module Helpers
     { :permalink=>"knitting", :name=>"Knitting", :id=>2 }
   end
 
+  def needle
+    { :hook=>"E", :us_steel=>"00", :name=>"US 4  - 3.5 mm",
+      :crochet=>false, :metric=>3.5, :knitting=>true, :us=>"4 ",
+      :id=>4 }
+  end
+
 end
