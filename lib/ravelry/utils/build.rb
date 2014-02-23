@@ -25,7 +25,7 @@ module Ravelry
     end
 
     def self.craft(data)
-      @craft = nil
+      @craft = Craft.new(data[:craft])
     end
 
     def self.needles(data)

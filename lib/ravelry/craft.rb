@@ -7,7 +7,13 @@ module Ravelry
   # See {Ravelry::Pattern} for more information about `Pattern` objects.
   #
   class Craft
-    def initialize(craft)
+
+    attr_reader :permalink, :name
+
+    def initialize(data)
+      @permalink = data[:permalink]
+      @name = data[:name]
     end
   end
 end
+
