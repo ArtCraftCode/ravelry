@@ -15,7 +15,7 @@ describe Ravelry::Build do
     end
   end
 
-  context 'categories' do
+  context '#categories' do
     before do
       @categories = Ravelry::Build.categories(paid_pattern_stub)
     end
@@ -37,7 +37,7 @@ describe Ravelry::Build do
     end
   end
 
-  context 'craft' do
+  context '#craft' do
     before do
       @craft = Ravelry::Build.craft(paid_pattern_stub)
     end
@@ -51,7 +51,7 @@ describe Ravelry::Build do
     end
   end
 
-  context 'needles' do
+  context '#needles' do
     before do
       @needles = Ravelry::Build.needles(paid_pattern_stub)
     end
@@ -69,7 +69,7 @@ describe Ravelry::Build do
     end
   end
 
-  context 'packs' do
+  context '#packs' do
     before do
       @packs = Ravelry::Build.packs(paid_pattern_stub)
     end
@@ -91,7 +91,7 @@ describe Ravelry::Build do
     end
   end
 
-  context 'photos' do
+  context '#photos' do
     before do
       @photos = Ravelry::Build.photos(paid_pattern_stub)
     end
@@ -109,7 +109,7 @@ describe Ravelry::Build do
     end
   end
 
-  context 'printings' do
+  context '#printings' do
     before do
       @printings = Ravelry::Build.printings(paid_pattern_stub)
     end
@@ -127,7 +127,7 @@ describe Ravelry::Build do
     end
   end
 
-  context 'type' do
+  context '#type' do
     before do
       @type = Ravelry::Build.type(paid_pattern_stub)
     end
@@ -141,7 +141,7 @@ describe Ravelry::Build do
     end
   end
 
-  context 'yarns' do
+  context '#yarns' do
     before do
       @yarns = Ravelry::Build.yarns(paid_pattern_stub)
     end
@@ -163,7 +163,7 @@ describe Ravelry::Build do
     end
   end
 
-  context 'yarn_weights' do
+  context '#yarn_weights' do
     before do
       @yw = Ravelry::Build.yarn_weights(paid_pattern_stub)
     end
