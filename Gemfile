@@ -10,3 +10,7 @@ group :development do
   gem "yard"
   gem "redcarpet"
 end
+
+group :test do
+	gem "rake"
+end

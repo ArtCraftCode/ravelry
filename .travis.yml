@@ -1,0 +1,9 @@
+script: "bin/rake --trace 2>&1"
+bundler_args: "--binstubs --without documentation"
+before_install:
+      - gem --version
+      - gem install bundler
+rvm:
+      - 1.9.3
+      - 2.0.0
+      - 2.1.0
