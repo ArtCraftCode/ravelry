@@ -1,20 +1,20 @@
 module Ravelry
 
   # There is no API access point for PatternCategories. The information used to create `Ravelry::Category` comes from {Ravelry::Pattern} objects.
-  # 
+  #
   # You should not need to create `Category` objects manually; they are all created–and owned by–by a {Ravelry::Pattern}.
-  # 
+  #
   # See {Ravelry::Pattern} for more information about `Pattern` objects.
-  # 
+  #
   # This does not inherit from {Ravelry::Data} because it doesn't have a corresponding API endpoint.
-  # 
+  #
   class Category
     attr_reader :name, :permalink, :parent_name, :parent_permalink, :grandparent_name, :grandparent_permalink, :greatgrandparent_name, :greatgrandparent_permalink
 
     # Creates new `Category` from Ravelry API PatternCategories attributes up to the great grandparent level
-    # 
+    #
     # All class variables are readonly.
-    # 
+    #
     def initialize(category)
       @name = category[:name]
       @permalink = category[:permalink]
