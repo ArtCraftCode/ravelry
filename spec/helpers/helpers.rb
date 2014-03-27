@@ -73,4 +73,27 @@ module Helpers
     }
   end
 
+  def printing
+    [
+      {:pattern_source=>
+        {
+          :price=>nil, :permalink=>"liz-abinantes-ravelry-store",
+          :out_of_print=>false, :name=>"Liz Abinante's Ravelry Store",
+          :author=>nil, :url=>"http://www.ravelry.com/stores/feministy",
+          :amazon_rating=>nil, :pattern_count=>3, :amazon_url=>nil,
+          :shelf_image_path=>nil, :list_price=>nil
+        },
+      :primary_source=>true
+      },
+      {:pattern_source=>
+        {
+          :price=>nil, :permalink=>"feministy", :out_of_print=>false,
+          :name=>"Feministy.com", :author=>"", :url=>"http://feministy.com/",
+          :amazon_rating=>nil, :pattern_count=>47, :amazon_url=>nil,
+          :shelf_image_path=>nil, :list_price=>nil
+        },
+      :primary_source=>false
+      }
+    ]
+  end
 end

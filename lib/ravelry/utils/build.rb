@@ -24,10 +24,20 @@ module Ravelry
       @categories
     end
 
+    # Creates and returns a {Ravelry::Craft} object.
+    #
+    # See {Ravelry::Craft} for more information.
+    #
     def self.craft(data)
       @craft = Craft.new(data[:craft])
     end
 
+    # Creates and returns an array of {Ravelry::PatternNeedle} objects.
+    #
+    # There is more than one API endpoint for Needles. This may not be the one you are looking for.
+    #
+    # See {Ravelry::PatternNeedle} for more information.
+    #
     def self.needles(data)
       @needles = []
       data[:pattern_needle_sizes].each do |ndl|
@@ -48,6 +58,10 @@ module Ravelry
       @packs
     end
 
+    # Creates and returns an array of {Ravelry::Photo} objects.
+    #
+    # See {Ravelry::Photo} for more information.
+    #
     def self.photos(data)
       @photos = []
       data[:photos].each do |photo|
@@ -56,8 +70,16 @@ module Ravelry
       @photos
     end
 
+    # Creates and returns an array of {Ravelry::Printing} objects.
+    #
+    # See {Ravelry::Printing} for more information.
+    #
     def self.printings(data)
       @printings = []
+      data[:printings].each do |printing|
+        @printings << Printing.new(printing)
+      end
+      @printings
     end
 
     def self.type(data)
