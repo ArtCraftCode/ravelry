@@ -103,9 +103,9 @@ module Ravelry
       @craft = Build.craft(data)
       @needles = Build.needles(data)
       @packs = Build.packs(data)
+      @type = Build.pattern_type(data)
       @photos = Build.photos(data)
       @printings = Build.printings(data)
-      @type = Build.type(data)
       @yarns = Build.yarns(data)
       @yarn_weights = Build.yarn_weights(data)
     end

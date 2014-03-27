@@ -59,6 +59,13 @@ module Helpers
       :id=>4 }
   end
 
+  def pattern_type
+    {
+      :permalink=>"shawl", :name=>"Shawl/Wrap", :clothing=>true,
+      :id=>10
+    }
+  end
+
   def photo
     { :flickr_url=>nil,
       :small_url=>"http://images4.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_small_best_fit.JPG",

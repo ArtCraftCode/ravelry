@@ -129,7 +129,7 @@ describe Ravelry::Build do
 
   context '#type' do
     before do
-      @type = Ravelry::Build.type(paid_pattern_stub)
+      @type = Ravelry::Build.pattern_type(paid_pattern_stub)
     end
 
     it 'exists' do
@@ -137,7 +137,7 @@ describe Ravelry::Build do
     end
 
     it 'returns an instance of Type' do
-      expect(@type).to be_instance_of(Ravelry::Type)
+      expect(@type).to be_instance_of(Ravelry::PatternType)
     end
   end
 

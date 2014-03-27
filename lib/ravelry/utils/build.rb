@@ -58,6 +58,16 @@ module Ravelry
       @packs
     end
 
+    # Creates and returns a of {Ravelry::PatternType} object.
+    #
+    # This is not the same as a PatternCategory object.
+    #
+    # See {Ravelry::PatternType} for more information.
+    #
+    def self.pattern_type(data)
+      @pattern_type = PatternType.new(data[:pattern_type])
+    end
+
     # Creates and returns an array of {Ravelry::Photo} objects.
     #
     # See {Ravelry::Photo} for more information.
@@ -80,10 +90,6 @@ module Ravelry
         @printings << Printing.new(printing)
       end
       @printings
-    end
-
-    def self.type(data)
-      @type = nil
     end
 
     # Creates and returns an array of {Ravelry::Yarn} objects.
