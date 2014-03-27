@@ -64,8 +64,14 @@ module Ravelry
   #
   # This will create the following objects and readers from the existing `data`:
   #
-  # * `pattern.author` - an {Ravelry::Author} object
+  # * `pattern.author` - a {Ravelry::Author} object
+  # * `pattern.categories` - an array of {Ravelry::Category} objects
+  # * `pattern.craft` - a {Ravelry::Craft} object
+  # * `pattern.needles` - an array of {Ravelry::PatternNeedle} objects
   # * `pattern.packs` - array of {Ravelry::Pack} objects
+  # * `pattern.photos` - an array of {Ravelry::Photo} objects
+  # * `pattern.printings` - an array of {Raverly::Printing} objects
+  # * `pattern.type` - a {Ravelry::PatternType} object
   # * `pattern.yarns` - array of {Ravelry::Yarn} objects
   # * `pattern.yarn_weights` - array of {Ravelry::YarnWeight} objects
   #
