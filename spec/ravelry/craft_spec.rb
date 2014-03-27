@@ -6,7 +6,7 @@ describe Ravelry::Craft do
     @data = craft
   end
 
-  it 'creates an instance of Category' do
+  it 'creates an instance of Craft' do
     expect(@craft).to be_instance_of(Ravelry::Craft)
   end
 
