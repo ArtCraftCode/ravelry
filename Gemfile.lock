@@ -63,6 +63,7 @@ DEPENDENCIES
   bundler
   curb (~> 0.8.5)
   jeweler (~> 1.8.7)
+  rake
   redcarpet
   rspec (~> 2.14.1)
   yard

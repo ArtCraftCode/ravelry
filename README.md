@@ -10,7 +10,7 @@ The Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely. Ma
 
 Ravelry API documentation is currently available [here](http://www.ravelry.com/api). I would recommend parsing through it because it's very useful.
 
-The goal of this gem is to provide 100% API coverage. It doesn't just yet, but it will. Eventually. 
+The goal of this gem is to provide 100% API coverage. It doesn't just yet, but it will. Eventually.
 
 Current API routes covered include:
 
@@ -50,7 +50,7 @@ Getting these keys requires a (free) Ravelry account and that you agree to the t
 
 Documentation is available [here](#).
 
-## Accessing pattern ids (for `Ravelry::Patterns`)
+### Accessing pattern ids (for `Ravelry::Patterns`)
 
 Navigate to a pattern page in Ravelry and open up the JavaScript console. Type this in:
 
@@ -62,16 +62,15 @@ You should see something like this: ```"pattern_419443_difficulty_score"```.
 
 ```419443``` is your pattern id.
 
-## Conventions
+### Conventions
 
 This gem makes use of several conventions that are worth noting on a global scale.
 
-###Minimal data manipulation
+#### Minimal data manipulation
 
 Unless specifically noted in the documentation, the data returned from the API call is not manipulated. Data is fetched and parsed, but is only processed in instances where multiple formats would be helpful. Even if the data is manipulated, the original format is always available using some other method.
 
-
-###Method names ending with `_count` return integers.
+#### Method names ending with `_count` return integers.
 
 Example:
 
@@ -81,7 +80,7 @@ pattern.comments_count
 # => 4
 ```
 
-###Method names ending with `_float`, `_integer`, etc return that object type.
+#### Method names ending with `_float`, `_integer`, etc return that object type.
 
 Float to Integer conversions are done using round(0).
 
@@ -96,17 +95,11 @@ pattern.difficulty_average_integer
 # => 5
 ```
 
-## A note on Ruby versions
-
-Currently, 1.9.3 is the only tested and supported version of Ruby. This is not because I'm lazy or emotionally attached to 1.9.3, it's because my personal machine is very very old and is borked and doesn't want to play nicely with Ruby 2.0.0.
-
-This code should, however, work just fine with Ruby 2.0.0. If it doesn't, whoops. Sorry! Submit a pull request to fix it :)
-
 # Contributing
 
 Hey! You want to contribute? That is super, super awesome.
 
-Send me a pull request! Note that your pull request will not be accepted if you don't write tests **and documentation** for your code (the test part kind of goes without saying, but I wanted to make sure that you knew about it and the documentation). 
+Send me a pull request! Note that your pull request will not be accepted if you don't write tests **and documentation** for your code (the test part kind of goes without saying, but I wanted to make sure that you knew about it and the documentation).
 
 To run specs locally, simply `bundle` and then run `rpsec`.
 
