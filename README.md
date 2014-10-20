@@ -8,17 +8,13 @@ Nothing below actually works. This is for *the future*.
 
 The Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely. Made by a knitter, knitwear designer, and hacker all rolled into one sassy woman so you know it's good (ish).
 
-Ravelry API documentation is currently available [here](http://www.ravelry.com/api). I would recommend parsing through it because it's very useful.
-
-The goal of this gem is to provide 100% API coverage. It doesn't just yet, but it will. Eventually.
+Ravelry API documentation is currently available [here](http://www.ravelry.com/api).
 
 Current API routes covered include:
 
 * `Patterns#show` (`GET`)
 
-Want a route that isn't currently covered? [Request it](https://github.com/feministy/ravelry/issues) by submitting an issue.
-
-**If a method doesn't have documentation, that means it is not complete.** Run `yard stats --list-undoc` to see a list.
+*Want a route that isn't currently covered? [Request it](https://github.com/feministy/ravelry/issues) by submitting an issue.*
 
 # Installation
 
@@ -36,13 +32,11 @@ Add to your `Gemfile`:
 gem "ravelry"
 ```
 
-# Requirements
-
-You will need to set the follow environment variables:
+And set up your environment variables:
 
 * `RAV_ACCESS` - your Ravelry access key
 * `RAV_SECRET` - your Ravelry secret key
-* `RAV_PERSONAL` - wait for it! Your Ravelry personal key
+* `RAV_PERSONAL` - wait for it! Your Ravelry personal key; primarily used for OAuth
 
 Getting these keys requires a (free) Ravelry account and that you agree to the terms of use for the API.
 
