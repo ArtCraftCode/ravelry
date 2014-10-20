@@ -251,10 +251,23 @@ module Ravelry
       data[:pattern_categories]
     end
 
+
+    # Returns an array of hashes with information about the needle sizes called for. Knitting only.
+    #
+    # This method is included so you can access the information directly.
+    #
+    # See {#build_needles} for more information about directly accessing category information.
+    #
     def pattern_needle_sizes_raw
       data[:pattern_needle_sizes]
     end
 
+    # Returns an array of hashes with information about the pattern type.
+    #
+    # This method is included so you can access the information directly.
+    #
+    # See {#build_pattern_type} for more information about directly accessing category information.
+    #
     def pattern_type_raw
       data[:pattern_type]
     end
@@ -271,6 +284,11 @@ module Ravelry
       data[:permalink]
     end
 
+    # Returns an array of hashes with information about photo objects.
+    #
+    # This method is included so you can access the information directly.
+    #
+    # See {#build_photos} for more information about directly accessing category information.
     #
     def photos_raw
       data[:photos]
