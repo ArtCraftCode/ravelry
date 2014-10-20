@@ -191,7 +191,11 @@ describe Ravelry::Pattern do
       end
 
       it 'published' do
-        expect(@api.published).to eq(@data[:published])
+        expect(@api.published).to eq(Date.parse(@data[:published]))
+      end
+
+      it 'published' do
+        expect(@api.published).to be_kind_of(Date)
       end
 
       it 'queued_projects_count' do

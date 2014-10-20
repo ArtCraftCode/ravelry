@@ -312,10 +312,10 @@ module Ravelry
       data[:projects_count]
     end
 
+    # Gets publication date from existing `data` (Date).
+    #
     def published
-      data[:published]
-      # TODO: Create formatted date method
-      # Gets publication date from existing `data` (Date).
+      Date.parse(data[:published])
     end
 
     # Gets number of queued projects from existing `data` (Integer).

@@ -2,6 +2,7 @@ require 'json'
 require 'curb'
 
 require_relative 'ravelry/utils/build'
+require_relative 'ravelry/utils/utilities'
 
 require_relative 'ravelry/author'
 require_relative 'ravelry/category'
