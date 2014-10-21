@@ -1,5 +1,5 @@
 require 'json'
-require 'curb'
+require 'typhoeus'
 require 'oauth'
 
 require_relative 'ravelry/utils/build'
