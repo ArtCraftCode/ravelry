@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "curb", "~> 0.8.5"
+gem "typhoeus", "~> 0.6.9"
 gem "oauth", "~> 0.4.7"
 
 group :development do
