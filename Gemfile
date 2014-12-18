@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
-# for unauthenticated api calls
-gem "curb", "~> 0.8.5"
+gem "typhoeus", "~> 0.6.9"
+gem "oauth", "~> 0.4.7"
 
 group :development do
   gem "rspec", "~> 2.14.1"

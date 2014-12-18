@@ -1,9 +1,11 @@
 require 'json'
-require 'curb'
+require 'typhoeus'
+require 'oauth'
 
 require_relative 'ravelry/utils/build'
 require_relative 'ravelry/utils/utilities'
 
+require_relative 'ravelry/authentication'
 require_relative 'ravelry/author'
 require_relative 'ravelry/category'
 require_relative 'ravelry/craft'
