@@ -42,7 +42,7 @@ Getting these keys requires a (free) Ravelry account and that you agree to the t
 
 # Usage
 
-Documentation is available [here](#).
+Documentation is available [here](http://www.rubydoc.info/gems/ravelry/0.1.0).
 
 # API quirks
 
