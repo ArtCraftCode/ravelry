@@ -5,5 +5,4 @@ doc
 # bundler
 .bundle
 
-# jeweler generated
-pkg
+*.gem
