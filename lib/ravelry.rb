@@ -18,7 +18,6 @@ require 'ravelry/photo'
 require 'ravelry/printing'
 require 'ravelry/yarn'
 require 'ravelry/yarn_weight'
-require 'ravelry/version'
 
 # Parent grouping for all classes.
 module Ravelry; end
