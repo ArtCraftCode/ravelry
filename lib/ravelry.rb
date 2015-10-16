@@ -1,11 +1,9 @@
 require 'json'
 require 'typhoeus'
-require 'oauth'
 
 require 'ravelry/utils/build'
 require 'ravelry/utils/utilities'
 
-require 'ravelry/authentication'
 require 'ravelry/author'
 require 'ravelry/category'
 require 'ravelry/craft'
