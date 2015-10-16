@@ -1,20 +1,14 @@
-# This is unreleased and is a WIP.
-
-Nothing below actually works. This is for *the future*.
-
----
-
 # Ravelry
 
-The Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely. Made by a knitter, knitwear designer, and hacker all rolled into one sassy woman so you know it's good (ish).
+This gem is actively being developed. Be sure to check the branch for the version you're using as breaking changes can (and will!) be introduced.
+
+The Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely.
 
 Ravelry API documentation is currently available [here](http://www.ravelry.com/api).
 
-Current API routes covered include:
+## API coverage
 
 * `Patterns#show` (`GET`)
-
-*Want a route that isn't currently covered? [Request it](https://github.com/feministy/ravelry/issues) by submitting an issue.*
 
 # Installation
 
@@ -36,7 +30,7 @@ And set up your environment variables:
 
 * `RAV_ACCESS` - your Ravelry access key
 * `RAV_SECRET` - your Ravelry secret key
-* `RAV_PERSONAL` - wait for it! Your Ravelry personal key; primarily used for OAuth
+* `RAV_PERSONAL` - wait for it! Your Ravelry personal key; primarily used for OAuth (not yet implemented in the gem)
 
 Getting these keys requires a (free) Ravelry account and that you agree to the terms of use for the API.
 
@@ -44,7 +38,9 @@ Getting these keys requires a (free) Ravelry account and that you agree to the t
 
 Documentation is available [here](#).
 
-### Accessing pattern ids (for `Ravelry::Patterns`)
+# API quirks
+
+## Accessing pattern ids (for `Ravelry::Patterns`)
 
 Navigate to a pattern page in Ravelry and open up the JavaScript console. Type this in:
 
@@ -56,15 +52,11 @@ You should see something like this: ```"pattern_419443_difficulty_score"```.
 
 ```419443``` is your pattern id.
 
-### Conventions
+# Conventions
 
 This gem makes use of several conventions that are worth noting on a global scale.
 
-#### Minimal data manipulation
-
-Unless specifically noted in the documentation, the data returned from the API call is not manipulated. Data is fetched and parsed, but is only processed in instances where multiple formats would be helpful. Even if the data is manipulated, the original format is always available using some other method.
-
-#### Method names ending with `_count` return integers.
+## Method names ending with `_count` return integers.
 
 Example:
 
@@ -74,7 +66,7 @@ pattern.comments_count
 # => 4
 ```
 
-#### Method names ending with `_float`, `_integer`, etc return that object type.
+## Method names ending with `_float`, `_integer`, etc return that object type.
 
 Float to Integer conversions are done using round(0).
 
