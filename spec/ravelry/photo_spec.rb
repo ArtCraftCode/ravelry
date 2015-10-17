@@ -2,7 +2,8 @@ require_relative '../spec_helper'
 
 describe Ravelry::Photo do
   before do
-    @photo = Ravelry::Photo.new(nil, photo)
+    @photo = Ravelry::Photo.new
+    @photo.data = photo
     @data = photo
   end
 
@@ -17,8 +18,6 @@ describe Ravelry::Photo do
     it 'get_sizes'
 
     it '#flickr_url' do
-      puts @photo
-      puts @data
       expect(@photo.flickr_url).to eq(@data[:flickr_url])
     end
 

@@ -7,6 +7,8 @@ module Ravelry
   # To utilize the `get`, `post`, `delete`, `get_sizes` methods, you have to be authenticated.
   #
   class Photo < Data
+    
+    def build; end
 
     def get
       # TODO - requires authentication
