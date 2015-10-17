@@ -2,7 +2,7 @@ module Ravelry
 
   # The information used to create `Ravelry::Printing` objects comes from {Ravelry::Pattern} objects.
   #
-  # You should not need to create `Printing` objects manually; they are all created–and owned–by a {Ravelry::Pattern}.
+  # You should not create `Printing` objects manually; they are all created–and owned–by a {Ravelry::Pattern}.
   #
   # See {Ravelry::Pattern} for more information about `Pattern` objects.
   #

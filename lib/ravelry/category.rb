@@ -2,7 +2,7 @@ module Ravelry
 
   # There is no API access point for PatternCategories. The information used to create `Ravelry::Category` comes from {Ravelry::Pattern} objects.
   #
-  # You should not need to create `Category` objects manually; they are all created–and owned by–by a {Ravelry::Pattern}.
+  # You should not create `Category` objects manually; they are all created–and owned by–by a {Ravelry::Pattern}.
   #
   # See {Ravelry::Pattern} for more information about `Pattern` objects.
   #
