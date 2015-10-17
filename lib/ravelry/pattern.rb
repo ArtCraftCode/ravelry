@@ -2,8 +2,6 @@ module Ravelry
 
   # `Ravelry::Pattern` corresponds to Pattern objects in Ravelry.
   #
-  # The `Pattern` object can be passed an id as an integer or a string. See {file:README.md README} for information on accessing pattern IDs.
-  #
   # This class requires your environment variables be set (see {file:README.md README}). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
   #
   # If your `pattern.data` is missing one of the attributes below, that method will return `nil`.

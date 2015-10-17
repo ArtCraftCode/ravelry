@@ -9,18 +9,21 @@ module PatternHelpers
   def p_initialize_with_data
     pattern = Ravelry::Pattern.new
     pattern.data = paid_pattern_stub
+    pattern
   end
 
   def p_initialize_paid_with_fetch
     # Volatile Magic Shawl
     pattern = Ravelry::Pattern.new("379890")
     pattern.get
+    pattern
   end
 
   def p_initialize_free_with_fetch
     # Wish I Was Weaving This Cowl
     pattern = Ravelry::Pattern.new("379890")
     pattern.get
+    pattern
   end
 
   def paid_pattern_stub
