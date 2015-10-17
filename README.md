@@ -1,5 +1,9 @@
 # Ravelry
 
+_You are reading documentation for version: 0.0.1_
+
+[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.1)](https://codeship.com/projects/109462)
+
 This gem is actively being developed. Be sure to check the branch for the version you're using as breaking changes can (and will!) be introduced.
 
 To see what I am working on next, visit the project's [Trello board](https://trello.com/b/o8gs4cWI/ravelry).
