@@ -4,10 +4,9 @@ module Ravelry
   class Data
     attr_accessor :id, :data
 
-    def initialize(id=nil, data=nil)
+    def initialize(id=nil)
       @id = id
-      @data = data if data
-      @data = get if get?
+      @data = data
     end
 
     private

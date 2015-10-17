@@ -34,7 +34,15 @@ Run `bundle install` and proceed as usual.
 
 ## API keys
 
-This gem expects your API keys to be stored as environment variables (`ENV`). And set up your environment variables:
+API keys must be configured in the gem setup. You can do this anywhere in your application before the code is executed:
+
+```ruby
+Ravelry.configure do |config|
+  config.access_key = ''
+  config.secret_key = ''
+  config.personal_key = ''
+end
+```
 
 * `RAV_ACCESS` - your Ravelry access key
 * `RAV_SECRET` - your Ravelry secret key
