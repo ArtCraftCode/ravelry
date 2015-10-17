@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
+require 'pry'
 require 'ravelry'
 require_relative 'helpers/helpers'
 require_relative 'helpers/pattern_helpers'

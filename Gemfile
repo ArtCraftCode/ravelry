@@ -11,4 +11,6 @@ end
 
 group :test do
 	gem "rake"
+  gem "pry"
+  gem "pry-nav"
 end
