@@ -38,7 +38,7 @@ Run `bundle install` and proceed as usual.
 
 ## API keys
 
-API keys must be configured in the gem setup. You can do this anywhere in your application before the code is executed:
+API keys must be configured in the gem setup. You can do this anywhere in your application before you make API calls using the gem.
 
 ```ruby
 Ravelry.configure do |config|
@@ -48,9 +48,9 @@ Ravelry.configure do |config|
 end
 ```
 
-* `RAV_ACCESS` - your Ravelry access key
-* `RAV_SECRET` - your Ravelry secret key
-* `RAV_PERSONAL` - wait for it! Your Ravelry personal key; primarily used for OAuth (not yet implemented in the gem)
+* `config.access_key` - your Ravelry access key
+* `config.secret_key` - your Ravelry secret key
+* `config.personal_key` - wait for it! Your Ravelry personal key; primarily used for OAuth (not yet implemented in the gem)
 
 Getting these keys requires a (free) Ravelry account and that you agree to the terms of use for the API.
 
@@ -83,7 +83,6 @@ This gem makes use of several conventions that are worth noting on a global scal
 Example:
 
 ```ruby
-pattern = Ravelry::Patterns.new("000000")
 pattern.comments_count
 # => 4
 ```
@@ -95,7 +94,6 @@ Float to Integer conversions are done using round(0).
 Example:
 
 ```ruby
-pattern = Ravelry::Patterns.new("000000")
 pattern.difficulty_average_float
 # => 4.666666667
 
@@ -105,7 +103,7 @@ pattern.difficulty_average_integer
 
 # Contributing
 
-Hey! You want to contribute? That is super, super awesome.
+Hey! You want to contribute? That is super, super awesome. Cisit the project's [Trello board](https://trello.com/b/o8gs4cWI/ravelry) to see what's coming up next or what is already in progress.
 
 Send me a pull request! Note that your pull request will not be accepted if you don't write tests **and documentation** for your code (the test part kind of goes without saying, but I wanted to make sure that you knew about it and the documentation).
 
