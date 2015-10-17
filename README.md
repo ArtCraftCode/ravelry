@@ -1,8 +1,10 @@
+**The `pre` branch of this repo is where work is actively being developed. Please see the branch for the verison you are working with. 
+
 # Ravelry
 
-_You are reading documentation for version: 0.0.1_
+_You are reading documentation for version: X.X.X_
 
-[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.1)](https://codeship.com/projects/109462)
+[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=pre)](https://codeship.com/projects/109462)
 
 This gem is actively being developed. Be sure to check the branch for the version you're using as breaking changes can (and will!) be introduced.
 
@@ -29,7 +31,7 @@ Hooray! You now have a gem.
 Add to your `Gemfile`:
 
 ```
-gem "ravelry", "~> 0.0.1"
+gem "ravelry", "~> X.X.X"
 ```
 
 **I highly recommend pinning your version** because the gem is in active development and I _promise_ I will break shit.
@@ -56,7 +58,7 @@ Getting these keys requires a (free) Ravelry account and that you agree to the t
 
 # Usage
 
-Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.1).
+Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/X.X.X).
 
 # API quirks
 
