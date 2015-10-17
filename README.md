@@ -2,6 +2,8 @@
 
 This gem is actively being developed. Be sure to check the branch for the version you're using as breaking changes can (and will!) be introduced.
 
+To see what I am working on next, visit the project's [Trello board](https://trello.com/b/o8gs4cWI/ravelry).
+
 The Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely.
 
 Ravelry API documentation is currently available [here](http://www.ravelry.com/api).
@@ -23,7 +25,7 @@ Hooray! You now have a gem.
 Add to your `Gemfile`:
 
 ```
-gem "ravelry", "~> 0.1.0"
+gem "ravelry", "~> 0.0.1"
 ```
 
 **I highly recommend pinning your version** because the gem is in active development and I _promise_ I will break shit.
@@ -42,7 +44,7 @@ Getting these keys requires a (free) Ravelry account and that you agree to the t
 
 # Usage
 
-Documentation is available [here](http://www.rubydoc.info/gems/ravelry/0.1.0).
+Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.1).
 
 # API quirks
 
