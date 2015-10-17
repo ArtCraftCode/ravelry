@@ -2,7 +2,8 @@ require_relative '../spec_helper'
 
 describe Ravelry::Pack do
   before do
-    @pack = Ravelry::Pack.new(nil, single_pack)
+    @pack = Ravelry::Pack.new
+    @pack.data = single_pack
   end
 
   it 'creates an instance of Pack' do
