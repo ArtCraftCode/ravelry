@@ -8,6 +8,8 @@ module Ravelry
   #
   class YarnWeight < Data
 
+    def build; end
+
     # Gets yarn weight's name from existing `data`.
     def name
       data[:name]
