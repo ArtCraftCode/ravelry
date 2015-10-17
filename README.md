@@ -1,4 +1,4 @@
-**The `pre` branch of this repo is where work is actively being developed. Please see the branch for the verison you are working with. 
+**The `pre` branch of this repo is where work is actively being developed. Please see the branch for the verison you are working with.**
 
 # Ravelry
 
