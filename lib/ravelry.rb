@@ -1,6 +1,8 @@
 require 'json'
 require 'typhoeus'
 
+require 'ravelry/configuration'
+
 require 'ravelry/utils/build'
 require 'ravelry/utils/utilities'
 
@@ -18,4 +20,20 @@ require 'ravelry/yarn'
 require 'ravelry/yarn_weight'
 
 # Parent grouping for all classes.
-module Ravelry; end
+module Ravelry
+  class << self
+    attr_accessor :configuration
+  end
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.reset
+    @configuration = Configuration.new
+  end
+
+  def self.configure
+    yield(configuration)
+  end
+end
