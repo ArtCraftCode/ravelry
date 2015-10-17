@@ -103,7 +103,7 @@ pattern.difficulty_average_integer
 
 # Contributing
 
-Hey! You want to contribute? That is super, super awesome. Cisit the project's [Trello board](https://trello.com/b/o8gs4cWI/ravelry) to see what's coming up next or what is already in progress.
+Hey! You want to contribute? That is super, super awesome. Visit the project's [Trello board](https://trello.com/b/o8gs4cWI/ravelry) to see what's coming up next or what is already in progress.
 
 Send me a pull request! Note that your pull request will not be accepted if you don't write tests **and documentation** for your code (the test part kind of goes without saying, but I wanted to make sure that you knew about it and the documentation).
 
