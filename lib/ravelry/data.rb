@@ -2,12 +2,17 @@ module Ravelry
 
   # Parent class that controls initialization and fetching for API objects.
   class Data
-    attr_accessor :id, :data
+    attr_accessor :id
+    attr_reader :data
 
-    def initialize(id=nil, data=nil)
+    def initialize(id=nil)
       @id = id
-      @data = data if data
-      @data = get if get?
+    end
+
+    def data=(d)
+      @data = d
+      build
+      self
     end
 
     private

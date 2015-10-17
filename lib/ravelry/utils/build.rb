@@ -52,8 +52,10 @@ module Ravelry
     #
     def self.packs(data)
       @packs = []
-      data[:packs].each do |pack|
-        @packs << Pack.new(nil, pack)
+      data[:packs].each do |pack_data|
+        pack = Pack.new
+        pack.data = pack_data
+        @packs << pack
       end
       @packs
     end
@@ -74,8 +76,10 @@ module Ravelry
     #
     def self.photos(data)
       @photos = []
-      data[:photos].each do |photo|
-        @photos << Photo.new(photo[:id], photo)
+      data[:photos].each do |photo_data|
+        photo = Photo.new(photo_data[:id])
+        photo.data = photo_data
+        @photos << photo
       end
       @photos
     end
@@ -86,8 +90,8 @@ module Ravelry
     #
     def self.printings(data)
       @printings = []
-      data[:printings].each do |printing|
-        @printings << Printing.new(printing)
+      data[:printings].each do |printing_data|
+        @printings << Printing.new(printing_data)
       end
       @printings
     end
@@ -98,8 +102,10 @@ module Ravelry
     #
     def self.yarns(data)
       @yarns = []
-      data[:packs].each do |pack|
-        @yarns << Yarn.new(nil, pack[:yarn])
+      data[:packs].each do |pack_data|
+        yarn = Yarn.new
+        yarn.data = pack_data[:yarn]
+        @yarns << yarn
       end
       @yarns
     end
@@ -111,7 +117,9 @@ module Ravelry
     def self.yarn_weights(data)
       @yarn_weights = []
       data[:packs].each do |pack|
-        @yarn_weights << YarnWeight.new(nil, pack[:yarn_weight])
+        yarn_weight = YarnWeight.new
+        yarn_weight.data = pack[:yarn_weight]
+        @yarn_weights << yarn_weight
       end
       @yarn_weights
     end

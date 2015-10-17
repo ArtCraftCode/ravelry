@@ -2,30 +2,13 @@ module Ravelry
 
   # `Ravelry::Pattern` corresponds to Pattern objects in Ravelry.
   #
-  # The `Pattern` object can be passed an id as an integer or a string. See {file:README.md README} for information on accessing pattern IDs.
-  #
   # This class requires your environment variables be set (see {file:README.md README}). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
   #
   # If your `pattern.data` is missing one of the attributes below, that method will return `nil`.
   #
-  # # `GET` Request
+  # #Pattern objects
   #
-  # Initializing the class with an id will automatically trigger an API call using your access key and personal key.
-  #
-  # ```ruby
-  # pattern = Ravelry::Pattern.new("000000")
-  # ```
-  #
-  # After the call is complete, you have access to all of the pattern attributes through the class methods (see documentation). Example:
-  #
-  # ```ruby
-  # pattern.free?
-  # # => true
-  # ```
-  #
-  # #Initialization without a pattern id
-  #
-  # If you don't want to perform a `GET` request right out of the gate, simply initialize with no arguments.
+  # To create an empty object:
   #
   # ```ruby
   # pattern = Ravelry::Pattern.new
@@ -39,16 +22,40 @@ module Ravelry
   # ```
   #
   # After calling `get`, you have access to all of the class methods below.
+  # 
+  # ##Initializing with an id
+  # 
+  # Optionally, you can initialize with an id:
+  # 
+  # ```ruby
+  # pattern = Ravelry::Pattern.new(id)
+  # ```
+  # 
+  # And then run your get request:
+  # 
+  # ```ruby
+  # pattern.get
+  # ```
   #
-  # #Initialization with existing pattern data
+  # ##Loading existing pattern data
   #
   # If you have existing pattern data, you should initialize as follows:
   #
   # ```ruby
-  # pattern = Ravelry::Pattern.new(nil, my_data)
+  # pattern = Ravelry::Pattern.new
+  # pattern.data = my_data
   # ```
   #
   # You now have access to all class methods for your pattern. Be warned: if you run `get` again, you will override your data with fresh information from the API call.
+  #
+  # # Pattern data
+  # 
+  # After you have pattern data from the API, you have access to all of the pattern attributes through the class methods (see documentation). Example:
+  #
+  # ```ruby
+  # pattern.free?
+  # # => true
+  # ```
   #
   # # Building associated objects
   #

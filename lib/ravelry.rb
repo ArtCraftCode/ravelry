@@ -1,23 +1,39 @@
 require 'json'
 require 'typhoeus'
-require 'oauth'
 
-require_relative 'ravelry/utils/build'
-require_relative 'ravelry/utils/utilities'
+require 'ravelry/configuration'
 
-require_relative 'ravelry/authentication'
-require_relative 'ravelry/author'
-require_relative 'ravelry/category'
-require_relative 'ravelry/craft'
-require_relative 'ravelry/data'
-require_relative 'ravelry/pack'
-require_relative 'ravelry/pattern'
-require_relative 'ravelry/pattern_needle'
-require_relative 'ravelry/pattern_type'
-require_relative 'ravelry/photo'
-require_relative 'ravelry/printing'
-require_relative 'ravelry/yarn'
-require_relative 'ravelry/yarn_weight'
+require 'ravelry/utils/build'
+require 'ravelry/utils/utilities'
+
+require 'ravelry/author'
+require 'ravelry/category'
+require 'ravelry/craft'
+require 'ravelry/data'
+require 'ravelry/pack'
+require 'ravelry/pattern'
+require 'ravelry/pattern_needle'
+require 'ravelry/pattern_type'
+require 'ravelry/photo'
+require 'ravelry/printing'
+require 'ravelry/yarn'
+require 'ravelry/yarn_weight'
 
 # Parent grouping for all classes.
-module Ravelry; end
+module Ravelry
+  class << self
+    attr_accessor :configuration
+  end
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.reset
+    @configuration = Configuration.new
+  end
+
+  def self.configure
+    yield(configuration)
+  end
+end

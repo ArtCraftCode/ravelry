@@ -8,6 +8,8 @@ module Ravelry
   # 
   class Pack < Data
 
+    def build; end
+
     # Gets quantity_description  from existing `data`.
     def quantity_description
       data[:quantity_description]

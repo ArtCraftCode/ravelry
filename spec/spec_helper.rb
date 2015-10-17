@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
+require 'pry'
 require 'ravelry'
 require_relative 'helpers/helpers'
 require_relative 'helpers/pattern_helpers'
@@ -19,4 +20,11 @@ RSpec.configure do |config|
   config.include YarnHelpers
   config.include YarnWeightHelpers
   config.order = "random"
+  config.before(:all) do
+    Ravelry.configure do |config|
+      config.access_key = ENV['RAV_ACCESS']
+      config.secret_key = ENV['RAV_SECRET']
+      config.personal_key = ENV['RAV_PERSONAL']
+    end
+  end
 end

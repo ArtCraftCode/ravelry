@@ -3,19 +3,25 @@ module YarnHelpers
   # Helpers for Ravelry::Yarn
 
   def y_initialize_empty_yarn
-    Ravelry::Yarn.new
+    yarn = Ravelry::Yarn.new
   end
 
   def y_initialize_with_id
-    Ravelry::Yarn.new(yarn_hash[:id])
+    yarn = Ravelry::Yarn.new
+    yarn.data = yarn_hash[:id]
+    yarn
   end
 
   def y_initialize_with_data_and_id
-    Ravelry::Yarn.new(yarn_hash[:id], yarn_hash)
+    yarn = Ravelry::Yarn.new(yarn_hash[:id])
+    yarn.data = yarn_hash
+    yarn
   end
 
   def y_initialize_with_data
-    Ravelry::Yarn.new(nil, yarn_hash)
+    yarn = Ravelry::Yarn.new
+    yarn.data = yarn_hash
+    yarn
   end
 
 end

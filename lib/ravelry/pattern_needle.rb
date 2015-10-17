@@ -2,7 +2,7 @@ module Ravelry
 
   # The information used to create `Ravelry::PatternNeedle` objects comes from {Ravelry::Pattern} objects.
   #
-  # You should not need to create `PatternNeedle` objects manually; they are all created–and owned–by a {Ravelry::Pattern}.
+  # You should not create `PatternNeedle` objects manually; they are all created–and owned–by a {Ravelry::Pattern}.
   #
   # Note that there are other API endpoints for Needles; this might not be the one that you're looking for.
   #
