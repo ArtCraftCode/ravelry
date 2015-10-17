@@ -8,6 +8,8 @@ module Ravelry
   # 
   class Yarn < Data
 
+    def build; end
+
     # Gets yarn permalink from existing `data`.
     def permalink
       data[:permalink]
