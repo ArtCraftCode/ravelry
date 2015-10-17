@@ -27,5 +27,5 @@ DEPENDENCIES
   rake
   redcarpet
   rspec (~> 2.14.1)
-  typhoeus (~> 0.6.9)
+  typhoeus (~> 0.6)
   yard
