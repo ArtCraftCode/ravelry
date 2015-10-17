@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version = Ravelry::VERSION
   spec.authors = ["Liz Abinante"]
   spec.date = "2013-12-22"
-  spec.summary = "Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely."
+  spec.summary = "Ruby gem for accessing the Ravelry API."
   spec.description = "Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely."
   spec.email = "me@liz.codes"
   spec.homepage = "http://github.com/ArtCraftCode/ravelry"
