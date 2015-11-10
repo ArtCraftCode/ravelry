@@ -1,18 +1,8 @@
-# Pre!
-
-This branch is the happy home :house: for in-progress code that isn't published. To view documentation, please select the version you're using.
-
-When the gem hits 1.0, there will be a `stable` branch. Until then, tiny versions.
-
-Happy coding!
-
 # Ravelry
 
-_You are reading documentation for version: 0.0.4_
+_You are reading documentation for version: 0.0.5_
 
-You may be wondering what happened to 0.0.3. Apparently, I don't understand how publishing works. LOL WHOOOOOPS.
-
-[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.4)](https://codeship.com/projects/109462)
+[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.5)](https://codeship.com/projects/109462)
 
 This gem is actively being developed. Be sure to check the branch for the version you're using as breaking changes can (and will!) be introduced.
 
@@ -40,7 +30,7 @@ Hooray! You now have a gem.
 Add to your `Gemfile`:
 
 ```ruby
-gem "ravelry", "~> 0.0.4"
+gem "ravelry", "~> 0.0.5"
 ```
 
 **I highly recommend pinning your version** because the gem is in active development and I _promise_ I will break shit.
@@ -75,7 +65,7 @@ Ravelry.configuration.personal_key
 
 # Usage
 
-Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.4).
+Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.5).
 
 # API quirks
 
