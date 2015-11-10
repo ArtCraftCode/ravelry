@@ -1,3 +1,11 @@
+# Pre!
+
+This branch is the happy home :house: for in-progress code that isn't published. To view documentation, please select the version you're using.
+
+When the gem hits 1.0, there will be a `stable` branch. Until then, tiny versions.
+
+Happy coding!
+
 # Ravelry
 
 _You are reading documentation for version: 0.0.5_
