@@ -22,17 +22,17 @@ module Ravelry
   # ```
   #
   # After calling `get`, you have access to all of the class methods below.
-  # 
+  #
   # ##Initializing with an id
-  # 
+  #
   # Optionally, you can initialize with an id:
-  # 
+  #
   # ```ruby
   # pattern = Ravelry::Pattern.new(id)
   # ```
-  # 
+  #
   # And then run your get request:
-  # 
+  #
   # ```ruby
   # pattern.get
   # ```
@@ -49,7 +49,7 @@ module Ravelry
   # You now have access to all class methods for your pattern. Be warned: if you run `get` again, you will override your data with fresh information from the API call.
   #
   # # Pattern data
-  # 
+  #
   # After you have pattern data from the API, you have access to all of the pattern attributes through the class methods (see documentation). Example:
   #
   # ```ruby
