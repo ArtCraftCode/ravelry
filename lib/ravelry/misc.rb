@@ -13,5 +13,12 @@ module Ravelry
       @data = result[:color_families]
       @data.map { |d| ColorFamily.new(d) }
     end
+
+    def yarn_weights
+      request = Typhoeus::Request.get("https://api.ravelry.com/yarn_weights.json", userpwd: "#{Ravelry.configuration.access_key}:#{Ravelry.configuration.personal_key}")
+      result = JSON.parse(request.response_body, {symbolize_names: true})
+      @data = result[:yarn_weights]
+      @data.map { |d| YarnWeight.new(d) }
+    end
   end
 end

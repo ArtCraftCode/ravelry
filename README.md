@@ -16,6 +16,8 @@ Ravelry API documentation is currently available [here](http://www.ravelry.com/a
 
 * [`Patterns#show`](http://www.ravelry.com/api#patterns_show) maps to `Ravelry::Pattern`
 * [`People#show`](http://www.ravelry.com/api#people_show) maps to `Ravelry::User`
+* [`Misc#color_families`](http://www.ravelry.com/api#/_color_families) maps to `Ravelry::Misc.color_families`
+* [`Misc#yarn_weights`](http://www.ravelry.com/api#/_yarn_weights) maps to `Ravelry::Misc.yarn_weights`
 
 # Installation
 
