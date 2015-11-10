@@ -60,7 +60,7 @@ module Ravelry
       @packs
     end
 
-    # Creates and returns a of {Ravelry::PatternType} object.
+    # Creates and returns a {Ravelry::PatternType} object.
     #
     # This is not the same as a PatternCategory object.
     #
@@ -94,6 +94,18 @@ module Ravelry
         @printings << Printing.new(printing_data)
       end
       @printings
+    end
+
+    # Creates and returns an array of {Ravelry::UserSite} objects.
+    #
+    # See {Ravelry::UserSite} for more information.
+    #
+    def self.user_sites(data)
+      @user_sites = []
+      data[:user_sites].each do |site|
+        @user_sites << UserSite.new(site)
+      end
+      @user_sites
     end
 
     # Creates and returns an array of {Ravelry::Yarn} objects.

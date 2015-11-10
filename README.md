@@ -1,8 +1,8 @@
 # Ravelry
 
-_You are reading documentation for version: 0.0.2_
+_You are reading documentation for version: 0.0.3_
 
-[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.2)](https://codeship.com/projects/109462)
+[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.3)](https://codeship.com/projects/109462)
 
 This gem is actively being developed. Be sure to check the branch for the version you're using as breaking changes can (and will!) be introduced.
 
@@ -14,7 +14,8 @@ Ravelry API documentation is currently available [here](http://www.ravelry.com/a
 
 ## API coverage
 
-* `Patterns#show` (`GET`)
+* [`Patterns#show`](http://www.ravelry.com/api#patterns_show) maps to `Ravelry::Pattern`
+* [`People#show`](http://www.ravelry.com/api#people_show) maps to `Ravelry::User`
 
 # Installation
 
@@ -28,7 +29,9 @@ Hooray! You now have a gem.
 
 Add to your `Gemfile`:
 
-gem "ravelry", "~> 0.0.2"
+```ruby
+gem "ravelry", "~> 0.0.3"
+```
 
 **I highly recommend pinning your version** because the gem is in active development and I _promise_ I will break shit.
 
@@ -52,9 +55,17 @@ end
 
 Getting these keys requires a (free) Ravelry account and that you agree to the terms of use for the API.
 
+The keys are available to you throughout your application as:
+
+```ruby
+Ravelry.configuration.access_key
+Ravelry.configuration.secret_key
+Ravelry.configuration.personal_key
+```
+
 # Usage
 
-Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.2).
+Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.3).
 
 # API quirks
 
