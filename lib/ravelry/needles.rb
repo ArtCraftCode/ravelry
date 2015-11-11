@@ -12,14 +12,14 @@ module Ravelry
     # Arguments: needle type (string, optional)
     # 
     def sizes(craft='')
-      result = Utils::Request.new("needles/sizes.json?craft=#{craft}", :needle_sizes)
+      result = Utils::Request.get("needles/sizes.json?craft=#{craft}", :needle_sizes)
       result.data.map { |needle| Needle.new(needle) }
     end
 
     # Get needle types.
     # 
     def types
-      result = Utils::Request.new("needles/types.json", :needle_types)
+      result = Utils::Request.get("needles/types.json", :needle_types)
       result.data.map { |needle| Needle.new(needle) }
     end
 
@@ -28,7 +28,7 @@ module Ravelry
     # Arguments: username (string, required)
     # 
     def list(username)
-      result = Utils::Request.new("people/#{username}/needles/list.json", :needle_records)
+      result = Utils::Request.get("people/#{username}/needles/list.json", :needle_records)
       result.data.map { |needle| Needle.new(needle) }
     end
   end
