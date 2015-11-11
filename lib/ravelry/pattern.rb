@@ -93,8 +93,7 @@ module Ravelry
     # Handles GET API call and parses JSON response.
     #
     def get
-      result = Utils::Request.get("patterns/#{@id}.json", :pattern)
-      @data = result.data
+      @data = Utils::Request.get("patterns/#{@id}.json", :pattern)
     end
 
     # Creates all objects associated with your pattern; returns nothing; sets `attr_readers`.
