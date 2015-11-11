@@ -2,7 +2,7 @@ module Ravelry
 
   # `Ravelry::Pattern` corresponds to Pattern objects in Ravelry.
   #
-  # This class requires your environment variables be set (see {file:README.md README}). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
+  # This class requires your configuration variables be set (see {file:README.md README}). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
   #
   # If your `pattern.data` is missing one of the attributes below, that method will return `nil`.
   #
@@ -64,7 +64,7 @@ module Ravelry
   # To create all associated objects at once, call the following method after initialization:
   #
   # ```ruby
-  # pattern.build_all_objects
+  # pattern.build
   # ```
   #
   # Note that this does not perform an API call: it creates the objects using the data returned from the initial `get` for your pattern object.
@@ -74,7 +74,7 @@ module Ravelry
   # * `pattern.author` - a {Ravelry::Author} object
   # * `pattern.categories` - an array of {Ravelry::Category} objects
   # * `pattern.craft` - a {Ravelry::Craft} object
-  # * `pattern.needles` - an array of {Ravelry::PatternNeedle} objects
+  # * `pattern.needles` - an array of {Ravelry::Needle} objects
   # * `pattern.packs` - array of {Ravelry::Pack} objects
   # * `pattern.photos` - an array of {Ravelry::Photo} objects
   # * `pattern.printings` - an array of {Raverly::Printing} objects
@@ -91,11 +91,11 @@ module Ravelry
     attr_reader :author, :categories, :craft, :needles, :packs, :photos, :printings, :type, :yarns, :yarn_weights
 
     # Handles GET API call and parses JSON response.
+    # 
+    # Corresponds to Ravelry API endpoint `Patterns#show`
     #
     def get
-      request = Typhoeus::Request.get("https://api.ravelry.com/patterns/#{@id}.json", userpwd: "#{Ravelry.configuration.access_key}:#{Ravelry.configuration.personal_key}")
-      result = JSON.parse(request.response_body, {symbolize_names: true})
-      @data = result[:pattern]
+      @data = Utils::Request.get("patterns/#{@id}.json", :pattern)
     end
 
     # Creates all objects associated with your pattern; returns nothing; sets `attr_readers`.

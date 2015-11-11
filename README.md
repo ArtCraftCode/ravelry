@@ -1,16 +1,8 @@
-# Pre!
-
-This branch is the happy home :house: for in-progress code that isn't published. To view documentation, please select the version you're using.
-
-When the gem hits 1.0, there will be a `stable` branch. Until then, tiny versions.
-
-Happy coding!
-
 # Ravelry
 
-_You are reading documentation for version: 0.0.5_
+_You are reading documentation for version: 0.0.6_
 
-[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.5)](https://codeship.com/projects/109462)
+[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.6)](https://codeship.com/projects/109462)
 
 This gem is actively being developed. Be sure to check the branch for the version you're using as breaking changes can (and will!) be introduced.
 
@@ -22,10 +14,17 @@ Ravelry API documentation is currently available [here](http://www.ravelry.com/a
 
 ## API coverage
 
-* [`Patterns#show`](http://www.ravelry.com/api#patterns_show) maps to `Ravelry::Pattern`
-* [`People#show`](http://www.ravelry.com/api#people_show) maps to `Ravelry::User`
-* [`Misc#color_families`](http://www.ravelry.com/api#/_color_families) maps to `Ravelry::Misc.color_families`
-* [`Misc#yarn_weights`](http://www.ravelry.com/api#/_yarn_weights) maps to `Ravelry::Misc.yarn_weights`
+See documentation for each class (or module) to see how to initialize the objects.
+
+API | Endpoint | Ravelry gem class / module
+----|----------|------------------
+**Misc** | [color_families](http://www.ravelry.com/api#/_color_families) | `Ravelry::Misc.color_families`
+**Misc** | [yarn_weights](http://www.ravelry.com/api#/_yarn_weights) | `Ravelry::Misc.yarn_weights`
+**Needles** | [list](http://www.ravelry.com/api#needles_list) | `Ravelry::Needles.list`
+**Needles** | [sizes](http://www.ravelry.com/api#needles_sizes) | `Ravelry::Needles.sizes`
+**Needles** | [types](http://www.ravelry.com/api#needles_types) | `Ravelry::Needles.types`
+**Patterns** | [show](http://www.ravelry.com/api#patterns_show) | `Ravelry::Pattern.get`
+**People** | [show](http://www.ravelry.com/api#people_show) | `Ravelry::User.get`
 
 # Installation
 
@@ -40,7 +39,7 @@ Hooray! You now have a gem.
 Add to your `Gemfile`:
 
 ```ruby
-gem "ravelry", "~> 0.0.5"
+gem "ravelry", "~> 0.0.6"
 ```
 
 **I highly recommend pinning your version** because the gem is in active development and I _promise_ I will break shit.
@@ -75,7 +74,7 @@ Ravelry.configuration.personal_key
 
 # Usage
 
-Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.5).
+Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.6).
 
 # API quirks
 

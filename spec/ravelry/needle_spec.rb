@@ -1,20 +1,16 @@
 require_relative '../spec_helper'
 
-describe Ravelry::PatternNeedle do
+describe Ravelry::Needle do
   before do
-    @ndl = Ravelry::PatternNeedle.new(needle)
+    @ndl = Ravelry::Needle.new(needle)
     @data = needle
   end
 
   it 'creates an instance of Needle' do
-    expect(@ndl).to be_instance_of(Ravelry::PatternNeedle)
+    expect(@ndl).to be_instance_of(Ravelry::Needle)
   end
 
   context 'has and sets reader attributes for' do
-    it 'type' do
-      expect(@ndl.type).to eq('knitting')
-    end
-
     it 'hook' do
       expect(@ndl.hook).to eq(@data[:hook])
     end
@@ -26,10 +22,6 @@ describe Ravelry::PatternNeedle do
     it 'metric' do
       expect(@ndl.metric).to eq(@data[:metric])
     end
-
-    it 'knitting' do
-      expect(@ndl.knitting).to eq(@data[:name])
-    end
   end
 
   context 'class methods' do
@@ -37,7 +29,7 @@ describe Ravelry::PatternNeedle do
       ndl = { :hook=>"E", :us_steel=>"00", :name=>"US 4  - 3.5 mm",
       :crochet=>true, :metric=>3.5, :knitting=>false, :us=>"4 ",
       :id=>4 }
-      needle = Ravelry::PatternNeedle.new(ndl)
+      needle = Ravelry::Needle.new(ndl)
       expect(needle.type).to eq('crochet')
     end
 

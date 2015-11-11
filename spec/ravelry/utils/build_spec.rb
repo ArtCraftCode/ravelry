@@ -65,7 +65,7 @@ describe Ravelry::Build do
     end
 
     it 'returns an Array of Needle objects' do
-      expect(@needles[0]).to be_instance_of(Ravelry::PatternNeedle)
+      expect(@needles[0]).to be_instance_of(Ravelry::Needle)
     end
   end
 

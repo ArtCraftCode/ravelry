@@ -32,16 +32,16 @@ module Ravelry
       @craft = Craft.new(data[:craft])
     end
 
-    # Creates and returns an array of {Ravelry::PatternNeedle} objects.
+    # Creates and returns an array of {Ravelry::Needle} objects.
     #
     # There is more than one API endpoint for Needles. This may not be the one you are looking for.
     #
-    # See {Ravelry::PatternNeedle} for more information.
+    # See {Ravelry::Needle} for more information.
     #
     def self.needles(data)
       @needles = []
       data[:pattern_needle_sizes].each do |ndl|
-        @needles << PatternNeedle.new(ndl)
+        @needles << Needle.new(ndl)
       end
       @needles
     end
