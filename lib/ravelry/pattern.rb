@@ -93,9 +93,8 @@ module Ravelry
     # Handles GET API call and parses JSON response.
     #
     def get
-      request = Typhoeus::Request.get("https://api.ravelry.com/patterns/#{@id}.json", userpwd: "#{Ravelry.configuration.access_key}:#{Ravelry.configuration.personal_key}")
-      result = JSON.parse(request.response_body, {symbolize_names: true})
-      @data = result[:pattern]
+      result = Utils::Request.new("patterns/#{@id}.json", :pattern)
+      @data = result.data
     end
 
     # Creates all objects associated with your pattern; returns nothing; sets `attr_readers`.
