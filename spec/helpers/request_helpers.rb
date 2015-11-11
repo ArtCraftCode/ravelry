@@ -1,3 +1,4 @@
+require_relative 'request_helpers/misc_helpers'
 require_relative 'request_helpers/needles_helpers'
 require_relative 'request_helpers/pattern_helpers'
 
