@@ -64,7 +64,7 @@ module Ravelry
   # To create all associated objects at once, call the following method after initialization:
   #
   # ```ruby
-  # pattern.build_all_objects
+  # pattern.build
   # ```
   #
   # Note that this does not perform an API call: it creates the objects using the data returned from the initial `get` for your pattern object.
@@ -74,7 +74,7 @@ module Ravelry
   # * `pattern.author` - a {Ravelry::Author} object
   # * `pattern.categories` - an array of {Ravelry::Category} objects
   # * `pattern.craft` - a {Ravelry::Craft} object
-  # * `pattern.needles` - an array of {Ravelry::PatternNeedle} objects
+  # * `pattern.needles` - an array of {Ravelry::Needle} objects
   # * `pattern.packs` - array of {Ravelry::Pack} objects
   # * `pattern.photos` - an array of {Ravelry::Photo} objects
   # * `pattern.printings` - an array of {Raverly::Printing} objects
@@ -91,6 +91,8 @@ module Ravelry
     attr_reader :author, :categories, :craft, :needles, :packs, :photos, :printings, :type, :yarns, :yarn_weights
 
     # Handles GET API call and parses JSON response.
+    # 
+    # Corresponds to Ravelry API endpoint `Patterns#show`
     #
     def get
       @data = Utils::Request.get("patterns/#{@id}.json", :pattern)
