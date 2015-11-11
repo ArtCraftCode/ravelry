@@ -2,7 +2,7 @@ module Ravelry
 
   # `Ravelry::Pattern` corresponds to Pattern objects in Ravelry.
   #
-  # This class requires your environment variables be set (see {file:README.md README}). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
+  # This class requires your configuration variables be set (see {file:README.md README}). API calls are authenticated using HTTP Basic Auth unless otherwise noted.
   #
   # If your `pattern.data` is missing one of the attributes below, that method will return `nil`.
   #
