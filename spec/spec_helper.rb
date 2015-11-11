@@ -8,6 +8,7 @@ require_relative 'helpers/pattern_helpers'
 require_relative 'helpers/pack_helpers'
 require_relative 'helpers/yarn_helpers'
 require_relative 'helpers/yarn_weight_helpers'
+require_relative 'helpers/request_helpers'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
@@ -19,6 +20,7 @@ RSpec.configure do |config|
   config.include PackHelpers
   config.include YarnHelpers
   config.include YarnWeightHelpers
+  config.include RequestHelpers
   config.order = "random"
   config.before(:all) do
     Ravelry.configure do |config|
@@ -26,5 +28,9 @@ RSpec.configure do |config|
       config.secret_key = ENV['RAV_SECRET']
       config.personal_key = ENV['RAV_PERSONAL']
     end
+  end
+
+  config.before(:each) do
+    Typhoeus::Expectation.clear
   end
 end

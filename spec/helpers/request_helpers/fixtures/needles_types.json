@@ -1,0 +1,13 @@
+{
+  "needle_types": [
+    {
+      "description": "A needle type.",
+      "id": 123,
+      "length": 10,
+      "metric_name": "2.75 mm",
+      "name": "size 2 10\" straight (2.75 mm)",
+      "needle_size_id": 123,
+      "type_name": "straight"
+    }
+  ]
+}
