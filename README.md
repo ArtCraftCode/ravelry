@@ -15,7 +15,7 @@ Ravelry API documentation is currently available [here](http://www.ravelry.com/a
 ## API coverage
 
 API | Endpoint | Ravelry gem class 
------------------------------------
+----|----------|------------------
 Misc | [color_families](http://www.ravelry.com/api#/_color_families) | `Ravelry::Misc.color_families`
 Misc | [yarn_weights](http://www.ravelry.com/api#/_yarn_weights) | `Ravelry::Misc.yarn_weights`
 Needles | [list](http://www.ravelry.com/api#needles_list) | `Ravelry::Needles.list`
