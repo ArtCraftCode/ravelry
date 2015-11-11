@@ -16,13 +16,13 @@ Ravelry API documentation is currently available [here](http://www.ravelry.com/a
 
 API | Endpoint | Ravelry gem class 
 ----|----------|------------------
-Misc | [color_families](http://www.ravelry.com/api#/_color_families) | `Ravelry::Misc.color_families`
-Misc | [yarn_weights](http://www.ravelry.com/api#/_yarn_weights) | `Ravelry::Misc.yarn_weights`
-Needles | [list](http://www.ravelry.com/api#needles_list) | `Ravelry::Needles.list`
-Needles | [sizes](http://www.ravelry.com/api#needles_sizes) | `Ravelry::Needles.sizes`
-Needles | [types](http://www.ravelry.com/api#needles_types) | `Ravelry::Needles.types`
-Patterns | [show](http://www.ravelry.com/api#patterns_show) | `Ravelry::Pattern`
-People | [show](http://www.ravelry.com/api#people_show) | `Ravelry::User`
+**Misc** | [color_families](http://www.ravelry.com/api#/_color_families) | `Ravelry::Misc.color_families`
+**Misc** | [yarn_weights](http://www.ravelry.com/api#/_yarn_weights) | `Ravelry::Misc.yarn_weights`
+**Needles** | [list](http://www.ravelry.com/api#needles_list) | `Ravelry::Needles.list`
+**Needles** | [sizes](http://www.ravelry.com/api#needles_sizes) | `Ravelry::Needles.sizes`
+**Needles** | [types](http://www.ravelry.com/api#needles_types) | `Ravelry::Needles.types`
+**Patterns** | [show](http://www.ravelry.com/api#patterns_show) | `Ravelry::Pattern`
+**People** | [show](http://www.ravelry.com/api#people_show) | `Ravelry::User`
 
 # Installation
 
