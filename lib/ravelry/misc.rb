@@ -11,7 +11,7 @@ module Ravelry
     #
     def color_families
       result = Utils::Request.get("color_families.json", :color_families)
-      result.data.map { |color_family| ColorFamily.new(color_family) }
+      result.map { |color_family| ColorFamily.new(color_family) }
     end
 
     # Handles GET API call and parses JSON response for the `Misc#color_families` Ravelry endpoint.
@@ -20,7 +20,7 @@ module Ravelry
     #
     def yarn_weights
       result = Utils::Request.get("yarn_weights.json", :yarn_weights)
-      result.data.map { |yarn_weight| YarnWeight.new(yarn_weight) }
+      result.map { |yarn_weight| YarnWeight.new(yarn_weight) }
     end
   end
 end
