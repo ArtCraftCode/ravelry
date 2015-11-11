@@ -6,7 +6,7 @@ module Ravelry
   #
   class Needle
     attr_reader :id, :metric, :metric_name, :hook, :name, :pretty_metric, :us, :description, :length, :needle_size_id, :type_name
-    def intialize(data)
+    def initialize(data)
       @id = data[:id]
       # Crochet hook size.
       #
