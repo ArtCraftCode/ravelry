@@ -1,7 +1,15 @@
 require_relative 'request_helpers/needles_helpers'
+require_relative 'request_helpers/pattern_helpers'
 
 module RequestHelpers
   # Helpers that stub API requests
+
+  # Stubs a Typhoeus request with a response fixture
+  #
+  def stub_request_with_fixture(url_or_pattern, file)
+    response = fixture_response(file)
+    Typhoeus.stub(url_or_pattern).and_return(response)
+  end
 
   # Returns a Typhoeus::Response with the given fixture as the body
   #

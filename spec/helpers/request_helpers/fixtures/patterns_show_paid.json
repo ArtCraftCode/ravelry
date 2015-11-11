@@ -1,0 +1,235 @@
+{
+  "pattern": {
+    "comments_count": 4,
+    "craft": {
+      "id": 2,
+      "name": "Knitting",
+      "permalink": "knitting"
+    },
+    "currency": "USD",
+    "currency_symbol": "$",
+    "difficulty_average": 2.66666666666667,
+    "difficulty_count": 3,
+    "download_location": {
+      "free": false,
+      "type": "ravelry",
+      "url": "http://www.ravelry.com/purchase/feministy/185601"
+    },
+    "downloadable": true,
+    "favorites_count": 281,
+    "free": false,
+    "gauge": 26.0,
+    "gauge_description": "26 stitches and 40 rows = 4 inches in stockinette stitch",
+    "gauge_divisor": 4,
+    "gauge_pattern": "stockinette stitch",
+    "id": 419443,
+    "name": "Volatile Magic Shawl",
+    "notes": "I am a voracious reader. When I think of heroines, I think of my favorite books.",
+    "notes_html": "<p>I am a voracious reader. When I think of heroines, I think of my favorite books.",
+    "packs": [
+      {
+        "color_family_id": null,
+        "colorway": null,
+        "dye_lot": null,
+        "grams_per_skein": null,
+        "id": 31065185,
+        "meters_per_skein": null,
+        "ounces_per_skein": null,
+        "personal_name": null,
+        "prefer_metric_length": false,
+        "prefer_metric_weight": true,
+        "primary_pack_id": null,
+        "project_id": null,
+        "quantity_description": null,
+        "shop_id": null,
+        "shop_name": null,
+        "skeins": null,
+        "stash_id": null,
+        "total_grams": null,
+        "total_meters": null,
+        "total_ounces": null,
+        "total_yards": null,
+        "yards_per_skein": null,
+        "yarn": {
+          "id": 93171,
+          "name": "Artio Sock",
+          "permalink": "wooly-wonka-fibers-artio-sock",
+          "yarn_company_id": 969,
+          "yarn_company_name": "Wooly Wonka Fibers"
+        },
+        "yarn_id": 93171,
+        "yarn_name": "Wooly Wonka Fibers Artio Sock",
+        "yarn_weight": {
+          "crochet_gauge": "",
+          "id": 5,
+          "knit_gauge": "28",
+          "max_gauge": null,
+          "min_gauge": null,
+          "name": "Fingering",
+          "ply": "4",
+          "wpi": "14"
+        }
+      }
+    ],
+    "pattern_author": {
+      "favorites_count": 1314,
+      "id": 19297,
+      "name": "Liz Abinante",
+      "pattern_count": 48,
+      "permalink": "liz-abinante"
+    },
+    "pattern_categories": [
+      {
+        "id": 350,
+        "name": "Shawl / Wrap",
+        "parent": {
+          "id": 338,
+          "name": "Neck / Torso",
+          "parent": {
+            "id": 337,
+            "name": "Accessories",
+            "parent": {
+              "id": 301,
+              "name": "Categories",
+              "permalink": "categories"
+            },
+            "permalink": "accessories"
+          },
+          "permalink": "neck-torso"
+        },
+        "permalink": "shawl-wrap"
+      }
+    ],
+    "pattern_needle_sizes": [
+      {
+        "crochet": false,
+        "hook": "E",
+        "id": 4,
+        "knitting": true,
+        "metric": 3.5,
+        "name": "US 4  - 3.5 mm",
+        "us": "4 ",
+        "us_steel": "00"
+      }
+    ],
+    "pattern_type": {
+      "clothing": true,
+      "id": 10,
+      "name": "Shawl/Wrap",
+      "permalink": "shawl"
+    },
+    "pdf_in_library": false,
+    "pdf_url": "",
+    "permalink": "volatile-magic-shawl",
+    "photos": [
+      {
+        "flickr_url": null,
+        "id": 35912328,
+        "medium_url": "http://images4.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_medium.JPG",
+        "shelved_url": "http://images4.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_shelved.JPG",
+        "small_url": "http://images4.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_small_best_fit.JPG",
+        "sort_order": 1,
+        "square_url": "http://images4-b.ravelrycache.com/uploads/feministy/197032385/_D7C0070-Edit-Edit_square.JPG",
+        "thumbnail_url": "h",
+        "x_offset": -82,
+        "y_offset": 0
+      },
+      {
+        "flickr_url": null,
+        "id": 35912326,
+        "medium_url": "http://images4-d.ravelrycache.com/uploads/feministy/197032384/_D7C0066-Edit_medium.JPG",
+        "shelved_url": "http://images4-b.ravelrycache.com/uploads/feministy/197032384/_D7C0066-Edit_shelved.JPG",
+        "small_url": "http://images4-d.ravelrycache.com/uploads/feministy/197032384/_D7C0066-Edit_small_best_fit.JPG",
+        "sort_order": 2,
+        "square_url": "http://images4-b.ravelrycache.com/uploads/feministy/197032384/_D7C0066-Edit_square.JPG",
+        "thumbnail_url": "h",
+        "x_offset": -43,
+        "y_offset": 0
+      },
+      {
+        "flickr_url": null,
+        "id": 35912327,
+        "medium_url": "http://images4-b.ravelrycache.com/uploads/feministy/197032381/_D7C0059-Edit_medium.JPG",
+        "shelved_url": "http://images4-d.ravelrycache.com/uploads/feministy/197032381/_D7C0059-Edit_shelved.JPG",
+        "small_url": "http://images4-b.ravelrycache.com/uploads/feministy/197032381/_D7C0059-Edit_small_best_fit.JPG",
+        "sort_order": 3,
+        "square_url": "http://images4-b.ravelrycache.com/uploads/feministy/197032381/_D7C0059-Edit_square.JPG",
+        "thumbnail_url": "h",
+        "x_offset": -43,
+        "y_offset": 0
+      },
+      {
+        "flickr_url": null,
+        "id": 35912325,
+        "medium_url": "http://images4.ravelrycache.com/uploads/feministy/197032382/_D7C0053-Edit_medium.JPG",
+        "shelved_url": "http://images4-b.ravelrycache.com/uploads/feministy/197032382/_D7C0053-Edit_shelved.JPG",
+        "small_url": "http://images4.ravelrycache.com/uploads/feministy/197032382/_D7C0053-Edit_small_best_fit.JPG",
+        "sort_order": 4,
+        "square_url": "http://images4-b.ravelrycache.com/uploads/feministy/197032382/_D7C0053-Edit_square.JPG",
+        "thumbnail_url": "h",
+        "x_offset": -43,
+        "y_offset": 0
+      }
+    ],
+    "price": 6.0,
+    "printings": [
+      {
+        "pattern_source": {
+          "amazon_rating": null,
+          "amazon_url": null,
+          "author": null,
+          "list_price": null,
+          "name": "Liz Abinante's Ravelry Store",
+          "out_of_print": false,
+          "pattern_count": 3,
+          "permalink": "liz-abinantes-ravelry-store",
+          "price": null,
+          "shelf_image_path": null,
+          "url": "http://www.ravelry.com/stores/feministy"
+        },
+        "primary_source": true
+      },
+      {
+        "pattern_source": {
+          "amazon_rating": null,
+          "amazon_url": null,
+          "author": "",
+          "list_price": null,
+          "name": "Feministy.com",
+          "out_of_print": false,
+          "pattern_count": 47,
+          "permalink": "feministy",
+          "price": null,
+          "shelf_image_path": null,
+          "url": "http://feministy.com/"
+        },
+        "primary_source": false
+      }
+    ],
+    "product_id": 185601,
+    "projects_count": 6,
+    "published": "2013/07/01",
+    "queued_projects_count": 56,
+    "rating_average": 4.66666666666667,
+    "rating_count": 3,
+    "ravelry_download": true,
+    "row_gauge": 40.0,
+    "sizes_available": "8.5\"/21.5cm at deepest point, 50\"/127cm wingspan",
+    "url": "",
+    "volumes_in_library": [],
+    "yardage": 425,
+    "yardage_description": "425 - 435 yards",
+    "yardage_max": 435,
+    "yarn_weight": {
+      "crochet_gauge": "",
+      "id": 5,
+      "knit_gauge": "28",
+      "max_gauge": null,
+      "min_gauge": null,
+      "name": "Fingering",
+      "ply": "4",
+      "wpi": "14"
+    },
+    "yarn_weight_description": "Fingering / 4 ply (14 wpi)"
+  }
+}
