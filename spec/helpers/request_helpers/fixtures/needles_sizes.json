@@ -1,0 +1,12 @@
+{
+  "needle_sizes": [
+    {
+      "hook": "C-2",
+      "id": 123,
+      "metric": 2.75,
+      "name": "US 2 - 2.75 mm",
+      "pretty_metric": "2.75 mm",
+      "us": "US 2"
+    }
+  ]
+}

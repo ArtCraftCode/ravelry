@@ -1,0 +1,14 @@
+{
+  "yarn_weights": [
+    {
+      "crochet_gauge": "",
+      "id": 123,
+      "knit_gauge": "14-15 stitches",
+      "max_gauge": 14,
+      "min_gauge": 15,
+      "name": "Bulky",
+      "ply": 12,
+      "wpi": 7
+    }
+  ]
+}

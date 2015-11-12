@@ -1,6 +1,9 @@
 require_relative '../spec_helper'
 
 describe Ravelry::Pattern do
+  before do
+    stub_patterns_show_paid
+  end
 
   it 'should be an instance of Patterns' do
     pattern = p_initialize_paid_with_fetch
