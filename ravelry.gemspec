@@ -18,7 +18,6 @@ Gem::Specification.new do |spec|
 
   spec.files         = Dir["CODE_OF_CONDUCT.md", "LICENSE.txt", "README.md", "lib/**/*.rb"]
   spec.test_files    = Dir["spec/**/*.rb"]
-  spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
