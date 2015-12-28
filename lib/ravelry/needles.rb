@@ -12,7 +12,8 @@ module Ravelry
     # Arguments: needle type (string, optional)
     # 
     def sizes(craft='')
-      result = Utils::Request.get("needles/sizes.json?craft=#{craft}", :needle_sizes)
+      result = Utils::Request
+        .get('needles/sizes.json', :needle_sizes, {:craft => craft})
       result.map { |needle| Needle.new(needle) }
     end
 

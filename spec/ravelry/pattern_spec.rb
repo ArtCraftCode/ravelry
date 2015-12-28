@@ -28,6 +28,45 @@ describe Ravelry::Pattern do
     end
   end
 
+  context '#search' do
+    let(:result) { Ravelry::Pattern.search('hello') }
+    before { stub_patterns_search }
+
+    it 'should succeed' do
+      expect(result).to be
+    end
+
+    it 'should send a request to /patterns/search.json' do
+      expect(Ravelry::Utils::Request).to receive(:get)
+        .with('patterns/search.json', :patterns, {:query => 'hello'})
+        .and_call_original
+
+      Ravelry::Pattern.search('hello')
+    end
+
+    it 'should set params' do
+      expect(Ravelry::Utils::Request).to receive(:get)
+        .with('patterns/search.json', :patterns, {
+          :query => 'hello',
+          :personal_attributes => 1,
+          :page => 123,
+          :page_size => 2
+        })
+        .and_call_original
+
+      Ravelry::Pattern
+        .search('hello', personal_attributes: true, page: 123, page_size: 2)
+    end
+
+    it 'should return an array' do
+      expect(result).to be_kind_of(Array)
+    end
+
+    it 'should return an array of Patterns' do
+      expect(result[0]).to be_kind_of(Ravelry::Pattern)
+    end
+  end
+
   context 'class methods' do
     before do
       @api = p_initialize_with_data

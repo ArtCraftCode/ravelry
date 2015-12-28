@@ -7,4 +7,11 @@ module RequestHelpers
       'patterns_show_paid.json'
     )
   end
+
+  def stub_patterns_search
+    stub_request_with_fixture(
+      %r{/patterns/search.json},
+      'patterns_search.json'
+    )
+  end
 end
