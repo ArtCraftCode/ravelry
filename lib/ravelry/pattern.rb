@@ -84,6 +84,16 @@ module Ravelry
   #
   # See the documentation for each object's available methods.
   #
+  # # Searching
+  #
+  # To search for patterns, use the `Pattern.search` class method, which
+  # returns an array of patterns:
+  #
+  # ```ruby
+  # Ravelry::Pattern.search('socks')
+  # # => [#<Pattern>, ...]
+  # ```
+  #
   class Pattern < Data
 
     include Build
@@ -96,6 +106,33 @@ module Ravelry
     #
     def get
       @data = Utils::Request.get("patterns/#{@id}.json", :pattern)
+    end
+
+    # Search for patterns.
+    #
+    # Corresponds to Ravelry API endpoint `Patterns#search`
+    #
+    # @param query [String] required
+    # @option options [Boolean] :personal_attributes
+    # @option options [Integer] :page
+    # @option options [Integer] :page_size
+    # @return [Array<Pattern>] an array of `Pattern`s
+    def self.search(query, options={})
+      params = {query: query}
+      params.merge!(options)
+
+      unless params[:personal_attributes].nil?
+        params[:personal_attributes] = (params[:personal_attributes] ? 1 : 0)
+      end
+
+      patterns = Utils::Request
+        .get("patterns/search.json", :patterns, params)
+
+      patterns.map do |data|
+        pattern = Ravelry::Pattern.new
+        pattern.data = data
+        pattern
+      end
     end
 
     # Creates all objects associated with your pattern; returns nothing; sets `attr_readers`.

@@ -23,6 +23,7 @@ API | Endpoint | Ravelry gem class / module
 **Needles** | [list](http://www.ravelry.com/api#needles_list) | `Ravelry::Needles.list`
 **Needles** | [sizes](http://www.ravelry.com/api#needles_sizes) | `Ravelry::Needles.sizes`
 **Needles** | [types](http://www.ravelry.com/api#needles_types) | `Ravelry::Needles.types`
+**Patterns** | [search](http://www.ravelry.com/api#patterns_search) | `Ravelry::Pattern.search`
 **Patterns** | [show](http://www.ravelry.com/api#patterns_show) | `Ravelry::Pattern.get`
 **People** | [show](http://www.ravelry.com/api#people_show) | `Ravelry::User.get`
 
