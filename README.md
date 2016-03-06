@@ -1,21 +1,21 @@
 # Ravelry
 
-_You are reading documentation for version: 0.0.8_
+_You are reading documentation for version: 0.0.9_
 
-[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.8)](https://codeship.com/projects/109462)
+[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.9)](https://codeship.com/projects/109462)
 
 The Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely! This gem is actively being developed. **Be sure to check the branch for the version you're using.**
 
 **Important and helpful links:**
 
-- [Full gem documentation (version 0.0.8)](http://www.rubydoc.info/gems/ravelry/0.0.8)
-- [Changelog](https://github.com/ArtCraftCode/ravelry/blob/0.0.8/CHANGELOG.md)
+- [Full gem documentation (version 0.0.9)](http://www.rubydoc.info/gems/ravelry/0.0.9)
+- [Changelog](https://github.com/ArtCraftCode/ravelry/blob/0.0.9/CHANGELOG.md)
 - [Project Trello board](https://trello.com/b/o8gs4cWI/ravelry)
 - [Ravelry API documentation](http://www.ravelry.com/api)
 
 ## API coverage
 
-See [documentation](http://www.rubydoc.info/gems/ravelry/0.0.8) for each class (or module) to see how to initialize the objects.
+See [documentation](http://www.rubydoc.info/gems/ravelry/0.0.9) for each class (or module) to see how to initialize the objects.
 
 API | Endpoint | Ravelry gem class / module
 ----|----------|------------------
@@ -43,7 +43,7 @@ Hooray! You now have a gem.
 Add to your `Gemfile`:
 
 ```ruby
-gem "ravelry", "~> 0.0.8"
+gem "ravelry", "~> 0.0.9"
 ```
 
 **I highly recommend pinning your version** because the gem is in active development and small changes and additions will be made regularly.
@@ -78,7 +78,7 @@ Ravelry.configuration.personal_key
 
 # Usage
 
-Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.8).
+Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.9).
 
 # Conventions
 
