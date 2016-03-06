@@ -1,35 +1,38 @@
 # Ravelry
 
-_You are reading documentation for version: 0.0.7_
+_You are reading documentation for version: 0.0.8_
 
-[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.7)](https://codeship.com/projects/109462)
+[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.0.8)](https://codeship.com/projects/109462)
 
-This gem is actively being developed. Be sure to check the branch for the version you're using as breaking changes can (and will!) be introduced.
+The Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely! This gem is actively being developed. **Be sure to check the branch for the version you're using.**
 
-To see what I am working on next, visit the project's [Trello board](https://trello.com/b/o8gs4cWI/ravelry).
+**Important and helpful links:**
 
-The Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely.
-
-Ravelry API documentation is currently available [here](http://www.ravelry.com/api).
+- [Full gem documentation (version 0.0.8)](http://www.rubydoc.info/gems/ravelry/0.0.8)
+- [Changelog](https://github.com/ArtCraftCode/ravelry/blob/0.0.8/CHANGELOG.md)
+- [Project Trello board](https://trello.com/b/o8gs4cWI/ravelry)
+- [Ravelry API documentation](http://www.ravelry.com/api)
 
 ## API coverage
 
-See documentation for each class (or module) to see how to initialize the objects.
+See [documentation](http://www.rubydoc.info/gems/ravelry/0.0.8) for each class (or module) to see how to initialize the objects.
 
 API | Endpoint | Ravelry gem class / module
 ----|----------|------------------
 **Misc** | [color_families](http://www.ravelry.com/api#/_color_families) | `Ravelry::Misc.color_families`
 **Misc** | [yarn_weights](http://www.ravelry.com/api#/_yarn_weights) | `Ravelry::Misc.yarn_weights`
+**Misc** | [current_user](http://www.ravelry.com/api#/_current_user) | `Ravelry::Misc.current_user`
 **Needles** | [list](http://www.ravelry.com/api#needles_list) | `Ravelry::Needles.list`
 **Needles** | [sizes](http://www.ravelry.com/api#needles_sizes) | `Ravelry::Needles.sizes`
 **Needles** | [types](http://www.ravelry.com/api#needles_types) | `Ravelry::Needles.types`
+**Patterns** | [comments](http://www.ravelry.com/api#patterns_comments) | `Ravelry::Pattern.comments`
 **Patterns** | [search](http://www.ravelry.com/api#patterns_search) | `Ravelry::Pattern.search`
 **Patterns** | [show](http://www.ravelry.com/api#patterns_show) | `Ravelry::Pattern.get`
 **People** | [show](http://www.ravelry.com/api#people_show) | `Ravelry::User.get`
 
 # Installation
 
-Welcome to a magical land where gems rule the world. To install, type:
+To install, type:
 
 ```
 gem install ravelry
@@ -40,16 +43,16 @@ Hooray! You now have a gem.
 Add to your `Gemfile`:
 
 ```ruby
-gem "ravelry", "~> 0.0.7"
+gem "ravelry", "~> 0.0.8"
 ```
 
-**I highly recommend pinning your version** because the gem is in active development and I _promise_ I will break shit.
+**I highly recommend pinning your version** because the gem is in active development and small changes and additions will be made regularly.
 
 Run `bundle install` and proceed as usual.
 
-## API keys
+# Configuration
 
-API keys must be configured in the gem setup. You can do this anywhere in your application before you make API calls using the gem.
+API keys *must* be configured in the gem setup. You can do this anywhere in your application before you make API calls using the gem.
 
 ```ruby
 Ravelry.configure do |config|
@@ -75,23 +78,7 @@ Ravelry.configuration.personal_key
 
 # Usage
 
-Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.7).
-
-# API quirks
-
-## Accessing pattern ids (for `Ravelry::Patterns`)
-
-To use the `Patterns#show` endpoint, you need the pattern id from Ravelry. You can use the pattern search API to search for the pattern name and get this information, but that is not yet implemented in the gem.
-
-In the meantime, navigate to a pattern page in Ravelry and open up the JavaScript console. Type this in:
-
-```javascript
-$$('.difficulty').first().id
-```
-
-You should see something like this: ```"pattern_419443_difficulty_score"```.
-
-```419443``` is your pattern id.
+Full documentation for this gem is available [here](http://www.rubydoc.info/gems/ravelry/0.0.8).
 
 # Conventions
 
@@ -124,7 +111,7 @@ pattern.difficulty_average_integer
 
 Hey! You want to contribute? That is super, super awesome. Visit the project's [Trello board](https://trello.com/b/o8gs4cWI/ravelry) to see what's coming up next or what is already in progress.
 
-Send me a pull request! Note that your pull request will not be accepted if you don't write tests **and documentation** for your code (the test part kind of goes without saying, but I wanted to make sure that you knew about it and the documentation).
+Send me a pull request! Please write tests, **documentation** for your code (the test part kind of goes without saying, but I wanted to make sure that you knew about it and the documentation), and update the changelog with your additions under the next unreleased version.
 
 To run specs locally, simply `bundle` and then run `rpsec`.
 

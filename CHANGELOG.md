@@ -3,6 +3,9 @@
 ## 0.0.8
 
 - Add `permalink_get` instance method for `Ravelry::Pattern`
+- Add `comments` instance method for `Ravely::Pattern`
+- Add `Ravelry::Misc.current_user`
+- Add all development dependencies to `gemspec`
 
 ## 0.0.7
 
