@@ -87,6 +87,16 @@ describe Ravelry::Pattern do
     end
   end
 
+  context '#comments' do
+    before do
+        @pattern = p_initialize_paid_with_fetch
+    end
+
+    it 'creates comments' do
+      expect(@pattern.comments[0]).to be_instance_of(Ravelry::Comment)
+    end
+  end
+
   context 'class methods' do
     before do
       @api = p_initialize_with_data
