@@ -22,6 +22,17 @@ module Ravelry
   # ```
   #
   # After calling `get`, you have access to all of the class methods below.
+  # 
+  # If you do not have the pattern ID, you may use the permalink:
+  # 
+  # Ravelry URL: http://www.ravelry.com/patterns/library/traveling-woman
+  # 
+  # Request:
+  # 
+  # ```ruby
+  # pattern = Ravelry::Pattern.new
+  # pattern.permalink_get('traveling-woman')
+  # ```
   #
   # ##Initializing with an id
   #
@@ -96,6 +107,13 @@ module Ravelry
   #
   class Pattern < Data
 
+    COMMENT_OPTIONS = {
+      sort: ['time', 'helpful', 'time_', 'helpful_'],
+      page_size: 25,
+      include: ['highlighted_project'],
+      page: 1
+    }
+
     include Build
 
     attr_reader :author, :categories, :craft, :needles, :packs, :photos, :printings, :type, :yarns, :yarn_weights
@@ -106,6 +124,46 @@ module Ravelry
     #
     def get
       @data = Utils::Request.get("patterns/#{@id}.json", :pattern)
+    end
+
+    # Alternative method for the GET API call.
+    # 
+    # Corresponds to Ravelry API endpoint `Patterns#show`
+    # 
+    # Uses the pattern's Ravelry permalink instead of ID. Useful if you don't know the ID of a pattern, but have the permalink.
+    # 
+    # **Example**
+    # 
+    # Ravelry URL: http://www.ravelry.com/patterns/library/traveling-woman
+    # 
+    # Request:
+    # 
+    # ```ruby
+    # pattern = Ravelry::Pattern.new
+    # pattern.permalink_get('traveling-woman')
+    # ```
+    # 
+    def permalink_get(permalink)
+      @data = Utils::Request.get("patterns/#{permalink}.json", :pattern)
+    end
+
+    # Get the list of comments on a pattern object.
+    # 
+    # To query comments for a pattern you haven't fetched yet, without fetching the pattern:
+    # 
+    # ```ruby
+    # pattern = Ravelry::Pattern.new
+    # pattern.id = "000000"
+    # pattern.comments
+    # ```
+    # 
+    # To query comments for a pattern you've already fetched, follow the steps above and call `pattern.comments`.
+    # 
+    def comments(options={})
+      @comment_list ||= []
+      return @comment_list if @comment_list.any?
+
+      fetch_comments(options)
     end
 
     # Search for patterns.
@@ -275,7 +333,7 @@ module Ravelry
     #
     # I've included this method in case you want to have more control over how your author information is displayed.
     #
-    # See {#build_authors} for more information about directly accessing author information.
+    # See {Ravelry::Author} for more information about directly accessing author information.
     #
     def pattern_author
       data[:pattern_author]
@@ -285,7 +343,7 @@ module Ravelry
     #
     # This method is included so you can access the information directly.
     #
-    # See {#build_categories} for more information about directly accessing category information.
+    # See {Ravelry::Category} for more information about directly accessing category information.
     #
     def pattern_categories_raw
       data[:pattern_categories]
@@ -296,7 +354,7 @@ module Ravelry
     #
     # This method is included so you can access the information directly.
     #
-    # See {#build_needles} for more information about directly accessing category information.
+    # See {Ravelry::Needle} for more information about directly accessing category information.
     #
     def pattern_needle_sizes_raw
       data[:pattern_needle_sizes]
@@ -306,7 +364,7 @@ module Ravelry
     #
     # This method is included so you can access the information directly.
     #
-    # See {#build_pattern_type} for more information about directly accessing category information.
+    # See {Ravelry::Needle} for more information about directly accessing category information.
     #
     def pattern_type_raw
       data[:pattern_type]
@@ -328,7 +386,7 @@ module Ravelry
     #
     # This method is included so you can access the information directly.
     #
-    # See {#build_photos} for more information about directly accessing category information.
+    # See {Ravelry::Photo} for more information about directly accessing category information.
     #
     def photos_raw
       data[:photos]
@@ -422,6 +480,17 @@ module Ravelry
     #
     def yarn_weight_description
       data[:yarn_weight_description]
+    end
+
+    private
+    def fetch_comments(options)
+      options.keep_if { |key| COMMENT_OPTIONS.keys.include?(key) }
+      if options[:per_page]
+        options[:per_page] = 100 if options[:per_page] > 100
+      end
+
+      comment_data = Utils::Request.get("patterns/#{@id}/comments.json", :comments, options)
+      comment_data.map { |comment| Comment.new(comment) }
     end
   end
 end

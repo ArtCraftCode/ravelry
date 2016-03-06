@@ -28,6 +28,26 @@ describe Ravelry::Pattern do
     end
   end
 
+  context "#permalink_get" do
+    before do
+      pattern = Ravelry::Pattern.new
+      pattern.permalink_get("traveling-woman")
+      @api = pattern
+    end
+
+    it 'should succeed' do
+      expect(@api).to be
+    end
+
+    it 'should return a pattern' do
+      expect(@api.data).to be
+    end
+
+    it 'should return a hash' do
+      expect(@api.data).to be_kind_of(Hash)
+    end
+  end
+
   context '#search' do
     let(:result) { Ravelry::Pattern.search('hello') }
     before { stub_patterns_search }
@@ -64,6 +84,16 @@ describe Ravelry::Pattern do
 
     it 'should return an array of Patterns' do
       expect(result[0]).to be_kind_of(Ravelry::Pattern)
+    end
+  end
+
+  context '#comments' do
+    before do
+        @pattern = p_initialize_paid_with_fetch
+    end
+
+    it 'creates comments' do
+      expect(@pattern.comments[0]).to be_instance_of(Ravelry::Comment)
     end
   end
 

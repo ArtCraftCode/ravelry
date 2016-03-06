@@ -67,11 +67,11 @@ module Ravelry
     end
 
     def about_me
-      @data['about_me']
+      @data[:about_me]
     end
 
     def about_me_html
-      @data['about_me_html']
+      @data[:about_me_html]
     end
 
     def author
@@ -79,45 +79,50 @@ module Ravelry
     end
 
     def fave_colors
-      @data['fave_colors']
+      @data[:fave_colors]
     end
 
     def fave_curse
-      @data['fave_curse']
+      @data[:fave_curse]
     end
 
     def first_name
-      @data['first_name']
+      @data[:first_name]
     end
 
     def large_photo_url
-      @data['large_photo_url']
+      @data[:large_photo_url]
     end
 
     def location
-      @data['location']
+      @data[:location]
     end
 
     def photo_url
-      @data['photo_url']
+      @data[:photo_url]
     end
 
     def small_photo_url
-      @data['small_photo_url']
+      @data[:small_photo_url]
     end
 
     def tiny_photo_url
-      @data['tiny_photo_url']
+      @data[:tiny_photo_url]
     end
 
     def username
-      @data['username']
+      @data[:username]
     end
 
     # ID from the Ravelry database.
     # 
     def _id
-      @data['id']
+      @data[:id]
+    end
+
+    private
+    def build
+      @id = @data[:id] unless @id
     end
   end
 end

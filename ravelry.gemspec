@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name = "ravelry"
   spec.version = Ravelry::VERSION
   spec.authors = ["Liz Abinante"]
-  spec.date = "2016-01-28"
+  spec.date = "2016-03-05"
   spec.summary = "Ruby gem for accessing the Ravelry API."
   spec.description = "Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely."
   spec.email = "me@liz.codes"
@@ -21,6 +21,8 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_dependency "typhoeus", "~> 0.6"
+  spec.add_development_dependency "redcarpet", "~> 3.0"
+  spec.add_development_dependency "rspec", "~> 2.14.1"
+  spec.add_development_dependency "yard", "~> 0.8.7"
+  spec.add_dependency "typhoeus", "~> 0.8"
 end
-
