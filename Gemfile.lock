@@ -37,6 +37,6 @@ DEPENDENCIES
   pry-nav
   rake
   redcarpet
-  rspec (~> 2.14.1)
+  rspec (~> 2.14)
   typhoeus (~> 0.8)
   yard
