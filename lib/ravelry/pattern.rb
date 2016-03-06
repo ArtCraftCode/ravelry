@@ -193,6 +193,12 @@ module Ravelry
       end
     end
 
+    # Returns the original raw JSON.
+    # 
+    def json
+      data
+    end
+
     # Creates all objects associated with your pattern; returns nothing; sets `attr_readers`.
     #
     def build

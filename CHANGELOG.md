@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.9
+
+- Add `json` instance method to `Ravelry::Pattern`
+
 ## 0.0.8
 
 - Add `permalink_get` instance method for `Ravelry::Pattern`
