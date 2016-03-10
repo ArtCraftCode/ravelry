@@ -10,6 +10,8 @@ module Ravelry
       @id = id
     end
 
+    # Writes the `data` instance variable and calls `build` on the child class.
+    #
     def data=(d)
       @data = d
       build
