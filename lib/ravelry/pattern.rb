@@ -125,6 +125,7 @@ module Ravelry
     #
     def get
       @data = Utils::Request.get("patterns/#{@id}.json", :pattern)
+      self
     end
 
     # Alternative method for the GET API call.
@@ -140,6 +141,7 @@ module Ravelry
     #
     def permalink_get(permalink)
       @data = Utils::Request.get("patterns/#{permalink}.json", :pattern)
+      self
     end
 
     # Get the list of comments on a pattern object.
@@ -348,7 +350,7 @@ module Ravelry
       data[:notes_html]
     end
 
-    # Returns an array of hashes with tons of information about each yarn listed in the pattern. See {Build.packs} for a complete list of helper methods.
+    # Returns an array of hashes with tons of information about each yarn listed in the pattern. See {#build} for a complete list of helper methods.
     #
     # I've included this method in case you want to have more control over how your pack information is displayed. It's likely that you'll want to use the other pack methods. While you sacrifice some fine tuning control, you also don't have to worry about dealing with a messy nested hash.
     #

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0
+
+- Return `self` on both `Ravelry::Pattern.get` and `Ravelry::Pattern.permalink_get` (previously returned `data`)
+
 ## 0.0.9
 
 - Add `json` instance method to `Ravelry::Pattern`
