@@ -22,13 +22,13 @@ module Ravelry
   # ```
   #
   # After calling `get`, you have access to all of the class methods below.
-  # 
+  #
   # If you do not have the pattern ID, you may use the permalink:
-  # 
+  #
   # Ravelry URL: http://www.ravelry.com/patterns/library/traveling-woman
-  # 
+  #
   # Request:
-  # 
+  #
   # ```ruby
   # pattern = Ravelry::Pattern.new
   # pattern.permalink_get('traveling-woman')
@@ -98,15 +98,16 @@ module Ravelry
   # # Searching
   #
   # To search for patterns, use the `Pattern.search` class method, which
-  # returns an array of patterns:
+  # returns an array of patterns.
   #
-  # ```ruby
-  # Ravelry::Pattern.search('socks')
-  # # => [#<Pattern>, ...]
-  # ```
+  # @example
+  #   Ravelry::Pattern.search('socks')
+  #   # => [#<Pattern>, ...]
   #
   class Pattern < Data
 
+    # Whitelist and default options for fetching comments.
+    #
     COMMENT_OPTIONS = {
       sort: ['time', 'helpful', 'time_', 'helpful_'],
       page_size: 25,
@@ -119,7 +120,7 @@ module Ravelry
     attr_reader :author, :categories, :craft, :needles, :packs, :photos, :printings, :type, :yarns, :yarn_weights
 
     # Handles GET API call and parses JSON response.
-    # 
+    #
     # Corresponds to Ravelry API endpoint `Patterns#show`
     #
     def get
@@ -127,38 +128,39 @@ module Ravelry
     end
 
     # Alternative method for the GET API call.
-    # 
+    #
     # Corresponds to Ravelry API endpoint `Patterns#show`
-    # 
+    #
     # Uses the pattern's Ravelry permalink instead of ID. Useful if you don't know the ID of a pattern, but have the permalink.
-    # 
-    # **Example**
-    # 
-    # Ravelry URL: http://www.ravelry.com/patterns/library/traveling-woman
-    # 
-    # Request:
-    # 
-    # ```ruby
-    # pattern = Ravelry::Pattern.new
-    # pattern.permalink_get('traveling-woman')
-    # ```
-    # 
+    #
+    # @example
+    #   # Ravelry URL: http://www.ravelry.com/patterns/library/traveling-woman
+    #   pattern = Ravelry::Pattern.new
+    #   pattern.permalink_get('traveling-woman')
+    #
     def permalink_get(permalink)
       @data = Utils::Request.get("patterns/#{permalink}.json", :pattern)
     end
 
     # Get the list of comments on a pattern object.
-    # 
+    #
     # To query comments for a pattern you haven't fetched yet, without fetching the pattern:
-    # 
-    # ```ruby
-    # pattern = Ravelry::Pattern.new
-    # pattern.id = "000000"
-    # pattern.comments
-    # ```
-    # 
+    #
+    # @example
+    #   pattern = Ravelry::Pattern.new
+    #   pattern.id = "000000"
+    #   pattern.comments
+    #
     # To query comments for a pattern you've already fetched, follow the steps above and call `pattern.comments`.
-    # 
+    #
+    # See <COMMENT_OPTIONS> for valid options.
+    #
+    # @option options [String] :sort
+    # @option options [Integer] :page_size
+    # @option options [Array] :include
+    # @option options [Integer] :page
+    # @return [Array<Comment>] an array of `Comment`s
+    #
     def comments(options={})
       @comment_list ||= []
       return @comment_list if @comment_list.any?
@@ -175,6 +177,7 @@ module Ravelry
     # @option options [Integer] :page
     # @option options [Integer] :page_size
     # @return [Array<Pattern>] an array of `Pattern`s
+    #
     def self.search(query, options={})
       params = {query: query}
       params.merge!(options)
@@ -194,12 +197,14 @@ module Ravelry
     end
 
     # Returns the original raw JSON.
-    # 
+    #
     def json
       data
     end
 
     # Creates all objects associated with your pattern; returns nothing; sets `attr_readers`.
+    #
+    # @return nil
     #
     def build
       @author = Build.author(data)
@@ -217,11 +222,15 @@ module Ravelry
 
     # Gets comments_count from existing `data`.
     #
+    # @return Integer
+    #
     def comments_count
       data[:comments_count]
     end
 
     # Gets currency from existing `data`.
+    #
+    # @return String
     #
     def currency
       data[:currency]
@@ -229,11 +238,15 @@ module Ravelry
 
     # Gets currency_symbol from existing `data`.
     #
+    # @return String
+    #
     def currency_symbol
       data[:currency_symbol]
     end
 
     # Returns the difficult average as a Float (this is how it is stored by Ravelry).
+    #
+    # @return Float
     #
     def difficulty_average_float
       data[:difficulty_average]
@@ -241,11 +254,15 @@ module Ravelry
 
     # Returns the difficulty average rounded up or down to an Integer.
     #
+    # @return Integer
+    #
     def difficulty_average_integer
       difficulty_average_float.round(0)
     end
 
     # Gets difficulty_count (Integer) from existing `data`.
+    #
+    # @return Integer
     #
     def difficulty_count
       data[:difficulty_count]
@@ -253,23 +270,31 @@ module Ravelry
 
     # Returns true if the pattern can be downloaded.
     #
+    # @return Boolean
+    #
     def downloadable?
       data[:downloadable]
     end
 
     # Gets favorites_count (Integer) from existing `data`.
     #
+    # @return Integer
+    #
     def favorites_count
       data[:favorites_count]
     end
 
-    # Returns true if pattern is free (Boolean).
+    # Returns true if pattern is free.
+    #
+    # @return Boolean
     #
     def free?
       data[:free]
     end
 
-    # Number of stitches per inch (or 4 inches) (Float).
+    # Number of stitches per inch (or 4 inches).
+    #
+    # @return Float
     #
     def gauge
       data[:gauge]
@@ -277,11 +302,15 @@ module Ravelry
 
     # Sentence description of sts and row gauge with stitch.
     #
+    # @return String
+    #
     def gauge_description
       data[:gauge_description]
     end
 
-    # Either 1 or 4 (inches) (Integer).
+    # Either 1 or 4 (inches).
+    #
+    # @return Integer
     #
     def gauge_divisor
       data[:gauge_divisor]
@@ -289,11 +318,15 @@ module Ravelry
 
     # Pattern for gauge listed.
     #
+    # @return String
+    #
     def gauge_pattern
       data[:gauge_pattern]
     end
 
     # Gets patter name from existing `data`.
+    #
+    # @return String
     #
     def name
       data[:name]
@@ -301,17 +334,21 @@ module Ravelry
 
     # Raw pattern notes. May be mixed Markdown and HTML. Generally only useful when presenting a pattern notes editor.
     #
+    # @return String
+    #
     def notes_raw
       data[:notes]
     end
 
     # Pattern notes rendered as HTML.
     #
+    # @return String
+    #
     def notes_html
       data[:notes_html]
     end
 
-    # Returns an array of hashes with tons of information about each yarn listed in the pattern. See {#build_packs} for a complete list of helper methods.
+    # Returns an array of hashes with tons of information about each yarn listed in the pattern. See {Build.packs} for a complete list of helper methods.
     #
     # I've included this method in case you want to have more control over how your pack information is displayed. It's likely that you'll want to use the other pack methods. While you sacrifice some fine tuning control, you also don't have to worry about dealing with a messy nested hash.
     #
@@ -319,17 +356,20 @@ module Ravelry
     #
     # If iterating through the `packs` hash, you'll likely want to do something like this:
     #
-    # `packs = pattern.packs`
+    # @example
+    #   packs = pattern.packs
+    #   packs[0][:yarn_name]
+    #   # returns a formatted string with the brand and yarn name.
     #
-    # **`packs[0][:yarn_name]`** returns a formatted string with the brand and yarn name.
-    #
-    # *Example: "Wooly Wonka Fibers Artio Sock"*
+    # @return [Array<Hash>]
     #
     def packs_raw
       data[:packs]
     end
 
     # Helper that will tell you how many yarns you have in your pack.
+    #
+    # @return Integer
     #
     def pack_count
       data[:packs].length
@@ -341,6 +381,8 @@ module Ravelry
     #
     # See {Ravelry::Author} for more information about directly accessing author information.
     #
+    # @return Hash
+    #
     def pattern_author
       data[:pattern_author]
     end
@@ -350,6 +392,8 @@ module Ravelry
     # This method is included so you can access the information directly.
     #
     # See {Ravelry::Category} for more information about directly accessing category information.
+    #
+    # @return [Array<Hash>]
     #
     def pattern_categories_raw
       data[:pattern_categories]
@@ -362,6 +406,8 @@ module Ravelry
     #
     # See {Ravelry::Needle} for more information about directly accessing category information.
     #
+    # @return [Array<Hash>]
+    #
     def pattern_needle_sizes_raw
       data[:pattern_needle_sizes]
     end
@@ -372,17 +418,23 @@ module Ravelry
     #
     # See {Ravelry::Needle} for more information about directly accessing category information.
     #
+    # @return [Array<Hash>]
+    #
     def pattern_type_raw
       data[:pattern_type]
     end
 
     # Gets pdf_url from existing `data`.
     #
+    # @return String
+    #
     def pdf_url
       data[:pdf_url]
     end
 
     # Gets Ravelry permalink from existing `data`.
+    #
+    # @return String
     #
     def permalink
       data[:permalink]
@@ -394,11 +446,15 @@ module Ravelry
     #
     # See {Ravelry::Photo} for more information about directly accessing category information.
     #
+    # @return [Array<Hash>]
+    #
     def photos_raw
       data[:photos]
     end
 
-    # Gets price from existing `data` (Float).
+    # Gets price from existing `data`.
+    #
+    # @return Float
     #
     def price
       data[:price]
@@ -406,47 +462,63 @@ module Ravelry
 
     # Gets product_id from existing `data`.
     #
+    # @return Integer
+    #
     def product_id
       data[:product_id]
     end
 
-    # Gets projects_count from existing `data` (Integer).
+    # Gets projects_count from existing `data`.
+    #
+    # @return Integer
     #
     def projects_count
       data[:projects_count]
     end
 
-    # Gets publication date from existing `data` (Date).
+    # Gets publication date from existing `data`.
+    #
+    # @return Date
     #
     def published
       Date.parse(data[:published])
     end
 
-    # Gets number of queued projects from existing `data` (Integer).
+    # Gets number of queued projects from existing `data`.
+    #
+    # @return Integer
     #
     def queued_projects_count
       data[:queued_projects_count]
     end
 
-    # Gets rating_average from existing `data` (Float).
+    # Gets rating_average from existing `data`.
+    #
+    # @return Float
     #
     def rating_average
       data[:rating_average]
     end
 
-    # Gets number of ratings from existing `data` (Integer).
+    # Gets number of ratings from existing `data`.
+    #
+    # @return Integer
     #
     def rating_count
       data[:rating_count]
     end
 
-    # Returns true if pattern is a Ravelry download (Boolean).
+    # Returns true if pattern is a Ravelry download.
+    #
+    # @return Boolean
     #
     def ravelry_download?
       data[:ravelry_download]
     end
 
-    # Gets row gauge from existing `data` (Float).
+    # Gets row gauge from existing `data`.
+    #
+    # @return Float
     #
     def row_gauge
       data[:row_gauge]
@@ -454,17 +526,23 @@ module Ravelry
 
     # Gets sizes available from existing `data`.
     #
+    # @return String
+    #
     def sizes_available
       data[:sizes_available]
     end
 
     # Gets url from existing `data`.
     #
+    # @return String
+    #
     def url
       data[:url]
     end
 
-    # Gets yardage required from existing `data` (Integer).
+    # Gets yardage required from existing `data`.
+    #
+    # @return Integer
     #
     def yardage
       data[:yardage]
@@ -472,17 +550,23 @@ module Ravelry
 
     # Gets nice sentence yardage description with range from existing `data`.
     #
+    # @return String
+    #
     def yardage_description
       data[:yardage_description]
     end
 
-    # Gets max yards required from existing `data` (Integer).
+    # Gets max yards required from existing `data`.
+    #
+    # @return Integer
     #
     def yardage_max
       data[:yardage_max]
     end
 
     # Gets primary yarn weight description from existing `data`.
+    #
+    # @return String
     #
     def yarn_weight_description
       data[:yarn_weight_description]
