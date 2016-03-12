@@ -3,6 +3,7 @@
 ## 0.1.0
 
 - Return `self` on both `Ravelry::Pattern.get` and `Ravelry::Pattern.permalink_get` (previously returned `data`)
+- Auto-magically require all `lib/ravelry/*.rb` and `lib/ravelry/utils/*.rb` files
 
 ## 0.0.9
 
