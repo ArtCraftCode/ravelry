@@ -5,6 +5,7 @@
 - Return `self` on both `Ravelry::Pattern.get` and `Ravelry::Pattern.permalink_get` (previously returned `data`)
 - Add `callback_url` configuration option for OAuth
 - Create `Ravelry::Error::Configuration` class for configuration errors
+- Add more `Ravelry::Pattern` documentation
 
 ## 0.0.9
 
