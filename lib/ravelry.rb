@@ -2,6 +2,7 @@ require 'json'
 require 'typhoeus'
 
 require 'ravelry/configuration'
+require 'ravelry/errors/configuration'
 
 require 'ravelry/utils/build'
 require 'ravelry/utils/request'
@@ -27,7 +28,8 @@ require 'ravelry/user_site'
 require 'ravelry/yarn'
 require 'ravelry/yarn_weight'
 
-# Parent grouping for all classes.
+# Parent module for all classes.
+# 
 module Ravelry
   class << self
     attr_accessor :configuration

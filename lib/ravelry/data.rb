@@ -1,6 +1,7 @@
 module Ravelry
 
   # Parent class that controls initialization and fetching for API objects.
+  #
   class Data
     attr_accessor :id
     attr_reader :data
@@ -9,6 +10,8 @@ module Ravelry
       @id = id
     end
 
+    # Writes the `data` instance variable and calls `build` on the child class.
+    #
     def data=(d)
       @data = d
       build
@@ -17,6 +20,7 @@ module Ravelry
 
     private
     # Determines if a GET request needs to be made.
+    #
     def get?
       @id && !@data
     end
