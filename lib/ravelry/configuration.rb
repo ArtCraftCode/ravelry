@@ -18,7 +18,7 @@ module Ravelry
   # - Secret key
   # - Personal key
   # 
-  # The gem will raise a `ConfigurationError` if you fail to provide these keys.
+  # The gem will raise a `Errors::Configuration` if you fail to provide these keys.
   # 
   # # Configuring your gem
   #
@@ -56,22 +56,22 @@ module Ravelry
     end
 
     def access_key
-      raise ConfigurationError, "Ravelry access key missing! See the documentation for configuration settings." unless @access_key
+      raise Errors::Configuration, "Ravelry access key missing! See the documentation for configuration settings." unless @access_key
       @access_key
     end
 
     def secret_key
-      raise ConfigurationError, "Ravelry secret key missing! See the documentation for configuration settings." unless @secret_key
+      raise Errors::Configuration, "Ravelry secret key missing! See the documentation for configuration settings." unless @secret_key
       @secret_key
     end
 
     def personal_key
-      raise ConfigurationError, "Ravelry personal key missing! See the documentation for configuration settings." unless @personal_key
+      raise Errors::Configuration, "Ravelry personal key missing! See the documentation for configuration settings." unless @personal_key
       @personal_key
     end
 
     def callback_url
-      raise ConfigurationError, "Oauth callback url missing! See the documentation for configuration settings." unless @callback_url
+      raise Errors::Configuration, "Oauth callback url missing! See the documentation for configuration settings." unless @callback_url
       @callback_url
     end
   end

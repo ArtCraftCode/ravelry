@@ -35,19 +35,19 @@ describe Ravelry::Configuration do
     end
 
     it 'raises a configuration error for access_key' do
-      expect { Ravelry.configuration.access_key }.to raise_error(Ravelry::ConfigurationError)
+      expect { Ravelry.configuration.access_key }.to raise_error(Ravelry::Errors::Configuration)
     end
 
     it 'raises a configuration error for secret_key' do
-      expect { Ravelry.configuration.secret_key }.to raise_error(Ravelry::ConfigurationError)
+      expect { Ravelry.configuration.secret_key }.to raise_error(Ravelry::Errors::Configuration)
     end
 
     it 'raises a configuration error for personal_key' do
-      expect { Ravelry.configuration.personal_key }.to raise_error(Ravelry::ConfigurationError)
+      expect { Ravelry.configuration.personal_key }.to raise_error(Ravelry::Errors::Configuration)
     end
 
     it 'raises a configuration error for callback_url' do
-      expect { Ravelry.configuration.callback_url }.to raise_error(Ravelry::ConfigurationError)
+      expect { Ravelry.configuration.callback_url }.to raise_error(Ravelry::Errors::Configuration)
     end
   end
 
@@ -59,10 +59,10 @@ describe Ravelry::Configuration do
       expect(Ravelry.configuration.callback_url).to eq(@callback_url)
 
       Ravelry.reset
-      expect { Ravelry.configuration.access_key }.to raise_error(Ravelry::ConfigurationError)
-      expect { Ravelry.configuration.secret_key }.to raise_error(Ravelry::ConfigurationError)
-      expect { Ravelry.configuration.personal_key }.to raise_error(Ravelry::ConfigurationError)
-      expect { Ravelry.configuration.callback_url }.to raise_error(Ravelry::ConfigurationError)
+      expect { Ravelry.configuration.access_key }.to raise_error(Ravelry::Errors::Configuration)
+      expect { Ravelry.configuration.secret_key }.to raise_error(Ravelry::Errors::Configuration)
+      expect { Ravelry.configuration.personal_key }.to raise_error(Ravelry::Errors::Configuration)
+      expect { Ravelry.configuration.callback_url }.to raise_error(Ravelry::Errors::Configuration)
     end
   end
 end

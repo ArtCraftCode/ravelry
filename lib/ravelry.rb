@@ -2,7 +2,7 @@ require 'json'
 require 'typhoeus'
 
 require 'ravelry/configuration'
-require 'ravelry/configuration_error'
+require 'ravelry/errors/configuration'
 
 require 'ravelry/utils/build'
 require 'ravelry/utils/request'
