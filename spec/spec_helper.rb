@@ -21,7 +21,7 @@ RSpec.configure do |config|
   config.include YarnHelpers
   config.include YarnWeightHelpers
   config.include RequestHelpers
-  config.order = "random"
+  config.order = "defined"
   config.before(:all) do
     Ravelry.configure do |config|
       config.access_key = ENV['RAV_ACCESS']
