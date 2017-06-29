@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem "typhoeus", "~> 0.8"
+gem "oauth", "~> 0.5"
 
 group :development do
   gem "rspec", "~> 2.14"
