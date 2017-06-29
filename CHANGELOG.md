@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+
+- up ruby version from 2.0.0 to 2.3.0
+
 ## 0.1.0
 
 - Return `self` on both `Ravelry::Pattern.get` and `Ravelry::Pattern.permalink_get` (previously returned `data`)
