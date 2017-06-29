@@ -2,7 +2,7 @@
 
 _You are reading documentation for version: 0.2.0_
 
-[ ![Codeship Status for ArtCraftCode/ravelry](https://codeship.com/projects/fc6710e0-5719-0133-36cc-5ebc52a48109/status?branch=0.2.0)](https://codeship.com/projects/109462)
+[ ![Codeship Status for ArtCraftCode/ravelry](https://app.codeship.com/projects/afe1a750-3f22-0135-26c6-7e3d37d99ae1/status?branch=pre)](https://codeship.com/projects/229699)
 
 The Ruby gem for accessing the Ravelry API painlessly, easily, and awesomely! This gem is actively being developed. **Be sure to check the branch for the version you're using.**
 
